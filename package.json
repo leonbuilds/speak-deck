@@ -1,0 +1,23 @@
+{
+  "name": "speakdeck",
+  "version": "0.1.0",
+  "description": "Claude Code 驱动的演讲准备工作流：HTML 演讲网页 + 自己声音的口播音频",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "clone-voice": "node scripts/clone-voice.mjs",
+    "build": "node scripts/build-html.mjs",
+    "tts": "node scripts/tts.mjs",
+    "parse": "node scripts/parse-html.mjs",
+    "inject": "node scripts/inject-html.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "msgpackr": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>__TITLE__</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #0E1116;
+    --card: #161B22;
+    --fg: #E6EDF3;
+    --fg-2: #9AA4B2;
+    --accent: #4FB6FF;
+    --accent-2: #FFB454;
+    --line: #1F242C;
+  }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "PingFang SC","Noto Sans SC","Inter",system-ui,-apple-system,sans-serif;
+    margin: 0;
+  }
+  .slide {
+    min-height: 100vh;
+    padding: 8vh 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .slide h1 { font-size: 64px; font-weight: 700; line-height: 1.2; margin: 0 0 32px; }
+  .slide h2 { font-size: 40px; font-weight: 600; line-height: 1.3; margin: 0 0 24px; }
+  .slide p  { font-size: 24px; font-weight: 400; line-height: 1.6; margin: 0 0 16px; }
+  .slide ul { font-size: 24px; line-height: 1.8; padding-left: 0; list-style: none; }
+  .slide li { padding-left: 1.2em; position: relative; }
+  .slide li::before { content: "·"; position: absolute; left: 0; color: var(--accent); }
+  .slide .note { font-size: 18px; color: var(--fg-2); opacity: 0.8; }
+  .accent { color: var(--accent); }
+  .accent-2 { color: var(--accent-2); }
+  .quote { border-left: 4px solid var(--accent); padding-left: 16px; font-style: italic; }
+  .bignum { font-size: 160px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .speaker {
+    position: fixed; right: 24px; bottom: 24px;
+    max-width: 380px; max-height: 50vh; overflow-y: auto;
+    background: rgba(22,27,34,.96);
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 14px; line-height: 1.6;
+    z-index: 9999;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  }
+  .speaker.hidden { display: none; }
+  .hint {
+    position: fixed; left: 24px; bottom: 24px;
+    font-size: 12px; color: var(--fg-2); opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+__SLIDES__
+<aside id="speaker" class="speaker"></aside>
+<div class="hint">↑↓ 翻页 · P 切换演讲模式</div>
+<script>__INJECTOR__</script>
+</body>
+</html>

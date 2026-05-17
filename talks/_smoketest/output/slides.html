@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI 时代的演讲准备</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #0E1116;
+    --card: #161B22;
+    --fg: #E6EDF3;
+    --fg-2: #9AA4B2;
+    --accent: #4FB6FF;
+    --accent-2: #FFB454;
+    --line: #1F242C;
+  }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "PingFang SC","Noto Sans SC","Inter",system-ui,-apple-system,sans-serif;
+    margin: 0;
+  }
+  .slide {
+    min-height: 100vh;
+    padding: 8vh 10vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .slide h1 { font-size: 64px; font-weight: 700; line-height: 1.2; margin: 0 0 32px; }
+  .slide h2 { font-size: 40px; font-weight: 600; line-height: 1.3; margin: 0 0 24px; }
+  .slide p  { font-size: 24px; font-weight: 400; line-height: 1.6; margin: 0 0 16px; }
+  .slide ul { font-size: 24px; line-height: 1.8; padding-left: 0; list-style: none; }
+  .slide li { padding-left: 1.2em; position: relative; }
+  .slide li::before { content: "·"; position: absolute; left: 0; color: var(--accent); }
+  .slide .note { font-size: 18px; color: var(--fg-2); opacity: 0.8; }
+  .accent { color: var(--accent); }
+  .accent-2 { color: var(--accent-2); }
+  .quote { border-left: 4px solid var(--accent); padding-left: 16px; font-style: italic; }
+  .bignum { font-size: 160px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .speaker {
+    position: fixed; right: 24px; bottom: 24px;
+    max-width: 380px; max-height: 50vh; overflow-y: auto;
+    background: rgba(22,27,34,.96);
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 14px; line-height: 1.6;
+    z-index: 9999;
+    box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  }
+  .speaker.hidden { display: none; }
+  .hint {
+    position: fixed; left: 24px; bottom: 24px;
+    font-size: 12px; color: var(--fg-2); opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+<section class="slide kind-title" data-script="我想从一件具体的事说起。做了十几年演讲，我发现最费时间的不是登台的那 30 分钟——是准备的那 3 天。" data-audio="audio/p01.mp3">
+  <h1>AI 时代的演讲准备</h1>
+  <p>用 Claude Code 驱动，从想法到交付，一套完整的工具链。</p>
+</section>
+<section class="slide kind-bullets" data-script="你看，这件事其实只有一个核心——准备效率。今天我想聊的就是怎么用 AI 工具把这个循环压缩掉。" data-audio="audio/p02.mp3">
+  <h1>准备一场演讲，真正的时间花在哪？</h1>
+  <ul><li>想清楚说什么 → 反复推翻再重来</li><li>写逐字稿 → 写完才发现节奏不对</li><li>练到流利 → 念稿和自然讲的差距</li></ul>
+</section>
+<section class="slide kind-data" data-script="500 份方案。不是说这个数字多厉害——是说在这个体量上，你才能真正感受到&#39;准备效率&#39;这个问题有多真实。" data-audio="audio/p03.mp3">
+  <h1>500</h1>
+  <div class="bignum">500</div>
+  <p class="note">份方案 · 大概每周一份，做了 10 年</p>
+</section>
+<section class="slide kind-bullets" data-script="三件事，缺一不可。但它们过去是串在一起做的——做完结构才能写稿，写完稿才能录音。SpeakDeck 把它们并行化了。" data-audio="audio/p04.mp3">
+  <h1>SpeakDeck 做了什么</h1>
+  <p>把演讲准备拆成三件独立的事，每一件都让 AI 来主导。</p>
+  <ul><li>结构：从 brief 到大纲，Claude Code 帮你想</li><li>稿子：按你的语速和风格，不是模板腔</li><li>练习：用自己的声音录好，随时回听</li></ul>
+</section>
+<section class="slide kind-closing" data-script="如果今天只记住一句话，我希望是这句——演讲不是临场发挥，是准备完之后的自然流露。SpeakDeck 要做的，就是让你提前到那个状态。" data-audio="audio/p05.mp3">
+  <h1>如果今天只记住一句话</h1>
+  <p class="quote">演讲不是临场发挥，是准备完之后的自然流露。</p>
+</section>
+<aside id="speaker" class="speaker"></aside>
+<div class="hint">↑↓ 翻页 · P 切换演讲模式</div>
+<script>// SpeakDeck injector — 演讲模式 + 翻页自动播音
+// 两种模式共用：Mode A 由模板嵌入，Mode B 由 inject-html.mjs 注入到 </body> 前
+(function () {
+  // 1. 收集所有"页"——同时支持 [data-script] / [data-audio] / .slide / section
+  let slides = document.querySelectorAll("[data-script],[data-audio]");
+  if (slides.length === 0) slides = document.querySelectorAll(".slide,section");
+  if (slides.length === 0) return;
+
+  // 2. 演讲模式浮层（如果模板没提供则动态建一个）
+  let speaker = document.getElementById("speaker");
+  if (!speaker) {
+    speaker = document.createElement("aside");
+    speaker.id = "speaker";
+    Object.assign(speaker.style, {
+      position: "fixed", right: "24px", bottom: "24px",
+      maxWidth: "380px", maxHeight: "50vh", overflowY: "auto",
+      background: "rgba(22,27,34,.96)", color: "#E6EDF3",
+      padding: "16px 20px", borderRadius: "12px",
+      fontSize: "14px", lineHeight: "1.6", zIndex: 9999,
+      boxShadow: "0 8px 32px rgba(0,0,0,.4)"
+    });
+    document.body.appendChild(speaker);
+  }
+
+  // 3. 音频播放器
+  const audio = new Audio();
+  let current = -1;
+  let manualPaused = false;
+
+  function activate(idx) {
+    if (idx === current || idx < 0 || idx >= slides.length) return;
+    current = idx;
+    const el = slides[idx];
+    speaker.textContent = el.dataset.script || "";
+    const src = el.dataset.audio;
+    if (src && !manualPaused) {
+      audio.src = src;
+      audio.play().catch(() => {});
+    } else if (!src) {
+      audio.pause();
+    }
+  }
+
+  // 4. 滚动激活
+  const io = new IntersectionObserver((entries) => {
+    let best = null;
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        if (!best || e.intersectionRatio > best.intersectionRatio) best = e;
+      }
+    }
+    if (best) activate([...slides].indexOf(best.target));
+  }, { threshold: [0.4, 0.6, 0.8] });
+  slides.forEach((s) => io.observe(s));
+
+  // 5. 键盘控制
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "p" || e.key === "P") {
+      speaker.classList.toggle("hidden");
+    } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+      e.preventDefault();
+      slides[Math.min(current + 1, slides.length - 1)]?.scrollIntoView({ behavior: "smooth" });
+    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+      e.preventDefault();
+      slides[Math.max(current - 1, 0)]?.scrollIntoView({ behavior: "smooth" });
+    } else if (e.key === "m" || e.key === "M") {
+      manualPaused = !manualPaused;
+      if (manualPaused) audio.pause(); else audio.play().catch(() => {});
+    } else if (e.key === "r" || e.key === "R") {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
+  });
+
+  // 6. 首页激活
+  activate(0);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1777 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 落地实践 · 从个人工具到企业交付 · 企业版</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:wght@300;400;500;700&amp;family=Noto+Serif+SC:wght@300;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0b0420;
+  --bg-mid: #1a0a3e;
+  --coral: #ff5e7e;
+  --peach: #ffb86c;
+  --cyan: #6effe3;
+  --lavender: #b794ff;
+  --text: #f5f0ff;
+  --muted: rgba(245,240,255,0.55);
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; }
+body {
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.deck-slide {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-deep);
+  scroll-snap-align: start;
+}
+.reveal { opacity: 0; transform: translateY(20px); }
+.deck-slide.in-view .reveal {
+  animation-name: reveal;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.2,0.8,0.2,1);
+}
+.r1{animation-delay:0.1s} .r2{animation-delay:0.3s} .r3{animation-delay:0.5s}
+.r4{animation-delay:0.7s} .r5{animation-delay:0.9s} .r6{animation-delay:1.1s}
+.r7{animation-delay:1.3s} .r8{animation-delay:1.5s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-30px,40px) scale(0.95)}}
+@keyframes blink{50%{opacity:0.3}}
+@keyframes reveal{to{opacity:1;transform:translateY(0)}}
+
+/* ===== PAGE 01 ===== */
+#p01 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p01 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;animation:float 20s ease-in-out infinite}
+#p01 .blob-1{width:600px;height:600px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-200px;left:-100px}
+#p01 .blob-2{width:700px;height:700px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-250px;right:-150px;animation-delay:-7s}
+#p01 .blob-3{width:500px;height:500px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:30%;right:20%;opacity:0.4;animation-delay:-14s}
+#p01 .blob-4{width:400px;height:400px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:20%;left:30%;opacity:0.5;animation-delay:-3s}
+#p01::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p01 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:56px 80px;display:grid;grid-template-rows:auto 1fr auto;gap:40px}
+#p01 .topnav{display:flex;justify-content:space-between;align-items:center;z-index:3}
+#p01 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;letter-spacing:0.02em}
+#p01 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p01 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p01 .nav-pills{display:flex;gap:8px}
+#p01 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p01 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p01 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p01 .hero{display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:center}
+#p01 .left{display:flex;flex-direction:column;gap:32px}
+#p01 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;width:fit-content}
+#p01 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p01 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:80px;line-height:0.92;letter-spacing:-0.04em;color:var(--text)}
+#p01 h1 .grad{background:linear-gradient(135deg,var(--coral) 0%,var(--peach) 50%,var(--lavender) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p01 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:76px}
+#p01 .subtitle{font-family:'Instrument Serif',serif;font-size:26px;line-height:1.4;font-style:italic;color:var(--text);font-weight:300;max-width:520px}
+#p01 .subtitle .underline{background:linear-gradient(120deg,transparent 0%,transparent 30%,rgba(255,94,126,0.4) 30%,rgba(255,94,126,0.4) 100%);padding:0 4px}
+#p01 .glass-card{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:32px;padding:36px;position:relative;overflow:hidden}
+#p01 .glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p01 .glass-card h3{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:22px;margin-bottom:24px;color:var(--text);display:flex;align-items:center;justify-content:space-between}
+#p01 .glass-card h3 .badge{font-family:'DM Sans',sans-serif;font-style:normal;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;background:linear-gradient(135deg,var(--coral),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+#p01 .stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+#p01 .stat .num{font-family:'Instrument Serif',serif;font-style:italic;font-size:56px;font-weight:400;line-height:1;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p01 .stat .num.alt{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p01 .stat .lbl{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+#p01 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);margin:8px 0 20px}
+#p01 .author{display:flex;align-items:center;gap:14px}
+#p01 .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--lavender));display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--bg-deep);font-weight:700}
+#p01 .author-info .name{font-weight:600;font-size:15px}
+#p01 .author-info .role{font-size:11px;letter-spacing:0.1em;color:var(--muted);margin-top:2px}
+#p01 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p01 .progress-line{display:flex;gap:4px;align-items:center}
+#p01 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p01 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 02 ===== */
+#p02 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p02 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;animation:float 20s ease-in-out infinite}
+#p02 .blob-1{width:600px;height:600px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-200px;left:40%}
+#p02 .blob-2{width:700px;height:700px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-250px;right:-100px;animation-delay:-7s}
+#p02 .blob-3{width:500px;height:500px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:40%;left:-100px;opacity:0.4;animation-delay:-14s}
+#p02 .blob-4{width:400px;height:400px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:20%;left:50%;opacity:0.5;animation-delay:-3s}
+#p02::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p02 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:56px 80px;display:grid;grid-template-rows:auto 1fr auto;gap:40px}
+#p02 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p02 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p02 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p02 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p02 .nav-pills{display:flex;gap:8px}
+#p02 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p02 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p02 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p02 .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;gap:40px}
+#p02 .quote-mark{font-family:'Instrument Serif',serif;font-style:italic;font-size:240px;line-height:0.6;background:linear-gradient(135deg,var(--coral),var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:0.5;position:absolute;top:8%;left:50%;transform:translateX(-50%)}
+#p02 .quote-mark.bottom{top:auto;bottom:8%;transform:translateX(-50%) rotate(180deg)}
+#p02 .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500}
+#p02 .eyebrow::before,#p02 .eyebrow::after{content:'';width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--coral),transparent)}
+#p02 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:80px;line-height:1.15;letter-spacing:-0.03em;max-width:1100px}
+#p02 h1 .strike{position:relative;color:var(--muted);font-weight:700}
+#p02 h1 .strike::after{content:'';position:absolute;top:50%;left:-4px;right:-4px;height:4px;background:var(--coral);border-radius:2px}
+#p02 h1 .grad{background:linear-gradient(135deg,var(--coral) 0%,var(--peach) 50%,var(--lavender) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p02 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
+#p02 .attribution{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--muted);font-weight:300}
+#p02 .attribution .dash{color:var(--coral);margin-right:12px}
+#p02 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p02 .progress-line{display:flex;gap:4px;align-items:center}
+#p02 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p02 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 03 ===== */
+#p03 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p03 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p03 .blob-1{width:560px;height:560px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-180px;left:-120px}
+#p03 .blob-2{width:640px;height:640px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-240px;right:-120px;animation-delay:-7s}
+#p03 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:45%;right:32%;opacity:0.32;animation-delay:-14s}
+#p03 .blob-4{width:360px;height:360px;background:radial-gradient(circle,var(--peach),transparent 70%);top:8%;right:12%;opacity:0.42;animation-delay:-3s}
+#p03::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p03 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto 1fr auto;gap:36px}
+#p03 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p03 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p03 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p03 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p03 .nav-pills{display:flex;gap:8px}
+#p03 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p03 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p03 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p03 .hero{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center}
+#p03 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:22px}
+#p03 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p03 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:66px;line-height:1.16;letter-spacing:-0.03em}
+#p03 h1 .grad{background:linear-gradient(135deg,var(--coral) 0%,var(--peach) 50%,var(--lavender) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p03 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
+#p03 .lede{margin-top:28px;font-family:'Instrument Serif',serif;font-style:italic;font-size:26px;line-height:1.5;color:var(--muted);max-width:460px}
+#p03 .lede b{color:var(--cyan);font-style:normal;font-family:'DM Sans',sans-serif;font-weight:500}
+#p03 .qcards{display:flex;flex-direction:column;gap:18px}
+#p03 .qcard{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:24px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;position:relative;overflow:hidden}
+#p03 .qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p03 .qcard .qnum{font-family:'Instrument Serif',serif;font-style:italic;font-size:56px;line-height:0.8;width:56px;text-align:center;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p03 .qcard:nth-child(2) .qnum{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p03 .qcard:nth-child(3) .qnum{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p03 .qcard h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:22px;margin-bottom:6px}
+#p03 .qcard p{font-size:13.5px;line-height:1.6;color:var(--muted)}
+#p03 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p03 .progress-line{display:flex;gap:4px;align-items:center}
+#p03 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p03 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 04 ===== */
+#p04 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p04 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p04 .blob-1{width:520px;height:520px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-160px;left:8%}
+#p04 .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-240px;right:-80px;animation-delay:-7s}
+#p04 .blob-3{width:440px;height:440px;background:radial-gradient(circle,var(--cyan),transparent 70%);bottom:10%;left:-120px;opacity:0.34;animation-delay:-14s}
+#p04 .blob-4{width:360px;height:360px;background:radial-gradient(circle,var(--peach),transparent 70%);top:20%;right:14%;opacity:0.42;animation-delay:-3s}
+#p04::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p04 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:30px}
+#p04 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p04 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p04 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p04 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p04 .nav-pills{display:flex;gap:8px}
+#p04 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p04 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p04 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p04 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p04 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p04 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p04 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:60px;line-height:1;letter-spacing:-0.03em}
+#p04 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p04 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);text-align:right;max-width:340px;line-height:1.4}
+#p04 .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:stretch}
+#p04 .col{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:36px 32px;display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+#p04 .col::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p04 .col .tag{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted)}
+#p04 .col .big{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:76px;line-height:0.95}
+#p04 .col.c1 .big{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p04 .col.c2 .big{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p04 .col.c3 .big{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p04 .col h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:26px}
+#p04 .col p{font-size:14px;line-height:1.7;color:var(--muted)}
+#p04 .col .role{margin-top:auto;padding-top:16px;border-top:1px solid var(--glass-border);font-size:12px;color:var(--text);letter-spacing:0.04em}
+#p04 .col .role b{color:var(--cyan);font-weight:700}
+#p04 .arrow{display:flex;align-items:center;justify-content:center;width:64px;font-family:'Instrument Serif',serif;font-style:italic;font-size:40px;color:var(--coral)}
+#p04 .foot-note{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:var(--muted);text-align:center}
+#p04 .foot-note .hi{position:relative;color:var(--text)}
+#p04 .foot-note .hi::after{content:'';position:absolute;left:-2px;right:-2px;bottom:2px;height:10px;z-index:-1;background:linear-gradient(120deg,transparent 30%,rgba(255,94,126,0.5) 30%)}
+#p04 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p04 .progress-line{display:flex;gap:4px;align-items:center}
+#p04 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p04 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 05 ===== */
+#p05 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p05 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p05 .blob-1{width:540px;height:540px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-200px;right:18%}
+#p05 .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-260px;left:-100px;animation-delay:-7s}
+#p05 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);bottom:6%;right:-80px;opacity:0.34;animation-delay:-14s}
+#p05 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);top:14%;left:6%;opacity:0.42;animation-delay:-3s}
+#p05::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p05 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px}
+#p05 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p05 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p05 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p05 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p05 .nav-pills{display:flex;gap:8px}
+#p05 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p05 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p05 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p05 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p05 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p05 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p05 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:58px;line-height:1;letter-spacing:-0.03em}
+#p05 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p05 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);text-align:right;max-width:340px;line-height:1.4}
+#p05 .compare{display:grid;grid-template-columns:1fr 88px 1fr;align-items:stretch;gap:0}
+#p05 .panel{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:34px 38px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+#p05 .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p05 .panel.old{opacity:0.86}
+#p05 .panel .ptag{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted)}
+#p05 .panel .ptitle{font-family:'Noto Serif SC',serif;font-weight:900;font-size:38px;line-height:1.1}
+#p05 .panel.old .ptitle{color:var(--muted)}
+#p05 .panel.new .ptitle{background:linear-gradient(135deg,var(--coral),var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p05 .panel .en{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--muted);margin-top:-6px}
+#p05 .panel ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:6px}
+#p05 .panel li{font-size:14.5px;line-height:1.5;color:var(--text);display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+#p05 .panel.old li{color:var(--muted)}
+#p05 .panel li .mk{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;line-height:1.3}
+#p05 .panel.old li .mk{color:rgba(245,240,255,0.4)}
+#p05 .panel.new li .mk{color:var(--cyan)}
+#p05 .panel .kpi{margin-top:auto;padding-top:16px;border-top:1px solid var(--glass-border);font-size:12.5px;color:var(--muted)}
+#p05 .panel .kpi b{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px}
+#p05 .panel.old .kpi b{color:var(--muted)}
+#p05 .panel.new .kpi b{color:var(--coral)}
+#p05 .midarrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+#p05 .midarrow .ring{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--lavender));display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:var(--bg-deep);box-shadow:0 0 36px rgba(255,94,126,0.5)}
+#p05 .midarrow .lbl{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
+#p05 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p05 .progress-line{display:flex;gap:4px;align-items:center}
+#p05 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p05 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 06 ===== */
+#p06 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p06 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p06 .blob-1{width:500px;height:500px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-150px;right:-50px}
+#p06 .blob-2{width:600px;height:600px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-200px;left:-100px;animation-delay:-7s}
+#p06 .blob-3{width:400px;height:400px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:50%;right:30%;opacity:0.3;animation-delay:-14s}
+#p06 .blob-4{width:350px;height:350px;background:radial-gradient(circle,var(--peach),transparent 70%);top:30%;left:20%;opacity:0.4;animation-delay:-3s}
+#p06::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p06 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:28px}
+#p06 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p06 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p06 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p06 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p06 .nav-pills{display:flex;gap:8px}
+#p06 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p06 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p06 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p06 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p06 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p06 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p06 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:60px;line-height:1;letter-spacing:-0.03em}
+#p06 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p06 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);text-align:right;max-width:320px;line-height:1.4}
+#p06 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-content:center}
+#p06 .card{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:24px;padding:28px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:16px;min-height:280px}
+#p06 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p06 .card .icon-row{display:flex;justify-content:space-between;align-items:flex-start}
+#p06 .card .icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:26px;font-weight:400;color:var(--bg-deep)}
+#p06 .card.c-coral .icon{background:linear-gradient(135deg,var(--coral),var(--peach))}
+#p06 .card.c-lavender .icon{background:linear-gradient(135deg,var(--lavender),var(--coral))}
+#p06 .card.c-cyan .icon{background:linear-gradient(135deg,var(--cyan),var(--lavender))}
+#p06 .card.c-peach .icon{background:linear-gradient(135deg,var(--peach),var(--cyan))}
+#p06 .card .badge{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);padding:4px 10px;border:1px solid var(--glass-border);border-radius:100px}
+#p06 .card h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:24px;line-height:1.15}
+#p06 .card h3 .en{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:16px;color:var(--muted);margin-top:4px}
+#p06 .card p{font-size:13px;line-height:1.6;color:var(--muted);flex-grow:1}
+#p06 .card .footer-row{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--glass-border);font-size:11px;color:var(--muted)}
+#p06 .card .num{font-family:'Instrument Serif',serif;font-style:italic;font-size:18px}
+#p06 .card.c-coral .num{color:var(--coral)}
+#p06 .card.c-lavender .num{color:var(--lavender)}
+#p06 .card.c-cyan .num{color:var(--cyan)}
+#p06 .card.c-peach .num{color:var(--peach)}
+#p06 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p06 .progress-line{display:flex;gap:4px;align-items:center}
+#p06 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p06 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 07 ===== */
+#p07 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p07 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p07 .blob-1{width:520px;height:520px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-180px;right:-60px}
+#p07 .blob-2{width:600px;height:600px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-240px;left:-120px;animation-delay:-7s}
+#p07 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:40%;left:30%;opacity:0.3;animation-delay:-14s}
+#p07 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:14%;right:16%;opacity:0.42;animation-delay:-3s}
+#p07::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p07 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:22px}
+#p07 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p07 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p07 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p07 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p07 .nav-pills{display:flex;gap:8px}
+#p07 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p07 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p07 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p07 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p07 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
+#p07 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p07 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-0.03em}
+#p07 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;color:var(--muted);text-align:right;max-width:330px;line-height:1.4}
+#p07 .steps{display:flex;flex-direction:column;gap:12px;justify-content:center}
+#p07 .step{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:18px 30px;display:grid;grid-template-columns:110px 1fr auto;gap:30px;align-items:center;position:relative;overflow:hidden}
+#p07 .step::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+#p07 .step.s1::before{background:linear-gradient(180deg,var(--coral),var(--peach))}
+#p07 .step.s2::before{background:linear-gradient(180deg,var(--peach),var(--lavender))}
+#p07 .step.s3::before{background:linear-gradient(180deg,var(--lavender),var(--coral))}
+#p07 .step.s4::before{background:linear-gradient(180deg,var(--cyan),var(--lavender))}
+#p07 .step.s5::before{background:linear-gradient(180deg,var(--coral),var(--cyan))}
+#p07 .step .snum{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:78px;line-height:0.8;text-align:center}
+#p07 .step.s1 .snum{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .step.s2 .snum{background:linear-gradient(135deg,var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .step.s3 .snum{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .step.s4 .snum{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .step.s5 .snum{background:linear-gradient(135deg,var(--coral),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p07 .step .body h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:25px;line-height:1.1;margin-bottom:5px}
+#p07 .step .body h3 .en{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:19px;color:var(--muted);margin-left:10px}
+#p07 .step .body p{font-size:13.5px;line-height:1.55;color:var(--muted)}
+#p07 .step .who{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:7px 14px;border-radius:100px;border:1px solid var(--glass-border);white-space:nowrap}
+#p07 .step .who.you{color:var(--cyan);border-color:rgba(110,255,227,0.35);background:rgba(110,255,227,0.08)}
+#p07 .step .who.ai{color:var(--lavender);border-color:rgba(183,148,255,0.35);background:rgba(183,148,255,0.08)}
+#p07 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p07 .progress-line{display:flex;gap:4px;align-items:center}
+#p07 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p07 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 08 · 进阶能力 ===== */
+#p08 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p08 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p08 .blob-1{width:520px;height:520px;background:radial-gradient(circle,var(--lavender),transparent 70%);top:-170px;left:-70px}
+#p08 .blob-2{width:600px;height:600px;background:radial-gradient(circle,var(--coral),transparent 70%);bottom:-230px;right:-110px;animation-delay:-7s}
+#p08 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:30%;right:24%;opacity:0.3;animation-delay:-14s}
+#p08 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:18%;left:30%;opacity:0.4;animation-delay:-3s}
+#p08::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p08 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px}
+#p08 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p08 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p08 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p08 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p08 .nav-pills{display:flex;gap:8px}
+#p08 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p08 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p08 .pill.live::before{content:'\25cf';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p08 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p08 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p08 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p08 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:58px;line-height:1;letter-spacing:-0.03em}
+#p08 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p08 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);text-align:right;max-width:300px;line-height:1.4}
+#p08 .content{display:flex;flex-direction:column;gap:18px;justify-content:center}
+#p08 .concepts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#p08 .concept{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:22px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;position:relative;overflow:hidden}
+#p08 .concept::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p08 .concept .ic{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--bg-deep);font-weight:400}
+#p08 .concept.k-cyan .ic{background:linear-gradient(135deg,var(--cyan),var(--lavender))}
+#p08 .concept.k-coral .ic{background:linear-gradient(135deg,var(--coral),var(--peach))}
+#p08 .concept h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:21px;margin-bottom:4px}
+#p08 .concept h3 .en{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:15px;color:var(--muted);margin-left:8px}
+#p08 .concept p{font-size:13px;line-height:1.6;color:var(--muted)}
+#p08 .chain-wrap{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:22px 26px;position:relative;overflow:hidden}
+#p08 .chain-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p08 .chain-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+#p08 .chain-label b{color:var(--cyan);font-weight:500}
+#p08 .chain{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}
+#p08 .chain-step{display:flex;flex-direction:column;gap:6px}
+#p08 .chain-step .st-tag{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:600}
+#p08 .chain-step.cs1 .st-tag{color:var(--coral)}
+#p08 .chain-step.cs2 .st-tag{color:var(--lavender)}
+#p08 .chain-step.cs3 .st-tag{color:var(--cyan)}
+#p08 .chain-step .st-name{font-family:'Instrument Serif',serif;font-style:italic;font-size:23px;line-height:1.05}
+#p08 .chain-step .st-desc{font-size:12px;line-height:1.5;color:var(--muted)}
+#p08 .chain-arrow{display:flex;align-items:center;font-family:'Instrument Serif',serif;font-style:italic;font-size:26px;color:var(--muted)}
+#p08 .relax-note{margin-top:14px;padding:11px 18px;border-radius:14px;border:1px solid rgba(110,255,227,0.3);background:linear-gradient(135deg,rgba(110,255,227,0.08),rgba(183,148,255,0.06));font-family:'Instrument Serif',serif;font-style:italic;font-size:13.5px;color:var(--text);line-height:1.45}
+#p08 .relax-note .dash{color:var(--cyan);margin-right:6px}
+#p08 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p08 .progress-line{display:flex;gap:4px;align-items:center}
+#p08 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p08 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 09 · clip-shot ===== */
+#p09 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p09 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p09 .blob-1{width:540px;height:540px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-190px;left:-80px}
+#p09 .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-250px;right:-110px;animation-delay:-7s}
+#p09 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:14%;right:8%;opacity:0.34;animation-delay:-14s}
+#p09 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:16%;left:38%;opacity:0.4;animation-delay:-3s}
+#p09::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p09 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px}
+#p09 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p09 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p09 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p09 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p09 .nav-pills{display:flex;gap:8px}
+#p09 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p09 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p09 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p09 .page-header{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:end}
+#p09 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
+#p09 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p09 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-0.03em}
+#p09 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
+#p09 .two-cols{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start}
+#p09 .mockup-wrap{display:flex;align-items:center;justify-content:center;height:100%}
+#p09 .menubar-popup{width:300px;background:rgba(255,255,255,0.07);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+#p09 .menubar-popup::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent)}
+#p09 .popup-title{display:flex;align-items:center;gap:8px}
+#p09 .traffic-lights{display:flex;gap:5px}
+#p09 .tl{width:10px;height:10px;border-radius:50%;display:block}
+#p09 .tl.red{background:var(--coral)}
+#p09 .tl.yellow{background:var(--peach)}
+#p09 .tl.green{background:var(--cyan)}
+#p09 .app-name{font-size:13px;font-weight:600;color:var(--text);flex:1}
+#p09 .app-icon{font-size:16px}
+#p09 .status-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+#p09 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);flex-shrink:0;animation:blink 1.5s infinite}
+#p09 .preview-box{background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
+#p09 .preview-img{width:56px;height:42px;border-radius:8px;background:linear-gradient(135deg,var(--coral),var(--peach),var(--lavender));flex-shrink:0}
+#p09 .preview-meta{display:flex;flex-direction:column;gap:3px}
+#p09 .preview-meta span{font-size:11px;color:var(--muted)}
+#p09 .preview-meta span:first-child{color:var(--text);font-weight:500}
+#p09 .upload-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}
+#p09 .upload-label{flex-shrink:0}
+#p09 .prog-bar{flex:1;height:5px;background:rgba(255,255,255,0.12);border-radius:3px;overflow:hidden}
+#p09 .prog-fill{width:92%;height:100%;background:linear-gradient(90deg,var(--cyan),var(--lavender));border-radius:3px}
+#p09 .prog-pct{font-size:11px;color:var(--cyan);flex-shrink:0}
+#p09 .result-row{display:flex;align-items:center;gap:6px;font-size:12px}
+#p09 .result-check{color:var(--cyan);font-weight:700}
+#p09 .result-label{color:var(--text)}
+#p09 .link-box{font-family:monospace;font-size:11px;color:var(--lavender);background:rgba(183,148,255,0.1);border:1px solid rgba(183,148,255,0.25);border-radius:8px;padding:8px 10px;word-break:break-all;line-height:1.4}
+#p09 .copy-btn{background:linear-gradient(135deg,var(--coral),var(--peach));color:var(--bg-deep);border-radius:10px;padding:9px;text-align:center;font-size:12px;font-weight:700;cursor:pointer}
+#p09 .narr-col{display:flex;flex-direction:column;gap:14px}
+#p09 .narr-cards{display:flex;flex-direction:column;gap:10px}
+#p09 .narr-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;position:relative;overflow:hidden}
+#p09 .narr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p09 .narr-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:42px;line-height:0.85;text-align:center}
+#p09 .narr-card:nth-child(1) .narr-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p09 .narr-card:nth-child(2) .narr-num{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p09 .narr-card:nth-child(3) .narr-num{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p09 .narr-card h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:15px;margin-bottom:4px}
+#p09 .narr-card p{font-size:12.5px;line-height:1.55;color:var(--muted)}
+#p09 .takeaway{padding:12px 18px;border-radius:14px;border:1px solid rgba(255,94,126,0.3);background:linear-gradient(135deg,rgba(255,94,126,0.1),rgba(183,148,255,0.08));font-family:'Instrument Serif',serif;font-style:italic;font-size:13.5px;color:var(--text);line-height:1.45}
+#p09 .takeaway .dash{color:var(--coral);margin-right:6px}
+#p09 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p09 .progress-line{display:flex;gap:4px;align-items:center}
+#p09 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p09 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+
+/* ===== PAGE 10 · landr ===== */
+#p10 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p10 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p10 .blob-1{width:540px;height:540px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-190px;right:6%}
+#p10 .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-250px;left:-110px;animation-delay:-7s}
+#p10 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:18%;left:4%;opacity:0.34;animation-delay:-14s}
+#p10 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:14%;right:34%;opacity:0.4;animation-delay:-3s}
+#p10::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p10 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:40px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:18px}
+#p10 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p10 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p10 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p10 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p10 .nav-pills{display:flex;gap:8px}
+#p10 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p10 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p10 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p10 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p10 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
+#p10 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p10 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:52px;line-height:1;letter-spacing:-0.03em}
+#p10 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
+#p10 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;color:var(--muted);text-align:right;max-width:300px;line-height:1.4}
+#p10 .main-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;height:100%}
+#p10 .webapp-mockup{background:rgba(255,255,255,0.06);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+#p10 .browser-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--glass-border);background:rgba(255,255,255,0.03)}
+#p10 .traffic-lights{display:flex;gap:5px}
+#p10 .tl{width:9px;height:9px;border-radius:50%;display:block}
+#p10 .tl.red{background:var(--coral)}
+#p10 .tl.yellow{background:var(--peach)}
+#p10 .tl.green{background:var(--cyan)}
+#p10 .url-bar{flex:1;font-size:11px;color:var(--muted);background:rgba(255,255,255,0.05);border-radius:6px;padding:4px 8px}
+#p10 .ext-badge{font-size:10px;color:var(--cyan);border:1px solid rgba(110,255,227,0.3);border-radius:6px;padding:3px 7px;letter-spacing:0.05em}
+#p10 .kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px;flex:1;overflow:hidden}
+#p10 .kanban-col{display:flex;flex-direction:column;gap:7px}
+#p10 .col-header{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px;padding-bottom:4px;border-bottom:1px solid var(--glass-border)}
+#p10 .badge{background:rgba(255,255,255,0.12);border-radius:10px;padding:1px 6px;font-size:10px;color:var(--text)}
+#p10 .job-card{background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:10px;padding:9px 10px;display:flex;flex-direction:column;gap:3px}
+#p10 .job-card.offer{border-color:rgba(255,184,108,0.4);background:rgba(255,184,108,0.08)}
+#p10 .company{font-size:12px;font-weight:600;color:var(--text)}
+#p10 .role{font-size:11px;color:var(--muted)}
+#p10 .match{font-size:10px;margin-top:3px}
+#p10 .match.coral{color:var(--coral)}
+#p10 .match.lavender{color:var(--lavender)}
+#p10 .match.cyan{color:var(--cyan)}
+#p10 .match.peach{color:var(--peach)}
+#p10 .right-col{display:flex;flex-direction:column;gap:10px;height:100%}
+#p10 .agent-cards{display:flex;flex-direction:column;gap:7px;flex:1}
+#p10 .agent-card{background:var(--glass-bg);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:14px;padding:10px 14px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;position:relative;overflow:hidden}
+#p10 .agent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p10 .agent-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:28px;line-height:0.85;text-align:center}
+#p10 .agent-card:nth-child(1) .agent-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-card:nth-child(2) .agent-num{background:linear-gradient(135deg,var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-card:nth-child(3) .agent-num{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-card:nth-child(4) .agent-num{background:linear-gradient(135deg,var(--coral),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-card:nth-child(5) .agent-num{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-card:nth-child(6) .agent-num{background:linear-gradient(135deg,var(--lavender),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p10 .agent-title{font-family:'Noto Serif SC',serif;font-weight:700;font-size:13px;margin-bottom:2px}
+#p10 .agent-desc{font-size:11px;color:var(--muted);line-height:1.4}
+#p10 .eng-card{border-radius:14px;border:2px solid transparent;background:linear-gradient(var(--bg-deep),var(--bg-deep)) padding-box,linear-gradient(135deg,var(--coral),var(--peach)) border-box;padding:12px 16px;font-family:'Instrument Serif',serif;font-style:italic;font-size:13px;color:var(--text);line-height:1.5}
+#p10 .eng-card .dash{color:var(--coral);margin-right:6px}
+#p10 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p10 .progress-line{display:flex;gap:4px;align-items:center}
+#p10 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p10 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 11 · THE DIVIDE ===== */
+#p11 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p11 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p11 .blob-1{width:520px;height:520px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-170px;right:10%}
+#p11 .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-250px;left:-110px;animation-delay:-7s}
+#p11 .blob-3{width:440px;height:440px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:40%;left:36%;opacity:0.3;animation-delay:-14s}
+#p11 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:16%;right:22%;opacity:0.42;animation-delay:-3s}
+#p11::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p11 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px}
+#p11 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p11 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p11 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p11 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p11 .nav-pills{display:flex;gap:8px}
+#p11 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p11 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p11 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p11 .page-header{text-align:center}
+#p11 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p11 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p11 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:52px;line-height:1.1;letter-spacing:-0.03em}
+#p11 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p11 .compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+#p11 .compare-col{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:28px 30px;display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+#p11 .compare-col::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p11 .compare-col.personal .col-label{color:var(--muted)}
+#p11 .compare-col.enterprise .col-label{background:linear-gradient(135deg,var(--coral),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p11 .col-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+#p11 .col-title{font-family:'Noto Serif SC',serif;font-weight:700;font-size:22px;margin-bottom:12px}
+#p11 .compare-row{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+#p11 .compare-row:last-child{border-bottom:none}
+#p11 .row-dim{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding-top:2px;white-space:nowrap;min-width:70px}
+#p11 .row-val{font-size:13.5px;line-height:1.5;color:var(--text)}
+#p11 .compare-col.personal .row-val{color:var(--muted)}
+#p11 .conclusion{padding:18px 24px;border-radius:20px;border:1px solid rgba(183,148,255,0.3);background:linear-gradient(135deg,rgba(183,148,255,0.1),rgba(255,94,126,0.1));font-family:'Instrument Serif',serif;font-style:italic;font-size:18px;color:var(--text);line-height:1.5;text-align:center}
+#p11 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p11 .progress-line{display:flex;gap:4px;align-items:center}
+#p11 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p11 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 12 · SDD ===== */
+#p12 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p12 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;animation:float 20s ease-in-out infinite}
+#p12 .blob-1{width:640px;height:640px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-240px;left:38%}
+#p12 .blob-2{width:700px;height:700px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-280px;right:-120px;animation-delay:-7s}
+#p12 .blob-3{width:520px;height:520px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:36%;left:-120px;opacity:0.4;animation-delay:-14s}
+#p12 .blob-4{width:420px;height:420px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:18%;left:46%;opacity:0.5;animation-delay:-3s}
+#p12::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p12 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr 1fr auto;gap:20px}
+#p12 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p12 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p12 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p12 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p12 .nav-pills{display:flex;gap:8px}
+#p12 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p12 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p12 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p12 .page-header{text-align:center}
+#p12 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
+#p12 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p12 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:52px;line-height:1;letter-spacing:-0.03em}
+#p12 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p12 .model-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:stretch}
+#p12 .model-col{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+#p12 .model-col::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent)}
+#p12 .model-col.old{opacity:0.8}
+#p12 .model-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p12 .model-col.new .model-tag{color:var(--coral)}
+#p12 .model-boxes{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#p12 .mbox{padding:8px 14px;border-radius:10px;font-size:13px;font-weight:500;background:rgba(255,255,255,0.08);border:1px solid var(--glass-border)}
+#p12 .model-col.new .mbox{background:rgba(255,94,126,0.12);border-color:rgba(255,94,126,0.3);color:var(--coral)}
+#p12 .mbox.key{background:rgba(183,148,255,0.15);border-color:rgba(183,148,255,0.4);color:var(--lavender)}
+#p12 .marrow{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--muted)}
+#p12 .model-desc{font-size:12.5px;line-height:1.6;color:var(--muted)}
+#p12 .model-desc b{color:var(--text)}
+#p12 .mid-upgrade{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+#p12 .mid-ring{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--lavender));display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--bg-deep);box-shadow:0 0 30px rgba(255,94,126,0.4)}
+#p12 .mid-lbl{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
+#p12 .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#p12 .action-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:18px;padding:18px 20px;position:relative;overflow:hidden}
+#p12 .action-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent)}
+#p12 .action-card h4{font-family:'Noto Serif SC',serif;font-weight:700;font-size:18px;margin-bottom:6px}
+#p12 .action-card p{font-size:12.5px;line-height:1.6;color:var(--muted)}
+#p12 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p12 .progress-line{display:flex;gap:4px;align-items:center}
+#p12 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p12 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 13 · ENTERPRISE ===== */
+#p13 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p13 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p13 .blob-1{width:540px;height:540px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-180px;left:10%}
+#p13 .blob-2{width:640px;height:640px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-260px;right:-120px;animation-delay:-7s}
+#p13 .blob-3{width:460px;height:460px;background:radial-gradient(circle,var(--cyan),transparent 70%);bottom:8%;right:24%;opacity:0.36;animation-delay:-14s}
+#p13 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);top:16%;right:8%;opacity:0.42;animation-delay:-3s}
+#p13::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p13 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr auto auto;gap:20px}
+#p13 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p13 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p13 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p13 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p13 .nav-pills{display:flex;gap:8px}
+#p13 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p13 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p13 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p13 .page-header{text-align:center}
+#p13 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
+#p13 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p12 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:52px;line-height:1;letter-spacing:-0.03em}
+#p12 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p13 .case-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#p13 .case-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:24px;padding:26px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px}
+#p13 .case-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p13 .case-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:64px;line-height:0.8;font-weight:400;position:absolute;top:20px;right:24px;opacity:0.35}
+#p13 .case-card:nth-child(1) .case-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p13 .case-card:nth-child(2) .case-num{background:linear-gradient(135deg,var(--lavender),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p13 .case-title{font-family:'Noto Serif SC',serif;font-weight:700;font-size:22px}
+#p13 .case-list{display:flex;flex-direction:column;gap:6px}
+#p13 .case-list li{font-size:13px;color:var(--muted);list-style:none;display:flex;align-items:center;gap:8px}
+#p13 .case-list li::before{content:'→';color:var(--coral);font-size:12px}
+#p13 .case-tag{display:inline-block;padding:5px 12px;border-radius:100px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;border:1px solid var(--glass-border);color:var(--muted);width:fit-content}
+#p13 .data-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+#p13 .data-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:22px 26px;display:flex;gap:20px;align-items:center;position:relative;overflow:hidden}
+#p13 .data-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent)}
+#p13 .big-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:64px;line-height:0.9;font-weight:400}
+#p13 .data-card:nth-child(1) .big-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p13 .data-card:nth-child(2) .big-num{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p13 .data-info .data-label{font-family:'Noto Serif SC',serif;font-weight:700;font-size:18px;margin-bottom:4px}
+#p13 .data-info .data-desc{font-size:12px;color:var(--muted);line-height:1.5}
+#p13 .insight{padding:14px 22px;border-radius:16px;border:1px solid rgba(183,148,255,0.3);background:linear-gradient(135deg,rgba(183,148,255,0.1),rgba(110,255,227,0.08));font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:var(--text);text-align:center}
+#p13 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p13 .progress-line{display:flex;gap:4px;align-items:center}
+#p13 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p13 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 14 · COMPOUNDING ===== */
+#p14 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p14 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.6;animation:float 20s ease-in-out infinite}
+#p14 .blob-1{width:540px;height:540px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-190px;left:10%}
+#p14 .blob-2{width:640px;height:640px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-260px;right:-120px;animation-delay:-7s}
+#p14 .blob-3{width:460px;height:460px;background:radial-gradient(circle,var(--cyan),transparent 70%);bottom:8%;right:24%;opacity:0.36;animation-delay:-14s}
+#p14 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);top:16%;right:8%;opacity:0.42;animation-delay:-3s}
+#p14::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p14 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:48px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:26px}
+#p14 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p14 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p14 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p14 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p14 .nav-pills{display:flex;gap:8px}
+#p14 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p14 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p14 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p14 .page-header{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
+#p14 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:12px}
+#p14 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p13 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:56px;line-height:1;letter-spacing:-0.03em}
+#p13 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p14 .dek{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);text-align:right;max-width:330px;line-height:1.4}
+#p14 .viz{display:grid;grid-template-columns:1fr 1.55fr;gap:44px;align-items:center}
+#p14 .points{display:flex;flex-direction:column;gap:16px}
+#p14 .pt{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:20px 24px;position:relative;overflow:hidden}
+#p14 .pt::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p14 .pt .ptv{font-family:'Instrument Serif',serif;font-style:italic;font-size:30px;line-height:1;margin-bottom:6px}
+#p14 .pt:nth-child(1) .ptv{color:var(--coral)}
+#p14 .pt:nth-child(2) .ptv{color:var(--cyan)}
+#p14 .pt:nth-child(3) .ptv{color:var(--lavender)}
+#p14 .pt h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:18px;margin-bottom:4px}
+#p14 .pt p{font-size:12.5px;line-height:1.55;color:var(--muted)}
+#p14 .chart{background:var(--glass-bg);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:26px 30px 18px;position:relative;overflow:hidden}
+#p14 .chart::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p14 .chart .legend{display:flex;gap:26px;margin-bottom:8px}
+#p14 .chart .legend span{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+#p14 .chart .legend i{width:22px;height:3px;border-radius:2px;display:block}
+#p14 .chart .legend i.eff{background:var(--coral)}
+#p14 .chart .legend i.out{background:var(--cyan)}
+#p14 .chart svg{width:100%;height:auto;display:block}
+#p14 .chart .xlabels{display:flex;justify-content:space-between;margin-top:4px;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;color:var(--muted)}
+#p14 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p14 .progress-line{display:flex;gap:4px;align-items:center}
+#p14 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p14 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+
+/* ===== PAGE 15 · ACTION ===== */
+#p15 .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p15 .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;animation:float 20s ease-in-out infinite}
+#p15 .blob-1{width:640px;height:640px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-240px;left:38%}
+#p15 .blob-2{width:700px;height:700px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-280px;right:-120px;animation-delay:-7s}
+#p15 .blob-3{width:520px;height:520px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:36%;left:-120px;opacity:0.4;animation-delay:-14s}
+#p15 .blob-4{width:420px;height:420px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:18%;left:46%;opacity:0.5;animation-delay:-3s}
+#p15::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p15 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:56px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:32px}
+#p15 .topnav{display:flex;justify-content:space-between;align-items:center}
+#p15 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p15 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p15 .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p15 .nav-pills{display:flex;gap:8px}
+#p15 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p15 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p15 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p15 .page-header{text-align:center}
+#p15 .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500}
+#p15 .eyebrow::before,#p15 .eyebrow::after{content:'';width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--coral),transparent)}
+#p14 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:72px;line-height:1.1;letter-spacing:-0.03em;margin-top:12px}
+#p14 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p15 .sub{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--muted);margin-top:8px}
+#p15 .content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+#p15 .steps-list{display:flex;flex-direction:column;gap:16px}
+#p15 .action-step{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:24px;padding:22px 26px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;position:relative;overflow:hidden}
+#p15 .action-step::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p15 .step-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:52px;line-height:0.8;text-align:center}
+#p15 .action-step:nth-child(1) .step-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p15 .action-step:nth-child(2) .step-num{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p15 .action-step:nth-child(3) .step-num{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p15 .step-when{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+#p15 .step-title{font-family:'Noto Serif SC',serif;font-weight:700;font-size:20px;margin-bottom:6px}
+#p15 .step-body{font-size:13px;line-height:1.6;color:var(--muted)}
+#p15 .closing{display:flex;flex-direction:column;gap:24px}
+#p15 .big-quote{font-family:'Instrument Serif',serif;font-style:italic;font-size:120px;line-height:0.7;background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:0.4}
+#p15 .quote-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:30px;line-height:1.4;color:var(--text)}
+#p15 .qr-block{border:1px dashed var(--glass-border);border-radius:20px;padding:20px 24px;display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;background:rgba(255,255,255,0.03)}
+#p15 .qr-placeholder{width:80px;height:80px;border-radius:12px;border:1px dashed rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);text-align:center;line-height:1.3}
+#p15 .qr-brand{font-family:'Noto Serif SC',serif;font-weight:700;font-size:20px;margin-bottom:4px}
+#p15 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p15 .progress-line{display:flex;gap:4px;align-items:center}
+#p15 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p15 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
+</style>
+</head>
+<body>
+<!-- ===== P01 COVER ===== -->
+<section id="p01" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="大家好，我是阿亮。有十二年研发经验，这两年主要在做 AI Agent 相关的项目。
+
+我先说一件事——今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。
+
+我干的事，就是写了个需求，然后检查了一遍。
+
+今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。我干的事，就是写了个需求，然后检查了一遍。
+
+这不是演示。是我现在每天的工作状态。
+
+今天的主线——
+
+从个人工具，到企业交付。
+
+我们开始。" data-audio="audio/p01.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="hero">
+    <div class="left">
+      <div class="eyebrow reveal r2">AI 落地实践 · Episode 07</div>
+      <h1 class="reveal r3">从<span class="italic">个人工具</span><br>到<span class="grad">企业交付</span></h1>
+      <div class="subtitle reveal r4">用 <span class="underline">Vibe Coding</span> 打造你的第一个，也是第 N 个产品</div>
+    </div>
+    <div class="glass-card reveal r4">
+      <h3>Speaker Card <span class="badge">Featured</span></h3>
+      <div class="stats">
+        <div class="stat"><div class="num">10<span style="font-size:32px;">y</span></div><div class="lbl">大厂 R&amp;D</div></div>
+        <div class="stat"><div class="num alt">3<span style="font-size:32px;">y</span></div><div class="lbl">AI 研发管理</div></div>
+        <div class="stat"><div class="num">17</div><div class="lbl">Skills 编排</div></div>
+        <div class="stat"><div class="num alt">N</div><div class="lbl">个产品</div></div>
+      </div>
+      <div class="divider"></div>
+      <div class="author">
+        <div class="avatar">亮</div>
+        <div class="author-info"><div class="name">阿亮 · Leon</div><div class="role">AI Agent · AI Coding · 0→1</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>01 / 15 — Cover</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P02 OPENING ===== -->
+<section id="p02" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="你们有没有这种体验——
+
+让 AI 写了一段代码，它写得超级快，超级流畅。然后你看了半天……
+
+不知道它在解决什么问题。
+
+这不是 AI 的锅。
+
+这是我们自己的锅。
+
+我们错误地以为，AI 工具的价值在于速度。但速度不是瓶颈。
+
+你的判断力，才是。
+
+判断什么？判断做什么，不做什么。判断这个功能该不该加。判断这个 bug 是真的影响用户，还是只是自己看着不顺眼。
+
+AI 让你快十倍——方向对的时候。方向错的时候，它让你错得也快十倍。
+
+所以记住这句话——
+
+你不需要更快的程序员，你需要更清晰的判断。" data-audio="audio/p02.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="hero">
+    <div class="quote-mark reveal r1">"</div>
+    <div class="eyebrow reveal r2">Opening · 一句话定调</div>
+    <h1 class="reveal r3">你需要的不是 <span class="strike">更快的程序员</span><br>而是更 <span class="italic">清晰</span> 的 <span class="grad">判断</span></h1>
+    <div class="attribution reveal r4"><span class="dash">—</span> 关于 Vibe Coding 的第一性原理</div>
+    <div class="quote-mark bottom reveal r1">"</div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>02 / 15 — Opening</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P03 THE GAP ===== -->
+<section id="p03" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="我有个朋友，他有一个产品想法——
+
+已经打磨了……两年了。
+
+两年。在脑子里迭代到 3.0 版本了。但还没开始做，他说——&quot;还不够好。&quot;
+
+我每次见到他都很想说：
+
+兄弟，你第一个产品不需要好，你只需要它……存在。
+
+卡住的原因，就三个，全是自己设的局。
+
+第一，等一个完美的想法。完美是行动的敌人。
+
+第二，把&quot;不会编程&quot;当天花板。Vibe Coding 的本质——是用意图创造，不是用语法创造。你不需要会写 for 循环，你需要能说清楚&quot;我要什么&quot;。
+
+第三，一上来就想做平台。第一个产品只做一件事，做到极致就好。
+
+卡住你的，从来不是技术。是你默认了一句——
+
+&quot;我不行。&quot;" data-audio="audio/p03.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="hero">
+    <div class="left">
+      <div class="eyebrow reveal r2">03 · 问题定义 · The Gap</div>
+      <h1 class="reveal r3">为什么大多数人<br>卡在第 <span class="italic">0</span> 个 <span class="grad">产品</span>?</h1>
+      <div class="lede reveal r4">卡住你的从来不是技术 ——<br>是你默认了一句 <b>"我不会写代码"</b>。</div>
+    </div>
+    <div class="qcards">
+      <div class="qcard reveal r3"><div class="qnum">01</div><div><h3>等一个"完美的想法"</h3><p>想法在脑子里反复打磨，迟迟不动手。完美是行动的敌人，第一个产品只需要"能用"。</p></div></div>
+      <div class="qcard reveal r4"><div class="qnum">02</div><div><h3>把"不会编程"当成天花板</h3><p>认为没有技术背景就没资格做产品。但 Vibe Coding 的本质，是让你用意图而不是语法去创造。</p></div></div>
+      <div class="qcard reveal r5"><div class="qnum">03</div><div><h3>想一步到位做成"平台"</h3><p>第一个产品就想又大又全。真正的杠杆，是先做小、做完、做到上线，再让第 N 个产品复利。</p></div></div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>03 / 15 — The Gap</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P04 DEFINITION ===== -->
+<section id="p04" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="正确的路径，就三段：意图、规格、执行。
+
+第一段——意图。说清楚你要什么。给谁用，解决什么问题，最核心的功能是什么。不求完美，模糊也可以，先把感觉说出来。这一段，是你的。
+
+第二段——规格。这里我要说一句最重要的话。
+
+规格里最值钱的部分，不是写了什么——
+
+是写下你不做什么。
+
+&quot;优化一下体验&quot;——这不是规格。就像你跟外卖小哥说&quot;你知道我饿了&quot;，他不知道你想吃什么。
+
+&quot;用户点击后 300 毫秒内出现反馈&quot;，这才是规格。
+
+第三段——执行。AI 按规格写、跑、修，你在关键节点确认。这一段，基本是 AI 的。
+
+三段里，AI 主导两段半。你只需要想清楚第一段。" data-audio="audio/p04.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">04 · Vibe Coding 是什么 · Definition</div><h1>把 <span class="italic">意图</span> 变成产品的最短路径</h1></div>
+    <div class="dek">不是"写代码"的技巧，<br>是"做出来"的三段式。</div>
+  </div>
+  <div class="flow">
+    <div class="col c1 reveal r3"><div class="tag">Step 01 · 感觉先行</div><div class="big">Vibe</div><h3>表达意图</h3><p>用大白话讲清楚你想要什么、给谁用、解决什么问题。模糊也没关系，先把"感觉"说出来。</p><div class="role">你负责 <b>What &amp; Why</b></div></div>
+    <div class="arrow reveal r4">→</div>
+    <div class="col c2 reveal r4"><div class="tag">Step 02 · 讲清楚</div><div class="big">Spec</div><h3>拆解规格</h3><p>把意图变成结构化、无歧义、带验收标准的规格。这一步决定了 AI 跑得稳不稳。</p><div class="role">AI 起草 · 你 <b>拍板</b></div></div>
+    <div class="arrow reveal r5">→</div>
+    <div class="col c3 reveal r5"><div class="tag">Step 03 · 跑起来</div><div class="big">Ship</div><h3>执行交付</h3><p>AI 按规格写代码、跑测试、改 Bug，你在关键节点 review，最后部署上线。</p><div class="role">AI 执行 · 你 <b>验收</b></div></div>
+  </div>
+  <div class="foot-note reveal r6">一句话：Vibe Coding = <span class="hi">把"会不会写代码"换成"说不说得清楚"</span>。</div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>04 / 15 — Definition</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P05 THE SHIFT ===== -->
+<section id="p05" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="旧范式：你是驾驶员，AI 是导航。你写每一行，AI 在旁边提示。你有多快，产品就有多快。
+
+新范式：你是指挥官，AI 是执行团队。你说清楚目的地，AI 去开车、导航、处理路上的障碍。你的精力，从&quot;怎么开车&quot;——移到&quot;去哪里&quot;。
+
+我自己的转折点很具体。
+
+有一次，我把一个功能需求写清楚，直接让 AI 从头跑到尾。我去泡了杯茶。回来，它跑通了，测试也过了。
+
+那一刻我意识到——我之前一直在低估它。不是 AI 不够好，是我一直把它当代码补全工具用。
+
+从那之后我的工作方式就变了：先写清楚意图，然后放手让它跑，我只在关键节点做判断。" data-audio="audio/p05.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">05 · 范式迁移 · The Shift</div><h1>从写代码，到 <span class="italic">表达意图</span></h1></div>
+    <div class="dek">同一件事，<br>换一种活法。</div>
+  </div>
+  <div class="compare">
+    <div class="panel old reveal r3">
+      <div class="ptag">Old Paradigm · 旧范式</div>
+      <div class="ptitle">写代码</div>
+      <div class="en">Writing Code</div>
+      <ul>
+        <li><span class="mk">01</span><span>先学语法、框架、环境，门槛挡在最前面</span></li>
+        <li><span class="mk">02</span><span>一行行手写实现，进度等于打字速度</span></li>
+        <li><span class="mk">03</span><span>调试黑洞，大量时间耗在环境与低级 Bug</span></li>
+        <li><span class="mk">04</span><span>一个人能力的上限，就是产品的上限</span></li>
+      </ul>
+      <div class="kpi">第一个产品周期：<b>以月计</b></div>
+    </div>
+    <div class="midarrow reveal r4"><div class="ring">→</div><div class="lbl">Shift</div></div>
+    <div class="panel new reveal r5">
+      <div class="ptag">New Paradigm · 新范式</div>
+      <div class="ptitle">表达意图</div>
+      <div class="en">Expressing Intent</div>
+      <ul>
+        <li><span class="mk">01</span><span>用大白话描述需求，意图清晰就能开始</span></li>
+        <li><span class="mk">02</span><span>AI 拆规格、写实现、跑测试，你做编排</span></li>
+        <li><span class="mk">03</span><span>你在关键节点做判断，把精力留给取舍</span></li>
+        <li><span class="mk">04</span><span>能力的上限，是你"说得清楚"的程度</span></li>
+      </ul>
+      <div class="kpi">第一个产品周期：<b>以天计</b></div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>05 / 15 — The Shift</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P06 TOOLKIT ===== -->
+<section id="p06" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="工具这件事，我只说一句：没有最好的，只有最适合你当下这一步的。
+
+两个阵营。
+
+终端派——Claude Code、Codex CLI。住在命令行里，全流程自主。项目复杂、需要跨文件操作，选这个。
+
+编辑器派——Cursor 这类。改动直观，所见即所得。习惯图形界面，或者做前端视觉类东西，选这个。
+
+模型怎么选？优先 Claude 系列。复杂任务用 Opus，快速迭代用 Sonnet。两者价格差接近五倍——用对了，这五倍完全值。用错了，贵的也白费。
+
+工具会变。这个选法的逻辑，不会变。" data-audio="audio/p06.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">06 · 工具与模型 · Tools &amp; Models</div><h1>挑对你的 <span class="italic">工具</span> 和 模型</h1></div>
+    <div class="dek">没有最好的工具，<br>只有最适合你这一步的。</div>
+  </div>
+  <div class="grid">
+    <div class="card c-coral reveal r3"><div class="icon-row"><div class="icon">C</div><span class="badge">CLI</span></div><h3>命令行派<span class="en">Claude Code · Codex CLI</span></h3><p>住在终端里的全栈搭档。读代码、写代码、跑测试、提交，全流程自主完成。</p><div class="footer-row"><span>工具形态 · 一</span><span class="num">01</span></div></div>
+    <div class="card c-lavender reveal r4"><div class="icon-row"><div class="icon">I</div><span class="badge">IDE</span></div><h3>编辑器派<span class="en">Cursor 等</span></h3><p>住在你的代码编辑器里，边写边看、改动直观。习惯图形界面的人更顺手。</p><div class="footer-row"><span>工具形态 · 二</span><span class="num">02</span></div></div>
+    <div class="card c-cyan reveal r5"><div class="icon-row"><div class="icon">AI</div><span class="badge">Model</span></div><h3>模型是大脑<span class="en">优先 Claude / Codex</span></h3><p>工具是外壳，模型才决定聪不聪明。我自己已经收敛到这两家，不再用 OpenClaw、Hermes。</p><div class="footer-row"><span>选型核心</span><span class="num">03</span></div></div>
+    <div class="card c-peach reveal r6"><div class="icon-row"><div class="icon">D</div><span class="badge">Desktop</span></div><h3>桌面 App<span class="en">小白的最佳入口</span></h3><p>Claude、Codex 都有桌面版：图形界面、不用碰命令行，而且不只写代码，还能帮你做任务。</p><div class="footer-row"><span>从这里上手</span><span class="num">04</span></div></div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>06 / 15 — Tools</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P07 WORKFLOW ===== -->
+<section id="p07" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="五步，一条直线。每一步，分清楚谁做。
+
+第一步，你来：说清楚你要什么。
+
+第二步，AI 来：把你的意图拆成规格文档。你来确认。
+
+第三步，AI 来：按规格执行，写代码，遇到问题自己修。
+
+这里有个诱惑——你会忍不住想去盯着每一行代码。我懂这个感觉，就像把车交给代驾，然后坐在副驾一直在踩空气刹车。
+
+放手。
+
+第四步，你来：看关键决策——技术选型对不对，核心逻辑有没有跑偏。不是每行都看。
+
+第五步，你来：上线，收真实反馈，用反馈决定下一步。
+
+这五步里，你主导一、四、五。AI 主导二、三。" data-audio="audio/p07.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">07 · 5 步工作流 · The Workflow</div><h1>第一个产品，<span class="italic">怎么</span> 诞生</h1></div>
+    <div class="dek">五步，一条直线。<br>每一步都分清谁负责。</div>
+  </div>
+  <div class="steps">
+    <div class="step s1 reveal r3"><div class="snum">1</div><div class="body"><h3>表达意图 <span class="en">Express</span></h3><p>写一段大白话需求：做什么、给谁用、解决什么问题。不求完美，求说清楚。</p></div><div class="who you">你 · 出题</div></div>
+    <div class="step s2 reveal r4"><div class="snum">2</div><div class="body"><h3>AI 拆解规格 <span class="en">Spec</span></h3><p>用 cc-sdd 的 spec 阶段，把意图拆成结构化、带验收标准的规格文档。</p></div><div class="who ai">AI 起草 · 你拍板</div></div>
+    <div class="step s3 reveal r5"><div class="snum">3</div><div class="body"><h3>AI 执行实现 <span class="en">Build</span></h3><p>Claude Code 按规格跑代码：写实现、跑测试、改 Bug，自主完成长程任务。</p></div><div class="who ai">AI · 执行</div></div>
+    <div class="step s4 reveal r6"><div class="snum">4</div><div class="body"><h3>你做判断 <span class="en">Review</span></h3><p>在关键节点 review：方向对不对、取舍合不合理。你管判断，不管打字。</p></div><div class="who you">你 · 把关</div></div>
+    <div class="step s5 reveal r7"><div class="snum">5</div><div class="body"><h3>上线发布 <span class="en">Ship</span></h3><p>部署上线、对外推广，让真实用户用起来 —— 用反馈决定下一步迭代。</p></div><div class="who you">你 · 交付</div></div>
+  </div>
+  <div class="bottom-bar reveal r8">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>07 / 15 — Workflow</div>
+  </div>
+</div>
+</section>
+<!-- ===== P08 进阶能力 ===== -->
+<section id="p08" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="这一页名词最多——
+
+但你一个都不用记。我说两件事，你理解了就够。
+
+第一件：MCP，给 AI 装插座。
+
+AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——邮件、数据库、内部系统。从&quot;只会说&quot;，变成&quot;能动手&quot;。
+
+举个例子：客户的需求整理成文档、推进内部系统、通知相关同事。以前三步，步步手动。现在 AI 接上这几个系统，我说一句&quot;处理这个需求&quot;，它自己跑完。
+
+第二件：Skills，把流程打包成资产。
+
+每次做同类工作，步骤是固定的，就把它存成 Skills。下次一句话调用，AI 按你设好的流程跑。
+
+经验不再锁在你脑子里，锁在系统里。今天这场分享用的工具，就是我把&quot;演讲准备全流程&quot;封装成的 Skills。" data-audio="audio/p08.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">08 · 进阶能力 · Level Up</div><h1>让 AI 更强的 <span class="italic">进阶</span> 能力</h1></div>
+    <div class="dek">名词最多的一页 ——<br>但你一个都不用记。</div>
+  </div>
+  <div class="content">
+    <div class="concepts">
+      <div class="concept k-cyan reveal r3">
+        <div class="ic">M</div>
+        <div><h3>MCP <span class="en">让 AI 连上你的工具</span></h3><p>给 AI 装上「插座」—— 连上邮箱、网盘、数据库，从「只能说」变「能动手」。</p></div>
+      </div>
+      <div class="concept k-coral reveal r4">
+        <div class="ic">Sk</div>
+        <div><h3>Skills <span class="en">把流程打包复用</span></h3><p>把一套固定做法存成「操作手册」，下次同类活一键调用，经验越攒越厚。</p></div>
+      </div>
+    </div>
+    <div class="chain-wrap reveal r5">
+      <div class="chain-label">全流程 SKILL 长这样 · <b>发散 → 规划 → 落地</b> 一条链路</div>
+      <div class="chain">
+        <div class="chain-step cs1"><span class="st-tag">想清楚</span><span class="st-name">brainstorming</span><span class="st-desc">动手前先把想法聊透、给几个方案、写成规格，拦住「没想清楚就写代码」。</span></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step cs2"><span class="st-tag">写规格</span><span class="st-name">cc-sdd / Spec Kit</span><span class="st-desc">把想法变成 AI 认的、带验收标准的规格文档，你点头后 AI 自主往下跑。</span></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step cs3"><span class="st-tag">跑完实现</span><span class="st-name">feature-dev</span><span class="st-desc">Anthropic 官方一条龙，发现需求 → 设计 → 实现 → review 全程自动编排。</span></div>
+      </div>
+      <div class="relax-note"><span class="dash">—</span> 这页小白朋友一个名词都不用记，知道「有这些现成的轮子能用」就够了。</div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>08 / 15 — Level Up</div>
+  </div>
+</div>
+</section>
+<!-- ===== P09 clip-shot ===== -->
+<section id="p09" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="我来说第一个真实案例——顺便说一个我自己觉得很蠢的事。
+
+我每天要做这个动作：截一张图，存成文件，传图床，复制链接，粘贴回文档。整个流程三十秒。
+
+我算了一下——
+
+一年下来大概是……八小时。
+
+八小时，就为了传图片。
+
+我当时就想，不行，我要把这八小时还给自己。
+
+于是我做了 clip-shot。macOS 菜单栏的一个小工具，监听剪贴板，检测到图片——自动上传，生成链接，写回剪贴板。我什么都不用做，截图完直接粘贴，链接已经在那里了。
+
+用 Swift 写的。Swift 不是我熟的语言。但需求够小够清晰，AI 几下跑通。
+
+这就是第一个产品该有的样子：只做一件事，解决你自己的一个真实痛点。" data-audio="audio/p09.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">09 · 案例 A · 最小可用</div><h1>clip-shot：<span class="italic">一件事</span>，做到极致</h1></div>
+    <div></div>
+  </div>
+  <div class="two-cols">
+    <!-- LEFT: macOS menubar popup mockup -->
+    <div class="mockup-wrap reveal r3">
+      <div class="menubar-popup">
+        <div class="popup-title">
+          <div class="traffic-lights">
+            <i class="tl red"></i><i class="tl yellow"></i><i class="tl green"></i>
+          </div>
+          <span class="app-name">clip-shot</span>
+          <span class="app-icon">📎</span>
+        </div>
+        <div class="status-row">
+          <span class="status-dot"></span>
+          <span>剪贴板图片已就绪</span>
+        </div>
+        <div class="preview-box">
+          <div class="preview-img"></div>
+          <div class="preview-meta">
+            <span>screenshot_2026.png</span>
+            <span>320 × 240 px</span>
+          </div>
+        </div>
+        <div class="upload-row">
+          <span class="upload-label">上传至图床</span>
+          <div class="prog-bar"><div class="prog-fill"></div></div>
+          <span class="prog-pct">92%</span>
+        </div>
+        <div class="result-row">
+          <span class="result-check">✓</span>
+          <span class="result-label">已生成 Markdown 链接</span>
+        </div>
+        <div class="link-box">![img](https://oss.gh/2026/05/screenshot.png)</div>
+        <div class="copy-btn">复制链接</div>
+      </div>
+    </div>
+    <!-- RIGHT: narrative cards -->
+    <div class="narr-col reveal r4">
+      <div class="narr-cards">
+        <div class="narr-card">
+          <div class="narr-num">1</div>
+          <div>
+            <h3>每天的重复动作</h3>
+            <p>截图 → 存文件 → 传图床 → 复制链接 → 粘贴到文档。这个流程每天重复几十次，每次要花30秒。烦透了。</p>
+          </div>
+        </div>
+        <div class="narr-card">
+          <div class="narr-num">2</div>
+          <div>
+            <h3>监听剪贴板，全自动搞定</h3>
+            <p>macOS 菜单栏小工具，检测到剪贴板有图片 → 自动上传 GitHub 图床 → 生成 Markdown 链接 → 写回剪贴板。用户什么都不用做。</p>
+          </div>
+        </div>
+        <div class="narr-card">
+          <div class="narr-num">3</div>
+          <div>
+            <h3>只做一件事，不做其他</h3>
+            <p>不做图片管理、不做历史记录、不做编辑器。极度克制。用 Swift 写（陌生语言），需求够小，AI 几下跑通。</p>
+          </div>
+        </div>
+      </div>
+      <div class="takeaway"><span class="dash">—</span> 第一个产品不需要完美技术栈，只需要一个让自己每天都烦的真实痛点。</div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>09 / 15 — Case A</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P10 landr ===== -->
+<section id="p10" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="第二个案例，量级完全不同。
+
+landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面试准备、智能投递。六个 Agent 模块，一个 Chrome 扩展，把在 Boss 直聘收集岗位的时间从三十分钟压到一分钟。
+
+里面有大量&quot;工程脏活&quot;——岗位列表只有十八个字的摘要怎么办？后台自动开标签页抓详情页。Boss 直聘风控怎么处理？这些不写进规格，AI 不会主动去想。
+
+这些代码我一行都没写。我写的是 SPEC，设了人工检查点，让 AI 按阶段跑。每个阶段一个独立的分支，跑完 review，没问题继续。
+
+从 1 到 N 的方法就这一句：先想清楚全局，再拆成可以独立验证的小段，让 AI 一段一段跑。" data-audio="audio/p10.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">10 · 案例 B · 1→N 商业化</div><h1>landr：<span class="italic">AI 求职 Agent</span></h1></div>
+    <div class="dek">全链路自动化——从简历到 offer</div>
+  </div>
+  <div class="main-cols">
+    <!-- LEFT: Web App Mockup -->
+    <div class="webapp-mockup reveal r3">
+      <div class="browser-bar">
+        <div class="traffic-lights">
+          <i class="tl red"></i><i class="tl yellow"></i><i class="tl green"></i>
+        </div>
+        <div class="url-bar">landr · AI 求职助手</div>
+        <div class="ext-badge">Chrome 扩展</div>
+      </div>
+      <div class="kanban">
+        <div class="kanban-col">
+          <div class="col-header">待申请 <span class="badge">3</span></div>
+          <div class="job-card"><div class="company">字节跳动</div><div class="role">后端工程师</div><div class="match coral">⭐ 94% 匹配</div></div>
+          <div class="job-card"><div class="company">OpenAI</div><div class="role">Research Eng</div><div class="match coral">⭐ 91% 匹配</div></div>
+        </div>
+        <div class="kanban-col">
+          <div class="col-header">已投递 <span class="badge">2</span></div>
+          <div class="job-card"><div class="company">阿里 AIGC</div><div class="role">算法工程师</div><div class="match lavender">⭐ 88%</div></div>
+        </div>
+        <div class="kanban-col">
+          <div class="col-header">面试中 <span class="badge">1</span></div>
+          <div class="job-card"><div class="company">美团</div><div class="role">技术面 P6</div><div class="match cyan">📅 明天 10:00</div></div>
+        </div>
+        <div class="kanban-col">
+          <div class="col-header">录用 <span class="badge">1</span></div>
+          <div class="job-card offer"><div class="company">腾讯</div><div class="role">P9 架构师</div><div class="match peach">🎉 已 offer</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: 6 Agent modules + engineering decision -->
+    <div class="right-col reveal r4">
+      <div class="agent-cards">
+        <div class="agent-card">
+          <div class="agent-num">1</div>
+          <div><div class="agent-title">岗位智能体</div><div class="agent-desc">收集JD，自动补全18字摘要→完整详情</div></div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">2</div>
+          <div><div class="agent-title">简历智能体</div><div class="agent-desc">理解简历，提取技能图谱</div></div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">3</div>
+          <div><div class="agent-title">匹配与重写</div><div class="agent-desc">按岗位打分，重写简历重点</div></div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">4</div>
+          <div><div class="agent-title">面试准备</div><div class="agent-desc">基于JD生成针对性题目</div></div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">5</div>
+          <div><div class="agent-title">申请追踪</div><div class="agent-desc">7列看板，全程可视化</div></div>
+        </div>
+        <div class="agent-card">
+          <div class="agent-num">6</div>
+          <div><div class="agent-title">多LLM适配</div><div class="agent-desc">DeepSeek/Kimi/通义千问任选</div></div>
+        </div>
+      </div>
+      <div class="eng-card"><span class="dash">—</span>不做清单：不做自动打招呼、不做自动投递（触碰平台风控红线）。把「不做什么」写进规格，边界比功能更值钱。</div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>10 / 15 — Case B</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P11 THE DIVIDE ===== -->
+<section id="p11" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="这套方法做个人项目很爽——
+
+进企业，未必。
+
+个人项目，所有上下文都在你脑子里。你知道这个产品要解决什么、给谁用、历史上做过什么决策。你告诉 AI 的时候，这些背景是隐含的。
+
+企业里不一样。上下文散落在各处：在旧系统里、在某个老员工的脑子里、在三年前的 PRD 里、有的根本就没有文档——就是约定俗成，大家都知道，但没写下来。
+
+AI 拿不到这些，就跑不准。
+
+我见过一种极端情况——AI 把一个&quot;遗留的兼容逻辑&quot;当成&quot;核心功能&quot;改了，线上出了问题。
+
+所以进企业，这套方法必须升级。不是方向错了，是需要覆盖更长的链路。" data-audio="audio/p11.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">11 · 关键转折 · The Divide</div>
+    <h1>同一套方法，进企业<br>为什么<span class="italic">不灵了</span>？</h1>
+    <div style="display:inline-block;margin-top:14px;padding:7px 18px;border-radius:100px;border:1px solid rgba(110,255,227,0.35);background:rgba(110,255,227,0.08);font-size:12px;letter-spacing:0.05em;color:var(--cyan);">提示 · 本节主要讲给有开发经验的朋友，零基础听个轮廓即可</div>
+  </div>
+  <div class="compare-wrap">
+    <div class="compare-col personal reveal r3">
+      <div class="col-label">个人项目 Personal</div>
+      <div class="col-title">自由灵活</div>
+      <div class="compare-row"><div class="row-dim">代码起点</div><div class="row-val">从零开始写</div></div>
+      <div class="compare-row"><div class="row-dim">技术栈</div><div class="row-val">自己选，随时换</div></div>
+      <div class="compare-row"><div class="row-dim">需求来源</div><div class="row-val">在自己脑子里</div></div>
+      <div class="compare-row"><div class="row-dim">容错率</div><div class="row-val">高，跑通就行</div></div>
+      <div class="compare-row"><div class="row-dim">协作方式</div><div class="row-val">一个人说了算</div></div>
+    </div>
+    <div class="compare-col enterprise reveal r4">
+      <div class="col-label">企业项目 Enterprise</div>
+      <div class="col-title">约束重重</div>
+      <div class="compare-row"><div class="row-dim">代码起点</div><div class="row-val">改别人写的旧代码</div></div>
+      <div class="compare-row"><div class="row-dim">技术栈</div><div class="row-val">早就定死了</div></div>
+      <div class="compare-row"><div class="row-dim">需求来源</div><div class="row-val">散落在文档、对话、历史 PR 里</div></div>
+      <div class="compare-row"><div class="row-dim">容错率</div><div class="row-val">低，一个模块影响整条链路</div></div>
+      <div class="compare-row"><div class="row-dim">协作方式</div><div class="row-val">多人依赖，需要对齐</div></div>
+    </div>
+  </div>
+  <div class="conclusion reveal r5">个人项目靠「说清楚」驱动 AI 就够了；企业项目需要先把知识结构化，再让 AI 介入。</div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>11 / 15 — The Divide</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P12 SDD ===== -->
+<section id="p12" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="企业里怎么用？四个动作。
+
+第一：让 AI 来问你，不是你去告诉它。先给基本背景，让它提问。它问出来的问题，往往是你觉得理所当然、但从来没有明确说过的东西。
+
+我们做智能客服项目，AI 第一轮问了七个问题，其中三个是我们内部自己都没对齐过的。
+
+第二：对比两次结果，把结论写进约束。不是猜哪个好，是跑两遍，对比，固化。
+
+第三：历史文档全部喂进去。架构图、旧 PRD、接口文档——全给。上下文越充分，AI 越准。这一步很多人嫌麻烦，但它是企业场景里最值得投入的一步。
+
+第四：并行跑多方案，取最优。AI 是并发的，你要用并发的思维去用它。" data-audio="audio/p12.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">12 · 企业解法 · SDD</div>
+    <h1>引入 <span class="italic">SDD</span>，覆盖更长的链路</h1>
+    <div style="display:inline-block;margin-top:12px;padding:7px 18px;border-radius:100px;border:1px solid rgba(183,148,255,0.35);background:rgba(183,148,255,0.08);font-size:12px;letter-spacing:0.04em;color:var(--lavender);">一句话：SDD 就是前面 Spec 的「企业加强版」—— 小白记住「先写清楚，再动手」就够了</div>
+  </div>
+  <div class="model-compare">
+    <div class="model-col old reveal r3">
+      <div class="model-tag">旧模式 Old Model</div>
+      <div class="model-boxes"><div class="mbox">Prompt</div><div class="marrow">→</div><div class="mbox">代码生成</div></div>
+      <div class="model-desc">AI 只做最后一步，<b>需求越复杂提效越有限</b></div>
+    </div>
+    <div class="mid-upgrade reveal r4"><div class="mid-ring">↑</div><div class="mid-lbl">Upgrade</div></div>
+    <div class="model-col new reveal r5">
+      <div class="model-tag">新模式 New Model</div>
+      <div class="model-boxes"><div class="mbox key">SDD</div><div class="marrow">→</div><div class="mbox">技术方案设计</div><div class="marrow">→</div><div class="mbox">代码生成</div></div>
+      <div class="model-desc"><b>SDD</b>：将业务规则、技术约束、代码结构文档化，形成 AI 可理解的「私有知识库」。高质量 SDD → AI 从「代码生成工具」升级为「技术方案合伙人」</div>
+    </div>
+  </div>
+  <div class="action-grid">
+    <div class="action-card reveal r4"><h4>让 AI 提问</h4><p>信息不足时让 AI 来问你，暴露知识盲区，比你想象中更有效</p></div>
+    <div class="action-card reveal r4"><h4>让 AI 自省</h4><p>对比两次结果找原因，固化到 Prompt 约束，下次不再重蹈</p></div>
+    <div class="action-card reveal r5"><h4>喂更多背景</h4><p>历史需求文档、架构图、业务流程图一起给，背景越多 AI 越准</p></div>
+    <div class="action-card reveal r5"><h4>并行跑策略</h4><p>同时试多种生成方式，取最优，而不是串行等一个结果</p></div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>12 / 15 — SDD</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P13 ENTERPRISE ===== -->
+<section id="p13" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="两个项目，我都参与了。
+
+第一个：智能客服 Agent。全新项目从零开始。最终交付的代码，十个有九个是 AI 写的。我们团队干的是定义需求、设计架构、处理边界问题。
+
+顺便说一句——那一个是我写的。我们的 AI 说它写的那九个更整洁。
+
+我……没有反驳。
+
+开发速度大概是纯人工的三到四倍，而且代码有测试覆盖，关键决策有记录，比以前&quot;拍脑袋&quot;写的还规范。
+
+第二个：智能营销系统，有几年历史的老系统。新增功能全部由 AI 实现。难点是上下文整理——花了一到两周，把散落的文档、逻辑、接口整理成结构化输入。整理完之后，后续每个功能的落地速度翻倍以上。
+
+AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">13 · 企业验证 · Enterprise</div>
+    <h1>真实项目，<span class="italic">真实数据</span></h1>
+  </div>
+  <div class="case-cards">
+    <div class="case-card reveal r3">
+      <div class="case-num">01</div>
+      <div class="case-title">智能客服 Agent</div>
+      <ul class="case-list">
+        <li>多轮对话管理</li>
+        <li>意图识别</li>
+        <li>知识库检索</li>
+        <li>人工接管机制</li>
+      </ul>
+      <div class="case-tag">SDD 先行，全链路覆盖</div>
+    </div>
+    <div class="case-card reveal r4">
+      <div class="case-num">02</div>
+      <div class="case-title">智能营销系统</div>
+      <ul class="case-list">
+        <li>用户画像分析</li>
+        <li>个性化内容生成</li>
+        <li>A/B 测试编排</li>
+        <li>效果追踪</li>
+      </ul>
+      <div class="case-tag">方案设计 + 代码，AI 一站搞定</div>
+    </div>
+  </div>
+  <div class="data-row">
+    <div class="data-card reveal r5">
+      <div class="big-num">80%</div>
+      <div class="data-info"><div class="data-label">项目采纳率</div><div class="data-desc">团队推广后，80% 的开发任务主动选用 SDD 工作流</div></div>
+    </div>
+    <div class="data-card reveal r5">
+      <div class="big-num">~50%</div>
+      <div class="data-info"><div class="data-label">平均提效</div><div class="data-desc">主要节省在需求理解与方案设计阶段</div></div>
+    </div>
+  </div>
+  <div class="insight reveal r6">SDD 省的不是写代码的时间，是「说清楚需求」的时间。</div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>13 / 15 — Enterprise</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P14 COMPOUNDING ===== -->
+<section id="p14" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="做完第一个产品你会发现，第二个明显比第一个快。
+
+不是因为你熟了，是因为你有了资产。
+
+写过的规格模板，可以复用。踩过的坑，已经固化成约束，下一个 AI 不会再踩。调好的提示词，建好的 Skills，全部带进下一个项目。每个产品，都是在给下一个产品打地基。
+
+我自己现在同时在推进三个技术栈完全不同的项目——Rust、TypeScript、Swift。换成以前，我根本不可能同时维护。现在可以，因为我的工作不是写代码，是写规格、设检查点、做判断。语言不再是我的门槛。
+
+你的上限，从&quot;会多少语言、熟多少框架&quot;——变成了&quot;判断得有多清晰、系统化得有多深&quot;。
+
+第一个产品最难。从第二个开始，曲线开始弯。" data-audio="audio/p14.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">14 · 杠杆放大 · The Compounding</div><h1>第 <span class="italic">N</span> 个产品的复利</h1></div>
+    <div class="dek">第一个产品最难，<br>之后是一条复利曲线。</div>
+  </div>
+  <div class="viz">
+    <div class="points">
+      <div class="pt reveal r3"><div class="ptv">↓ 投入</div><h3>每个产品越做越省</h3><p>规格模板、踩过的坑、调好的提示词 —— 上一个产品的经验，直接喂给下一个。</p></div>
+      <div class="pt reveal r4"><div class="ptv">↑ 资产</div><h3>能力沉淀成 Skills</h3><p>把重复的活封装成可复用的 Skill，从"一次性脚本"变成"越攒越厚的资产"。</p></div>
+      <div class="pt reveal r5"><div class="ptv">× 杠杆</div><h3>你成为超级个体</h3><p>一个人能稳定交付的产品数量持续上升 —— 这就是 Vibe Coding 真正的杠杆。</p></div>
+    </div>
+    <div class="chart reveal r4">
+      <div class="legend"><span><i class="eff"></i>单个产品投入</span><span><i class="out"></i>累积能力 / 资产</span></div>
+      <svg viewBox="0 0 620 300" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="effG14" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5e7e" stop-opacity="0.45"></stop><stop offset="100%" stop-color="#ff5e7e" stop-opacity="0"></stop></linearGradient>
+          <linearGradient id="outG14" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6effe3" stop-opacity="0.4"></stop><stop offset="100%" stop-color="#6effe3" stop-opacity="0"></stop></linearGradient>
+          <linearGradient id="lineEff14" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff5e7e"></stop><stop offset="100%" stop-color="#ffb86c"></stop></linearGradient>
+          <linearGradient id="lineOut14" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6effe3"></stop><stop offset="100%" stop-color="#b794ff"></stop></linearGradient>
+        </defs>
+        <line x1="40" y1="40" x2="40" y2="250" stroke="rgba(255,255,255,0.12)" stroke-width="1"></line>
+        <line x1="40" y1="250" x2="600" y2="250" stroke="rgba(255,255,255,0.12)" stroke-width="1"></line>
+        <line x1="40" y1="150" x2="600" y2="150" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 6"></line>
+        <path d="M40,70 C150,95 230,180 340,205 C440,225 520,235 600,238 L600,250 L40,250 Z" fill="url(#effG14)"></path>
+        <path d="M40,70 C150,95 230,180 340,205 C440,225 520,235 600,238" fill="none" stroke="url(#lineEff14)" stroke-width="3.5" stroke-linecap="round"></path>
+        <path d="M40,232 C150,222 230,200 340,150 C440,105 520,70 600,52 L600,250 L40,250 Z" fill="url(#outG14)"></path>
+        <path d="M40,232 C150,222 230,200 340,150 C440,105 520,70 600,52" fill="none" stroke="url(#lineOut14)" stroke-width="3.5" stroke-linecap="round"></path>
+        <circle cx="40" cy="70" r="6" fill="#ff5e7e"></circle>
+        <circle cx="600" cy="52" r="6" fill="#6effe3"></circle>
+        <circle cx="40" cy="232" r="5" fill="#6effe3"></circle>
+        <circle cx="600" cy="238" r="5" fill="#ff5e7e"></circle>
+        <circle cx="330" cy="178" r="4.5" fill="#b794ff"></circle>
+        <text x="330" y="160" fill="#b794ff" font-family="Instrument Serif, serif" font-style="italic" font-size="16" text-anchor="middle">拐点</text>
+      </svg>
+      <div class="xlabels"><span>第 1 个产品</span><span>第 2 个</span><span>第 3 个</span><span>···</span><span>第 N 个产品</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+    <div>14 / 15 — Compounding</div>
+  </div>
+</div>
+</section>
+
+<!-- ===== P15 ACTION + CLOSING ===== -->
+<section id="p15" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide" data-script="收尾的地方，我给大家两件事。
+
+第一件：本周就动手。找一个你自己每天在用但很烦的重复动作，做一个小工具把它干掉。不用大，不用完美，只做一件事，做到极致。
+
+不要再&quot;打磨想法&quot;了。哪怕只有三天的时间，做出来比打磨两年更值钱。
+
+第二件：给它写一份规格。哪怕很粗，哪怕只有一页。把&quot;做什么、不做什么、验收标准是什么&quot;写下来。这份文档，是你从做一个走向做很多个的分水岭。
+
+2026 年是 Agentic Coding 真正落地的一年。谁先建立起&quot;意图→规格→执行&quot;这套工作方式，谁就拿到了接下来几年最重要的生产力杠杆。
+
+如果今天只记住一句话——
+
+你不需要成为更好的程序员，你需要成为更清晰的判断者。
+
+谢谢大家。" data-audio="audio/p15.mp3">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">15 · 行动 · Action</div>
+    <h1>现在，<span class="italic">轮到你了</span></h1>
+    <div class="sub">不必成为程序员，只要能说清楚你想要什么。</div>
+  </div>
+  <div class="content">
+    <div class="steps-list">
+      <div class="action-step reveal r3">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-when">今晚 · Tonight</div>
+          <div class="step-title">选题</div>
+          <div class="step-body">挑一个自己天天烦的小事，用三句话写清楚，范围砍到最小</div>
+        </div>
+      </div>
+      <div class="action-step reveal r4">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-when">这周 · This Week</div>
+          <div class="step-title">动手</div>
+          <div class="step-body">从 Claude / Codex 桌面版起步（图形界面，不用碰命令行），让 AI 先出规格，你只读、只拍板</div>
+        </div>
+      </div>
+      <div class="action-step reveal r5">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-when">上线 · Ship It</div>
+          <div class="step-title">发布</div>
+          <div class="step-body">部署发布，发给 3 个真实用户，把这次经验沉淀成下一个的模板</div>
+        </div>
+      </div>
+    </div>
+    <div class="closing reveal r4">
+      <div class="big-quote">"</div>
+      <div class="quote-text">今晚选一个小痛点，让你的第一个产品上线。</div>
+      <div class="qr-block">
+        <div class="qr-placeholder">二维码<br>占位</div>
+        <div><div class="qr-brand">阿亮聊 AI</div><div style="font-size:13px;color:var(--muted);">WeChat · 小红书 · 持续更新</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
+    <div>15 / 15 — The End</div>
+  </div>
+</div>
+</section>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.deck-slide'));
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      e.target.classList.toggle('in-view',e.isIntersecting&&e.intersectionRatio>=0.4);
+    });
+  },{threshold:[0,0.25,0.4,0.5,0.75,1]});
+  slides.forEach(function(s){io.observe(s);});
+  function current(){var best=0,bd=1e9;slides.forEach(function(s,i){var d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;best=i;}});return best;}
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({behavior:'smooth'});}
+  document.addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown'].indexOf(e.key)>-1||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(current()+1);}
+    else if(['ArrowUp','PageUp'].indexOf(e.key)>-1||(e.key===' '&&e.shiftKey)){e.preventDefault();go(current()-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);}
+    else if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+  });
+})();
+</script>
+
+
+
+<script>
+// SpeakDeck injector — 演讲模式 + 翻页自动播音
+// 两种模式共用：Mode A 由模板嵌入，Mode B 由 inject-html.mjs 注入到 </body> 前
+(function () {
+  // 1. 收集所有"页"
+  let slides = document.querySelectorAll("[data-script],[data-audio]");
+  if (slides.length === 0) slides = document.querySelectorAll(".slide,section");
+  if (slides.length === 0) return;
+
+  // 2. 演讲模式浮层
+  let speaker = document.getElementById("speaker");
+  if (!speaker) {
+    speaker = document.createElement("aside");
+    speaker.id = "speaker";
+    Object.assign(speaker.style, {
+      position: "fixed", right: "24px", bottom: "24px",
+      maxWidth: "380px", maxHeight: "50vh", overflowY: "auto",
+      background: "rgba(22,27,34,.96)", color: "#E6EDF3",
+      padding: "16px 20px", borderRadius: "12px",
+      fontSize: "14px", lineHeight: "1.6", zIndex: 9999,
+      boxShadow: "0 8px 32px rgba(0,0,0,.4)"
+    });
+    document.body.appendChild(speaker);
+  }
+
+  // 3. "点击解锁音频"提示（Chrome 需要用户手势才能播放）
+  const unlockHint = document.createElement("div");
+  Object.assign(unlockHint.style, {
+    position: "fixed", top: "50%", left: "50%",
+    transform: "translate(-50%,-50%)",
+    background: "rgba(0,0,0,.75)", color: "#fff",
+    padding: "20px 36px", borderRadius: "12px",
+    fontSize: "18px", zIndex: 99999, cursor: "pointer",
+    backdropFilter: "blur(8px)"
+  });
+  unlockHint.textContent = "▶ 点击任意位置开始播放";
+  document.body.appendChild(unlockHint);
+
+  // 4. 音频播放器
+  const audio = new Audio();
+  let current = 0;
+  let manualPaused = false;
+  let unlocked = false;
+
+  function playCurrent() {
+    const el = slides[current];
+    if (!el) return;
+    speaker.textContent = el.dataset.script || "";
+    const src = el.dataset.audio;
+    if (src && !manualPaused) {
+      audio.src = src;
+      audio.play().catch(() => {});
+    } else if (!src) {
+      audio.pause();
+    }
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= slides.length) return;
+    current = idx;
+    slides[idx].scrollIntoView({ behavior: "smooth" });
+    // 在用户手势上下文里直接播音（不依赖 IntersectionObserver）
+    if (unlocked) playCurrent();
+  }
+
+  // 5. 首次点击解锁
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    unlockHint.remove();
+    playCurrent();
+  }
+  document.addEventListener("click", unlock, { once: true });
+  document.addEventListener("keydown", unlock, { once: true });
+
+  // 6. IntersectionObserver：鼠标滚动时同步 current（不直接 play，让键盘/点击 play）
+  const io = new IntersectionObserver((entries) => {
+    let best = null;
+    for (const e of entries) {
+      if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
+    }
+    if (!best) return;
+    const idx = [...slides].indexOf(best.target);
+    if (idx === current) return;
+    current = idx;
+    speaker.textContent = slides[idx].dataset.script || "";
+    // 解锁后才播（解锁发生在用户手势里，所以这里再次 play 通常可以）
+    if (unlocked && !manualPaused) {
+      const src = slides[idx].dataset.audio;
+      if (src) { audio.src = src; audio.play().catch(() => {}); }
+    }
+  }, { threshold: [0.5, 0.8] });
+  slides.forEach((s) => io.observe(s));
+
+  // 7. 键盘控制
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "p" || e.key === "P") {
+      speaker.style.display = speaker.style.display === "none" ? "" : "none";
+    } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+      e.preventDefault(); goTo(current + 1);
+    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+      e.preventDefault(); goTo(current - 1);
+    } else if (e.key === "m" || e.key === "M") {
+      manualPaused = !manualPaused;
+      if (manualPaused) audio.pause(); else audio.play().catch(() => {});
+    } else if (e.key === "r" || e.key === "R") {
+      audio.currentTime = 0; audio.play().catch(() => {});
+    }
+  });
+})();
+
+</script>
+</body></html>
