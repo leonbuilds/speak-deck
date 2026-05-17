@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>与智行 · 演讲库</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css"/>
+
+</head>
+<body>
+
+<div class="page">
+  <header class="hero">
+    <div class="brand">
+      <div class="brand-orb"></div>
+      <div>
+        <div class="brand-title">与智行 · 演讲库</div>
+        <div class="brand-sub">阿亮 · 十二年研发 · AI Agent 实战</div>
+      </div>
+    </div>
+    <div class="hero-meta">1 场演讲</div>
+  </header>
+
+  
+    <div class="filters">
+      <button class="chip active" data-scenario="">全部</button>
+      <button class="chip" data-scenario="同行分享">同行分享</button>
+    </div>
+  
+
+  <main>
+    
+    <section class="year-block">
+      <h2 class="year-label">2026</h2>
+      <div class="talk-grid">
+        
+    <a class="talk-card" href="talks/2026-05-24_AI%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/slides.html" data-scenario="同行分享">
+      <div class="card-top">
+        <span class="card-date">05 · 24</span>
+        <span class="card-tag">同行分享</span>
+      </div>
+      <h3 class="card-title">AI落地实践</h3>
+      <p class="card-purpose">让听众相信——用 Vibe Coding + SPEC + Agentic 这套方法，不会写代码也能做出真实产品，并且做到第 N 个</p>
+      <div class="card-meta">
+        <span>⏱ 40 分钟（15 页，约 2.5 分钟/页，每页逐字稿约 500 字）</span>
+        <span>📄 15 页</span>
+        <span>🎧 音频</span>
+      </div>
+      <div class="card-cta">
+        🎬 打开幻灯片 →
+      </div>
+    </a>
+  
+      </div>
+    </section>
+  
+  </main>
+
+  <footer class="footer">
+    Built with SpeakDeck · 2026-05-17
+  </footer>
+</div>
+
+<script>
+  // 场景筛选
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const sc = chip.dataset.scenario;
+      document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === chip));
+      document.querySelectorAll('.talk-card').forEach(card => {
+        const match = !sc || card.dataset.scenario === sc;
+        card.style.display = match ? '' : 'none';
+      });
+      // 隐藏空年份
+      document.querySelectorAll('.year-block').forEach(yb => {
+        const visible = [...yb.querySelectorAll('.talk-card')].some(c => c.style.display !== 'none');
+        yb.style.display = visible ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

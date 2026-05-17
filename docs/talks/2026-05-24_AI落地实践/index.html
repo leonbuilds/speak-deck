@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI落地实践 · 与智行演讲库</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css"/>
+
+</head>
+<body>
+
+<div class="page detail">
+  <header class="detail-header">
+    <a class="back-link" href="../../">← 返回演讲库</a>
+    <div class="detail-meta">
+      <h1>AI落地实践</h1>
+      <div class="detail-tags">
+        <span>2026-05-24</span>
+        <span class="dot">·</span><span>同行分享</span>
+        <span class="dot">·</span><span>40 分钟（15 页，约 2.5 分钟/页，每页逐字稿约 500 字）</span>
+        <span class="dot">·</span><span>15 页</span>
+      </div>
+      <p class="detail-purpose">让听众相信——用 Vibe Coding + SPEC + Agentic 这套方法，不会写代码也能做出真实产品，并且做到第 N 个</p>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="slides">🎬 幻灯片</button>
+    <button class="tab" data-tab="script">📝 逐字稿</button>
+    <button class="tab" data-tab="annotated">🎭 注释版</button>
+    <button class="tab" data-tab="audio">🎧 音频</button>
+    <button class="tab" data-tab="brief">📋 Brief</button>
+  </nav>
+
+  <main class="tab-content">
+    
+    <section class="panel active" data-panel="slides">
+      <div class="slide-toolbar">
+        <a class="btn-primary" href="slides.html" target="_blank">🎬 全屏打开 →</a>
+      </div>
+      <div class="iframe-wrap">
+        <iframe src="slides.html" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    
+    <section class="panel" data-panel="script">
+      <div class="markdown"><h1>逐字稿 · AI 落地实践（有感情版）</h1>
+<blockquote>
+<p>每页文本前缀情感指令，CosyVoice 克隆声音</p>
+</blockquote>
+<hr>
+<h2>P01 · 封面 · 从个人工具到企业交付</h2>
+<p>大家好，我是阿亮。有十二年研发经验，这两年主要在做 AI Agent 相关的项目。</p>
+<p>我先说一件事——今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。我干的事，就是写了个需求，然后检查了一遍。</p>
+<p>今天我要讲的这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。我干的事，就是写了个需求，然后检查了一遍。不是演示，是我现在每天的工作状态。</p>
+<p>今天的主线就一句话：从个人工具，到企业交付。我们开始。</p>
+<hr>
+<h2>P02 · 你需要的不是更快的程序员，而是更清晰的判断</h2>
+<p>你们有没有这种体验——</p>
+<p>让 AI 写了一段代码，它写得超级快，超级流畅。然后你看了半天，发现——不知道它在解决什么问题。</p>
+<p>这不是 AI 的锅。这是我们自己的锅。</p>
+<p>我们错误地以为，AI 工具的价值在于速度。但速度不是瓶颈。你的判断力才是。</p>
+<p>判断什么？判断做什么，不做什么。判断这个功能该不该加。判断这个 bug 是真的影响用户，还是只是你自己看着不顺眼。</p>
+<p>AI 让你快十倍——方向对的时候。方向错的时候，它让你错得也快十倍。</p>
+<p>所以记住这句话：你不需要更快的程序员，你需要更清晰的判断。</p>
+<hr>
+<h2>P03 · 为什么大多数人卡在第 0 个产品</h2>
+<p>我有个朋友，他有一个产品想法——已经打磨了两年了。两年。在脑子里迭代到 3.0 版本了。但还没开始做，他说&quot;还不够好&quot;。</p>
+<p>我每次见到他都很想说：兄弟，你第一个产品不需要好，你只需要它存在。</p>
+<p>卡住的原因，就三个，全是自己设的局。</p>
+<p>第一，等一个完美的想法。完美是行动的敌人。</p>
+<p>第二，把&quot;不会编程&quot;当天花板。Vibe Coding 的本质，是用意图创造，不是用语法创造。你不需要会写 for 循环，你需要能说清楚&quot;我要什么&quot;。</p>
+<p>第三，一上来就想做平台。第一个产品只做一件事，做到极致就好。就像 clip-shot——它只做一件事，剪贴板有图片，自动传好生成链接。就这一件事，每天帮我省了几十次重复操作。</p>
+<p>卡住你的，从来不是技术。是你默认了一句&quot;我不行&quot;。</p>
+<hr>
+<h2>P04 · 把意图变成产品的最短路径</h2>
+<p>正确的路径，就三段：意图、规格、执行。</p>
+<p>第一段——意图。说清楚你要什么。给谁用，解决什么问题，最核心的功能是什么。不求完美，模糊也可以，先把感觉说出来。这一段，是你的。</p>
+<p>第二段——规格。把意图变成结构化的、无歧义的文档。这里我要说一句最重要的话——规格里最值钱的部分，是&quot;不做清单&quot;。明确写下你不做什么。</p>
+<p>&quot;优化一下体验&quot;——这不是规格。就像你跟外卖小哥说&quot;你知道我饿了&quot;，他不知道你想吃什么。&quot;用户点击后 300 毫秒内出现反馈&quot;，这才是规格。</p>
+<p>第三段——执行。AI 按规格写、跑、修，你在关键节点确认。这一段，基本是 AI 的。</p>
+<p>三段里，AI 主导两段半。你只需要想清楚第一段。</p>
+<hr>
+<h2>P05 · 从写代码，到表达意图</h2>
+<p>旧范式：你是驾驶员，AI 是导航。你写每一行代码，AI 在旁边提示。你有多快，产品就有多快。</p>
+<p>新范式：你是指挥官，AI 是执行团队。你说清楚目的地，AI 去开车、导航、处理路上的障碍。你的精力，从&quot;怎么开车&quot;，移到&quot;去哪里&quot;。</p>
+<p>我自己的转折点很具体。有一次，我把一个功能需求写清楚，直接让 AI 从头跑到尾。我去泡了杯茶。回来，它跑通了，测试也过了。</p>
+<p>那一刻我意识到——我之前一直在低估它。不是 AI 不够好，是我一直把它当代码补全工具用。</p>
+<p>从那之后我的工作方式就变了：先写清楚意图，然后放手让它跑，我只在关键节点做判断。</p>
+<hr>
+<h2>P06 · 挑对你的工具和模型</h2>
+<p>工具这件事，我只说一句：没有最好的，只有最适合你当下这一步的。</p>
+<p>两个阵营。</p>
+<p>终端派——Claude Code、Codex CLI。住在命令行里，读代码、写代码、跑测试、提交，全流程自主。项目复杂、需要跨文件操作，选这个。</p>
+<p>编辑器派——Cursor 这类。住在你的编辑器里，改动直观，所见即所得。习惯图形界面，或者做前端视觉类东西，选这个。</p>
+<p>模型怎么选？优先 Claude 系列。复杂任务用 Opus，快速迭代用 Sonnet。两者价格差接近五倍——用对了，这五倍价差完全值。用错了，贵的也白费。</p>
+<p>工具会变。这个选法的逻辑，不会变。</p>
+<hr>
+<h2>P07 · 第一个产品，怎么诞生</h2>
+<p>五步，一条直线。每一步，分清楚谁做。</p>
+<p>第一步，你来：说清楚你要什么。</p>
+<p>第二步，AI 来：把你的意图拆成规格文档。你来确认。</p>
+<p>第三步，AI 来：按规格执行，写代码，遇到问题自己修。这里有个诱惑——你会忍不住想去盯着每一行代码。我懂这个感觉，就像把车交给代驾，然后坐在副驾一直在踩空气刹车。</p>
+<p>放手。</p>
+<p>第四步，你来：看关键决策——技术选型对不对，核心逻辑有没有跑偏。不是每行都看。</p>
+<p>第五步，你来：上线，收真实反馈，用反馈决定下一步。</p>
+<p>这五步里，你主导一、四、五。AI 主导二、三。</p>
+<hr>
+<h2>P08 · 让 AI 更强的进阶能力</h2>
+<p>这一页名词最多，但你一个都不用记。我说两件事，你理解了就够。</p>
+<p>第一件：MCP，给 AI 装插座。</p>
+<p>AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——邮件、数据库、内部系统。从&quot;只会说&quot;，变成&quot;能动手&quot;。</p>
+<p>举个例子：客户的需求整理成文档、推进内部系统、通知相关同事。以前三步，步步手动。现在 AI 接上这几个系统，我说一句&quot;处理这个需求&quot;，它自己跑完。</p>
+<p>第二件：Skills，把流程打包成资产。</p>
+<p>每次做同类工作，步骤是固定的，就把它存成 Skills。下次一句话调用，AI 按你设好的流程跑。</p>
+<p>经验不再锁在你脑子里，锁在系统里。今天这场分享用的 SpeakDeck，就是我把&quot;演讲准备全流程&quot;封装成的 Skills。</p>
+<hr>
+<h2>P09 · clip-shot：一件事，做到极致</h2>
+<p>我来说第一个真实案例，顺便说一个我自己觉得很蠢的事。</p>
+<p>我每天要做这个动作：截一张图，存成文件，传图床，复制链接，粘贴回文档。整个流程三十秒。我算了一下，一年下来大概是八小时——八小时，就为了传图片。</p>
+<p>我当时就想，不行，我要把这八小时还给自己。</p>
+<p>于是我做了 clip-shot。macOS 菜单栏的一个小工具，监听剪贴板，检测到图片——自动上传，生成链接，写回剪贴板。我什么都不用做，截图完直接粘贴，链接已经在那里了。</p>
+<p>用 Swift 写的。Swift 不是我熟的语言。但需求够小够清晰，AI 几下跑通。</p>
+<p>这就是第一个产品该有的样子：只做一件事，解决你自己的一个真实痛点。</p>
+<hr>
+<h2>P10 · landr：AI 求职 Agent</h2>
+<p>第二个案例，量级完全不同。</p>
+<p>landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面试准备、智能投递。六个 Agent 模块，一个 Chrome 扩展，把在 Boss 直聘收集岗位的时间从三十分钟压到一分钟。</p>
+<p>里面有大量&quot;工程脏活&quot;——岗位列表只有十八个字的摘要怎么办？后台自动开标签页抓详情页。Boss 直聘风控怎么处理？这些不写进规格，AI 不会主动去想。</p>
+<p>这些代码我一行都没写。我写的是 SPEC，设了人工检查点，让 AI 按阶段跑。每个阶段一个独立的分支，跑完 review，没问题继续。</p>
+<p>从 1 到 N 的方法就这一句：先想清楚全局，再拆成可以独立验证的小段，让 AI 一段一段跑。</p>
+<hr>
+<h2>P11 · 同一套方法，进企业为什么不灵了</h2>
+<p>这套方法做个人项目很爽——进企业，未必。</p>
+<p>个人项目，所有上下文都在你脑子里。你知道这个产品要解决什么、给谁用、历史上做过什么决策。你告诉 AI 的时候，这些背景是隐含的。</p>
+<p>企业里不一样。上下文散落在各处：在旧系统里、在某个老员工的脑子里、在三年前的 PRD 里、有的根本就没有文档——就是约定俗成，大家都知道，但没写下来。</p>
+<p>AI 拿不到这些，就跑不准。</p>
+<p>更难的是老系统。命名不规范，逻辑耦合，注释稀少。我见过一种极端情况——AI 把一个&quot;遗留的兼容逻辑&quot;当成&quot;核心功能&quot;改了，线上出了问题。</p>
+<p>所以进企业，这套方法必须升级。不是方向错了，是需要覆盖更长的链路。</p>
+<hr>
+<h2>P12 · 引入 SDD，覆盖更长的链路</h2>
+<p>企业里怎么用？四个动作。</p>
+<p>第一：让 AI 来问你，不是你去告诉它。先给基本背景，让它提问。它问出来的问题，往往是你觉得理所当然、但从来没有明确说过的东西。这是最容易导致 AI 跑偏的盲区。我们做智能客服项目，AI 第一轮问了七个问题，其中三个是我们内部自己都没对齐过的。</p>
+<p>第二：对比两次结果，把结论写进约束。不是猜哪个好，是跑两遍，对比，固化。</p>
+<p>第三：历史文档全部喂进去。架构图、旧 PRD、接口文档——全给。上下文越充分，AI 越准。这一步很多人嫌麻烦，但它是企业场景里最值得投入的一步。</p>
+<p>第四：并行跑多方案，取最优。AI 是并发的，你要用并发的思维去用它。</p>
+<hr>
+<h2>P13 · 真实项目，真实数据</h2>
+<p>两个项目，我都参与了。</p>
+<p>第一个：智能客服 Agent。全新项目从零开始。最终交付的代码，十个有九个是 AI 写的。我们团队干的是定义需求、设计架构、处理边界问题。</p>
+<p>顺便说一句——那一个是我写的。我们的 AI 说它写的那九个更整洁。我……没有反驳。</p>
+<p>开发速度大概是纯人工的三到四倍，而且代码有测试覆盖，关键决策有记录，比以前&quot;拍脑袋&quot;写的还规范。</p>
+<p>第二个：智能营销系统，有几年历史的老系统。新增功能全部由 AI 实现。难点是上下文整理——花了一到两周，把散落的文档、逻辑、接口整理成结构化输入。整理完之后，后续每个功能的落地速度翻倍以上。</p>
+<p>AI 不是在替代工程师，是在放大判断力。</p>
+<hr>
+<h2>P14 · 第 N 个产品的复利</h2>
+<p>做完第一个产品你会发现，第二个明显比第一个快。不是因为你熟了，是因为你有了资产。</p>
+<p>写过的规格模板，可以复用。踩过的坑，已经固化成约束，下一个 AI 不会再踩。调好的提示词，建好的 Skills，全部带进下一个项目。每个产品，都是在给下一个产品打地基。</p>
+<p>我自己现在同时在推进三个技术栈完全不同的项目——Rust、TypeScript、Swift。换成以前，我根本不可能同时维护。现在可以，因为我的工作不是写代码，是写规格、设检查点、做判断。语言不再是我的门槛。</p>
+<p>你的上限，从&quot;会多少语言、熟多少框架&quot;，变成了&quot;判断得有多清晰、系统化得有多深&quot;。</p>
+<p>第一个产品最难。从第二个开始，曲线开始弯。</p>
+<hr>
+<h2>P15 · 现在，轮到你了</h2>
+<p>收尾的地方，我给大家两件事。</p>
+<p>第一件：本周就动手。找一个你自己每天在用但很烦的重复动作，做一个小工具把它干掉。不用大，不用完美，只做一件事，做到极致。</p>
+<p>不要再&quot;打磨想法&quot;了，哪怕只有三天的时间，做出来比打磨两年更值钱。</p>
+<p>第二件：给它写一份规格。哪怕很粗，哪怕只有一页。把&quot;做什么、不做什么、验收标准是什么&quot;写下来。这份文档，是你从做一个走向做很多个的分水岭。</p>
+<p>2026 年是 Agentic Coding 真正落地的一年。谁先建立起&quot;意图→规格→执行&quot;这套工作方式，谁就拿到了接下来几年最重要的生产力杠杆。</p>
+<p>如果今天只记住一句话——</p>
+<p>你不需要成为更好的程序员，你需要成为更清晰的判断者。</p>
+<p>谢谢大家。</p>
+</div>
+    </section>
+
+    
+    <section class="panel" data-panel="annotated">
+      <div class="markdown annotated"><h1>演讲逐字稿（带口气标注版）</h1>
+<h2>AI 落地实践：从个人工具到企业交付</h2>
+<hr>
+<h3>标注说明</h3>
+<table>
+<thead>
+<tr>
+<th>标注</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span class="cue">【停】</span></td>
+<td>停顿 1-2 秒，让观众消化</td>
+</tr>
+<tr>
+<td><span class="cue">【长停】</span></td>
+<td>停顿 3 秒，制造悬念或让笑点落地</td>
+</tr>
+<tr>
+<td><span class="cue">【慢】</span></td>
+<td>刻意放慢，强调重点</td>
+</tr>
+<tr>
+<td><span class="cue">【重】</span></td>
+<td>这个词加重语气</td>
+</tr>
+<tr>
+<td><span class="cue">【轻】</span></td>
+<td>降低音量，像在说悄悄话</td>
+</tr>
+<tr>
+<td><span class="cue">【扫场】</span></td>
+<td>眼神扫过全场观众，不要只盯一个方向</td>
+</tr>
+<tr>
+<td><span class="cue">【停+笑】</span></td>
+<td>说完段子，停一下，给观众反应时间，自己也可以微笑</td>
+</tr>
+<tr>
+<td><span class="cue">【深呼吸】</span></td>
+<td>换气点，也是给自己稳定的机会</td>
+</tr>
+<tr>
+<td><span class="cue">【自然】</span></td>
+<td>完全口语化，不用照着字背，说自己的话就好</td>
+</tr>
+</tbody></table>
+<hr>
+<hr>
+<h2>P01 · 开场</h2>
+<p><span class="cue">【扫场，直接开口，干脆有力】</span></p>
+<p>大家好，我是阿亮。有十二年研发经验，这两年主要在做 AI Agent 相关的项目。</p>
+<p><span class="cue">【停，带点神秘感】</span></p>
+<p>我先说一件事——今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。</p>
+<p><span class="cue">【停，扫场】</span></p>
+<p>我干的事，就是写了个需求，然后检查了一遍。</p>
+<p>今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。我干的事，就是写了个需求，然后检查了一遍。</p>
+<p><span class="cue">【停，扫场】</span></p>
+<p>这不是演示。是我现在<span class="cue">【重】</span>每天的工作状态。</p>
+<p>今天的主线——</p>
+<p><span class="cue">【慢】</span>从个人工具，到企业交付。</p>
+<p>我们开始。</p>
+<hr>
+<h2>P02 · 你需要的不是更快的程序员</h2>
+<p><span class="cue">【停，微微笑，像在跟朋友聊】</span></p>
+<p>你们有没有这种体验——</p>
+<p>让 AI 写了一段代码，它写得<span class="cue">【重】</span>超级快，超级流畅。然后你看了半天……</p>
+<p><span class="cue">【停，故意不说话，扫场】</span></p>
+<p>不知道它在解决什么问题。</p>
+<p><span class="cue">【停+笑】</span></p>
+<p>这不是 AI 的锅。</p>
+<p><span class="cue">【停】</span></p>
+<p>这是我们自己的锅。</p>
+<p><span class="cue">【深呼吸，转入核心观点，语速放慢】</span></p>
+<p>我们错误地以为，AI 工具的价值在于速度。但速度不是瓶颈。</p>
+<p><span class="cue">【慢+重】</span>你的判断力，才是。</p>
+<p>判断什么？判断<span class="cue">【重】</span>做什么，不做什么。判断这个功能该不该加。判断这个 bug 是真的影响用户，还是只是自己看着不顺眼。</p>
+<p><span class="cue">【停，扫场】</span></p>
+<p>AI 让你快十倍——方向对的时候。方向错的时候，它让你错得也快十倍。</p>
+<p><span class="cue">【长停，让这句话落地】</span></p>
+<p>所以记住这句话——</p>
+<p><span class="cue">【慢+重】</span>你不需要更快的程序员，你需要更清晰的判断。</p>
+<hr>
+<h2>P03 · 为什么大多数人卡在第 0 个产品</h2>
+<p><span class="cue">【轻松语气，讲故事】</span></p>
+<p>我有个朋友，他有一个产品想法——</p>
+<p><span class="cue">【停】</span></p>
+<p>已经打磨了……两年了。</p>
+<p><span class="cue">【停+笑，扫场】</span></p>
+<p>两年。在脑子里迭代到 3.0 版本了。但还没开始做，他说——&quot;还不够好。&quot;</p>
+<p><span class="cue">【停，故意长停，让观众体会那种无奈】</span></p>
+<p>我每次见到他都很想说：</p>
+<p><span class="cue">【轻，像说悄悄话】</span>兄弟，你第一个产品不需要好，你只需要它……<span class="cue">【重】</span>存在。</p>
+<p><span class="cue">【停+笑】</span></p>
+<p>卡住的原因，就三个，全是自己设的局。</p>
+<p><span class="cue">【停，数手指，节奏感】</span></p>
+<p>第一，<span class="cue">【重】</span>等一个完美的想法。完美是行动的敌人。</p>
+<p>第二，把&quot;不会编程&quot;当<span class="cue">【重】</span>天花板。Vibe Coding 的本质——是用意图创造，不是用语法创造。你不需要会写 for 循环，你需要能说清楚&quot;我要什么&quot;。</p>
+<p>第三，一上来就想做<span class="cue">【重】</span>平台。第一个产品只做一件事，做到极致就好。</p>
+<p><span class="cue">【停，扫场】</span></p>
+<p>卡住你的，从来不是技术。是你默认了一句——</p>
+<p><span class="cue">【慢+重】</span>&quot;我不行。&quot;</p>
+<hr>
+<h2>P04 · 把意图变成产品的最短路径</h2>
+<p><span class="cue">【干脆，有力】</span></p>
+<p>正确的路径，就三段：意图、规格、执行。</p>
+<p><span class="cue">【停，然后展开，有节奏感】</span></p>
+<p>第一段——<span class="cue">【重】</span>意图。说清楚你要什么。给谁用，解决什么问题，最核心的功能是什么。不求完美，模糊也可以，先把感觉说出来。这一段，是<span class="cue">【重】</span>你的。</p>
+<p><span class="cue">【停】</span></p>
+<p>第二段——<span class="cue">【重】</span>规格。这里我要说一句最重要的话。</p>
+<p><span class="cue">【扫场，制造期待】</span></p>
+<p>规格里最值钱的部分，不是写了什么——</p>
+<p><span class="cue">【停，慢】</span>是写下你<span class="cue">【重】</span>不做什么。</p>
+<p><span class="cue">【停+笑，说段子】</span></p>
+<p>&quot;优化一下体验&quot;——这不是规格。就像你跟外卖小哥说&quot;你知道我饿了&quot;，他不知道你想吃什么。</p>
+<p><span class="cue">【停+笑，等反应落地】</span></p>
+<p>&quot;用户点击后 300 毫秒内出现反馈&quot;，这才是规格。</p>
+<p><span class="cue">【停，收回来】</span></p>
+<p>第三段——<span class="cue">【重】</span>执行。AI 按规格写、跑、修，你在关键节点确认。这一段，基本是 AI 的。</p>
+<p><span class="cue">【停，扫场，说出结论】</span></p>
+<p>三段里，AI 主导两段半。你只需要想清楚<span class="cue">【重】</span>第一段。</p>
+<hr>
+<h2>P05 · 从写代码，到表达意图</h2>
+<p><span class="cue">【有节奏，像在做对比】</span></p>
+<p>旧范式：你是<span class="cue">【重】</span>驾驶员，AI 是导航。你写每一行，AI 在旁边提示。你有多快，产品就有多快。</p>
+<p><span class="cue">【停】</span></p>
+<p>新范式：你是<span class="cue">【重】</span>指挥官，AI 是执行团队。你说清楚目的地，AI 去开车、导航、处理路上的障碍。你的精力，从&quot;怎么开车&quot;——<span class="cue">【停】</span>移到<span class="cue">【重】</span>&quot;去哪里&quot;。</p>
+<p><span class="cue">【深呼吸，切入个人故事】</span></p>
+<p>我自己的转折点很具体。</p>
+<p><span class="cue">【轻，像讲给朋友听】</span></p>
+<p>有一次，我把一个功能需求写清楚，直接让 AI 从头跑到尾。我去泡了杯茶。回来，它跑通了，测试也过了。</p>
+<p><span class="cue">【停，扫场】</span></p>
+<p>那一刻我意识到——我之前一直在<span class="cue">【重】</span>低估它。不是 AI 不够好，是我一直把它当代码补全工具用。</p>
+<p><span class="cue">【慢，有力】</span></p>
+<p>从那之后我的工作方式就变了：先写清楚意图，然后<span class="cue">【重】</span>放手让它跑，我只在关键节点做判断。</p>
+<hr>
+<h2>P06 · 挑对你的工具和模型</h2>
+<p><span class="cue">【轻松，一句话定论】</span></p>
+<p>工具这件事，我只说一句：没有最好的，只有最适合你<span class="cue">【重】</span>当下这一步的。</p>
+<p><span class="cue">【停，分两派，节奏明快】</span></p>
+<p>两个阵营。</p>
+<p>终端派——Claude Code、Codex CLI。住在命令行里，全流程自主。项目复杂、需要跨文件操作，选这个。</p>
+<p>编辑器派——Cursor 这类。改动直观，所见即所得。习惯图形界面，或者做前端视觉类东西，选这个。</p>
+<p><span class="cue">【停，讲模型选法】</span></p>
+<p>模型怎么选？优先 Claude 系列。复杂任务用 Opus，快速迭代用 Sonnet。两者价格差接近<span class="cue">【重】</span>五倍——用对了，这五倍完全值。用错了，贵的也白费。</p>
+<p><span class="cue">【停，收尾，语气轻松】</span></p>
+<p>工具会变。这个选法的<span class="cue">【重】</span>逻辑，不会变。</p>
+<hr>
+<h2>P07 · 第一个产品，怎么诞生</h2>
+<p><span class="cue">【干脆，有节奏，数步骤】</span></p>
+<p>五步，一条直线。每一步，分清楚谁做。</p>
+<p><span class="cue">【扫场，有互动感】</span></p>
+<p>第一步，你来：说清楚你要什么。</p>
+<p>第二步，AI 来：把你的意图拆成规格文档。你来确认。</p>
+<p>第三步，AI 来：按规格执行，写代码，遇到问题自己修。</p>
+<p><span class="cue">【停，说段子，语气变轻松】</span></p>
+<p>这里有个<span class="cue">【重】</span>诱惑——你会忍不住想去盯着每一行代码。我懂这个感觉，就像把车交给代驾，然后坐在副驾一直在踩<span class="cue">【重】</span>空气刹车。</p>
+<p><span class="cue">【停+笑，等反应】</span></p>
+<p><span class="cue">【轻+慢，只说一个字】</span>放手。</p>
+<p><span class="cue">【长停，让这两个字沉淀】</span></p>
+<p>第四步，你来：看关键决策——技术选型对不对，核心逻辑有没有跑偏。不是每行都看。</p>
+<p>第五步，你来：上线，收真实反馈，用反馈决定下一步。</p>
+<p><span class="cue">【停，扫场，总结】</span></p>
+<p>这五步里，你主导一、四、五。AI 主导二、三。</p>
+<hr>
+<h2>P08 · 让 AI 更强的进阶能力</h2>
+<p><span class="cue">【有点幽默，自嘲式开头】</span></p>
+<p>这一页名词最多——</p>
+<p><span class="cue">【停+笑】</span></p>
+<p>但你一个都不用记。我说两件事，你理解了就够。</p>
+<p><span class="cue">【停，进入第一件事】</span></p>
+<p>第一件：MCP，给 AI <span class="cue">【重】</span>装插座。</p>
+<p>AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——邮件、数据库、内部系统。从&quot;只会说&quot;，变成&quot;能<span class="cue">【重】</span>动手&quot;。</p>
+<p><span class="cue">【停，举例子，语气轻松】</span></p>
+<p>举个例子：客户的需求整理成文档、推进内部系统、通知相关同事。以前三步，步步手动。现在 AI 接上这几个系统，我说一句&quot;处理这个需求&quot;，它自己跑完。</p>
+<p><span class="cue">【停，进入第二件事】</span></p>
+<p>第二件：Skills，把流程打包成<span class="cue">【重】</span>资产。</p>
+<p>每次做同类工作，步骤是固定的，就把它存成 Skills。下次一句话调用，AI 按你设好的流程跑。</p>
+<p><span class="cue">【停，扫场，指向自己】</span></p>
+<p>经验不再锁在你脑子里，锁在系统里。今天这场分享用的工具，就是我把&quot;演讲准备全流程&quot;封装成的 Skills。</p>
+<hr>
+<h2>P09 · clip-shot：一件事，做到极致</h2>
+<p><span class="cue">【轻松，有点自嘲】</span></p>
+<p>我来说第一个真实案例——顺便说一个我自己觉得很蠢的事。</p>
+<p><span class="cue">【停，吊胃口】</span></p>
+<p>我每天要做这个动作：截一张图，存成文件，传图床，复制链接，粘贴回文档。整个流程三十秒。</p>
+<p>我算了一下——</p>
+<p><span class="cue">【停，故意慢】</span></p>
+<p>一年下来大概是……<span class="cue">【重】</span>八小时。</p>
+<p><span class="cue">【停+笑，扫场】</span></p>
+<p>八小时，就为了传图片。</p>
+<p><span class="cue">【停，语气变坚定】</span></p>
+<p>我当时就想，不行，我要把这八小时还给自己。</p>
+<p><span class="cue">【停，介绍产品，节奏明快】</span></p>
+<p>于是我做了 clip-shot。macOS 菜单栏的一个小工具，监听剪贴板，检测到图片——自动上传，生成链接，写回剪贴板。我什么都不用做，截图完直接粘贴，链接已经在那里了。</p>
+<p><span class="cue">【停，轻描淡写地说技术难点】</span></p>
+<p>用 Swift 写的。<span class="cue">【轻】</span>Swift 不是我熟的语言。但需求够小够清晰，AI 几下跑通。</p>
+<p><span class="cue">【停，收尾，说出核心】</span></p>
+<p>这就是第一个产品该有的样子：只做<span class="cue">【重】</span>一件事，解决你自己的一个真实痛点。</p>
+<hr>
+<h2>P10 · landr：AI 求职 Agent</h2>
+<p><span class="cue">【语气一转，稍微郑重】</span></p>
+<p>第二个案例，量级完全不同。</p>
+<p>landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面试准备、智能投递。六个 Agent 模块，一个 Chrome 扩展，把在 Boss 直聘收集岗位的时间从三十分钟压到<span class="cue">【重】</span>一分钟。</p>
+<p><span class="cue">【停，提工程细节，语速稍快】</span></p>
+<p>里面有大量&quot;工程脏活&quot;——岗位列表只有十八个字的摘要怎么办？后台自动开标签页抓详情页。Boss 直聘风控怎么处理？这些不写进规格，AI <span class="cue">【重】</span>不会主动去想。</p>
+<p><span class="cue">【停，说自己的做法】</span></p>
+<p>这些代码我一行都没写。我写的是 SPEC，设了人工检查点，让 AI 按阶段跑。每个阶段一个独立的分支，跑完 review，没问题继续。</p>
+<p><span class="cue">【停，扫场，说结论】</span></p>
+<p>从 1 到 N 的方法就这一句：先想清楚全局，再拆成可以独立验证的小段，让 AI <span class="cue">【重】</span>一段一段跑。</p>
+<hr>
+<h2>P11 · 同一套方法，进企业为什么不灵了</h2>
+<p><span class="cue">【语气变，带点挑衅感，像在戳破幻觉】</span></p>
+<p>这套方法做个人项目很爽——</p>
+<p><span class="cue">【停，故意转折】</span></p>
+<p>进企业，<span class="cue">【重】</span>未必。</p>
+<p><span class="cue">【停，解释，对比清晰】</span></p>
+<p>个人项目，所有上下文都在你脑子里。你知道这个产品要解决什么、给谁用、历史上做过什么决策。你告诉 AI 的时候，这些背景是隐含的。</p>
+<p><span class="cue">【停】</span></p>
+<p>企业里不一样。上下文散落在各处：在旧系统里、在某个老员工的脑子里、在三年前的 PRD 里、有的根本就没有文档——就是约定俗成，大家都知道，但没写下来。</p>
+<p><span class="cue">【停，扫场，沉一下】</span></p>
+<p>AI 拿不到这些，就跑不准。</p>
+<p><span class="cue">【停，举反例，语气稍重】</span></p>
+<p>我见过一种极端情况——AI 把一个&quot;遗留的兼容逻辑&quot;当成&quot;核心功能&quot;改了，线上出了问题。</p>
+<p><span class="cue">【停，收尾】</span></p>
+<p>所以进企业，这套方法必须升级。不是方向错了，是需要覆盖更长的链路。</p>
+<hr>
+<h2>P12 · 引入 SDD，覆盖更长的链路</h2>
+<p><span class="cue">【干脆，四个动作，数手指】</span></p>
+<p>企业里怎么用？四个动作。</p>
+<p><span class="cue">【停，第一个动作，强调逆直觉】</span></p>
+<p>第一：让 AI 来问你，不是你去告诉它。先给基本背景，让它提问。它问出来的问题，往往是你觉得理所当然、但从来没有<span class="cue">【重】</span>明确说过的东西。</p>
+<p><span class="cue">【停，举具体例子】</span></p>
+<p>我们做智能客服项目，AI 第一轮问了七个问题，其中<span class="cue">【重】</span>三个是我们内部自己都没对齐过的。</p>
+<p><span class="cue">【停，第二个动作】</span></p>
+<p>第二：对比两次结果，把结论写进约束。不是猜哪个好，是跑两遍，对比，固化。</p>
+<p><span class="cue">【停，第三个动作】</span></p>
+<p>第三：历史文档全部喂进去。架构图、旧 PRD、接口文档——全给。上下文越充分，AI 越准。这一步很多人嫌麻烦，但它是企业场景里<span class="cue">【重】</span>最值得投入的一步。</p>
+<p><span class="cue">【停，第四个动作】</span></p>
+<p>第四：并行跑多方案，取最优。AI 是并发的，你要用<span class="cue">【重】</span>并发的思维去用它。</p>
+<hr>
+<h2>P13 · 真实项目，真实数据</h2>
+<p><span class="cue">【语气变轻松，有段子感】</span></p>
+<p>两个项目，我都参与了。</p>
+<p><span class="cue">【停，介绍第一个】</span></p>
+<p>第一个：智能客服 Agent。全新项目从零开始。最终交付的代码，十个有<span class="cue">【重】</span>九个是 AI 写的。我们团队干的是定义需求、设计架构、处理边界问题。</p>
+<p><span class="cue">【停，加段子，语气微微自嘲】</span></p>
+<p>顺便说一句——那一个是我写的。我们的 AI 说它写的那九个<span class="cue">【重】</span>更整洁。</p>
+<p><span class="cue">【停+笑，等观众反应】</span></p>
+<p>我……没有反驳。</p>
+<p><span class="cue">【停+笑，然后收回来】</span></p>
+<p>开发速度大概是纯人工的三到四倍，而且代码有测试覆盖，关键决策有记录，比以前&quot;拍脑袋&quot;写的还规范。</p>
+<p><span class="cue">【停，介绍第二个，语气转沉稳】</span></p>
+<p>第二个：智能营销系统，有几年历史的老系统。新增功能全部由 AI 实现。难点是上下文整理——花了一到两周，把散落的文档、逻辑、接口整理成结构化输入。整理完之后，后续每个功能的落地速度翻倍以上。</p>
+<p><span class="cue">【停，扫场，说结论】</span></p>
+<p>AI 不是在<span class="cue">【重】</span>替代工程师，是在<span class="cue">【重】</span>放大判断力。</p>
+<hr>
+<h2>P14 · 第 N 个产品的复利</h2>
+<p><span class="cue">【语气轻快，分享发现】</span></p>
+<p>做完第一个产品你会发现，第二个明显比第一个快。</p>
+<p><span class="cue">【停，解释为什么，不说废话】</span></p>
+<p>不是因为你熟了，是因为你有了<span class="cue">【重】</span>资产。</p>
+<p>写过的规格模板，可以复用。踩过的坑，已经固化成约束，下一个 AI 不会再踩。调好的提示词，建好的 Skills，全部带进下一个项目。每个产品，都是在给下一个产品打<span class="cue">【重】</span>地基。</p>
+<p><span class="cue">【停，说自己的状态，有点自豪感】</span></p>
+<p>我自己现在同时在推进三个技术栈完全不同的项目——Rust、TypeScript、Swift。换成以前，我根本不可能同时维护。现在可以，因为我的工作不是写代码，是写规格、设检查点、做<span class="cue">【重】</span>判断。语言不再是我的门槛。</p>
+<p><span class="cue">【停，说出本质】</span></p>
+<p>你的上限，从&quot;会多少语言、熟多少框架&quot;——变成了<span class="cue">【慢+重】</span>&quot;判断得有多清晰、系统化得有多深&quot;。</p>
+<p><span class="cue">【停，轻松收尾这一页】</span></p>
+<p>第一个产品最难。从第二个开始，曲线开始弯。</p>
+<hr>
+<h2>P15 · 现在，轮到你了</h2>
+<p><span class="cue">【深呼吸，语气变得真诚、有力】</span></p>
+<p>收尾的地方，我给大家两件事。</p>
+<p><span class="cue">【停，说第一件，语气直接】</span></p>
+<p>第一件：本周就动手。找一个你自己每天在用但很烦的重复动作，做一个小工具把它干掉。不用大，不用完美，只做一件事，做到极致。</p>
+<p><span class="cue">【停，轻轻加一句，像在说悄悄话】</span></p>
+<p>不要再&quot;打磨想法&quot;了。哪怕只有三天的时间，做出来比打磨两年更值钱。</p>
+<p><span class="cue">【停，说第二件】</span></p>
+<p>第二件：给它写一份规格。哪怕很粗，哪怕只有一页。把&quot;做什么、不做什么、验收标准是什么&quot;写下来。这份文档，是你从做一个走向做很多个的<span class="cue">【重】</span>分水岭。</p>
+<p><span class="cue">【停，深呼吸，进入结语，语气变得有力量】</span></p>
+<p>2026 年是 Agentic Coding 真正落地的一年。谁先建立起&quot;意图→规格→执行&quot;这套工作方式，谁就拿到了接下来几年最重要的<span class="cue">【重】</span>生产力杠杆。</p>
+<p><span class="cue">【长停，3 秒，扫场，然后慢慢说出最后一句】</span></p>
+<p>如果今天只记住一句话——</p>
+<p><span class="cue">【慢+重，字字清晰】</span></p>
+<p>你不需要成为更好的程序员，你需要成为更清晰的<span class="cue">【重】</span>判断者。</p>
+<p><span class="cue">【停，扫场，微笑】</span></p>
+<p>谢谢大家。</p>
+<hr>
+<hr>
+<h2>附录：上台前 5 分钟速查</h2>
+<p><strong>如果你突然很紧张：</strong></p>
+<ul>
+<li>深呼吸三次，告诉自己&quot;紧张 = 我在乎这件事&quot;</li>
+<li>记住开场那句话就够了：&quot;大家好，我是阿亮&quot;，后面自然会来</li>
+</ul>
+<p><strong>节奏口诀：</strong></p>
+<ul>
+<li>说完段子 → <span class="cue">【停】</span>等笑声落地，不要急着往下讲</li>
+<li>每个核心结论 → <span class="cue">【慢+重】</span>，说完再<span class="cue">【停】</span></li>
+<li>每隔 3-4 分钟 → 扫一次全场，找一个点头的观众</li>
+</ul>
+<p><strong>如果卡词了：</strong></p>
+<ul>
+<li>&quot;让我想一下&quot;或直接停顿，不需要说&quot;啊&quot;&quot;嗯&quot;</li>
+<li>重复上一句话，给自己找回节奏</li>
+</ul>
+<p><strong>记住：你比他们更了解这个内容。紧张是因为你在乎，不是因为你不行。</strong></p>
+</div>
+    </section>
+
+    
+    <section class="panel" data-panel="audio">
+      <div class="audio-list">
+        
+          <div class="audio-row">
+            <span class="audio-idx">01</span>
+            <span class="audio-name">p01.mp3</span>
+            <audio controls preload="none" src="audio/p01.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">02</span>
+            <span class="audio-name">p02.mp3</span>
+            <audio controls preload="none" src="audio/p02.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">03</span>
+            <span class="audio-name">p03.mp3</span>
+            <audio controls preload="none" src="audio/p03.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">04</span>
+            <span class="audio-name">p04.mp3</span>
+            <audio controls preload="none" src="audio/p04.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">05</span>
+            <span class="audio-name">p05.mp3</span>
+            <audio controls preload="none" src="audio/p05.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">06</span>
+            <span class="audio-name">p06.mp3</span>
+            <audio controls preload="none" src="audio/p06.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">07</span>
+            <span class="audio-name">p07.mp3</span>
+            <audio controls preload="none" src="audio/p07.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">08</span>
+            <span class="audio-name">p08.mp3</span>
+            <audio controls preload="none" src="audio/p08.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">09</span>
+            <span class="audio-name">p09.mp3</span>
+            <audio controls preload="none" src="audio/p09.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">10</span>
+            <span class="audio-name">p10.mp3</span>
+            <audio controls preload="none" src="audio/p10.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">11</span>
+            <span class="audio-name">p11.mp3</span>
+            <audio controls preload="none" src="audio/p11.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">12</span>
+            <span class="audio-name">p12.mp3</span>
+            <audio controls preload="none" src="audio/p12.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">13</span>
+            <span class="audio-name">p13.mp3</span>
+            <audio controls preload="none" src="audio/p13.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">14</span>
+            <span class="audio-name">p14.mp3</span>
+            <audio controls preload="none" src="audio/p14.mp3"></audio>
+          </div>
+        
+          <div class="audio-row">
+            <span class="audio-idx">15</span>
+            <span class="audio-name">p15.mp3</span>
+            <audio controls preload="none" src="audio/p15.mp3"></audio>
+          </div>
+        
+      </div>
+    </section>
+
+    
+    <section class="panel" data-panel="brief">
+      <div class="markdown"><h1>Brief（草稿 — 请确认）</h1>
+<h2>基本信息</h2>
+<ul>
+<li><strong>模式</strong>: B（基于已有 HTML：AI落地实践-滚动演示-企业版.html）</li>
+<li><strong>场景</strong>: 同行分享</li>
+<li><strong>对象</strong>: 与智行 AI 工程化训练营用户 + 5.24 线下分享参与者；AI 工具入门 1 个月左右；有动手做产品的意愿</li>
+<li><strong>时长</strong>: 40 分钟（15 页，约 2.5 分钟/页，每页逐字稿约 500 字）</li>
+<li><strong>场地</strong>: 线下</li>
+<li><strong>目的（一句话）</strong>: 让听众相信——用 Vibe Coding + SPEC + Agentic 这套方法，不会写代码也能做出真实产品，并且做到第 N 个</li>
+</ul>
+<h2>内容骨架（已解析自 HTML）</h2>
+<table>
+<thead>
+<tr>
+<th>页</th>
+<th>标题</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P01</td>
+<td>从个人工具到企业交付</td>
+<td>封面 · 亮出阿亮身份 + 三类人群</td>
+</tr>
+<tr>
+<td>P02</td>
+<td>你需要的不是更快的程序员，而是更清晰的判断</td>
+<td>破冰金句 · 立即拉高认知</td>
+</tr>
+<tr>
+<td>P03</td>
+<td>为什么大多数人卡在第 0 个产品</td>
+<td>三个卡点：完美主义 / 技术幻觉 / 贪大求全</td>
+</tr>
+<tr>
+<td>P04</td>
+<td>把意图变成产品的最短路径</td>
+<td>三段式：意图 → 规格 → 执行</td>
+</tr>
+<tr>
+<td>P05</td>
+<td>从写代码，到表达意图</td>
+<td>旧范式 vs 新范式对比</td>
+</tr>
+<tr>
+<td>P06</td>
+<td>挑对你的工具和模型</td>
+<td>终端派 / 编辑器派 / 模型选择</td>
+</tr>
+<tr>
+<td>P07</td>
+<td>第一个产品，怎么诞生</td>
+<td>五步流程：谁做什么</td>
+</tr>
+<tr>
+<td>P08</td>
+<td>让 AI 更强的进阶能力</td>
+<td>MCP / Skills / 子智能体</td>
+</tr>
+<tr>
+<td>P09</td>
+<td>clip-shot：一件事，做到极致</td>
+<td>案例 A · 最小可用工具</td>
+</tr>
+<tr>
+<td>P10</td>
+<td>landr：AI 求职 Agent</td>
+<td>案例 B · 从 1 到 N 商业化</td>
+</tr>
+<tr>
+<td>P11</td>
+<td>同一套方法，进企业为什么不灵了</td>
+<td>企业 vs 个人的落地差异</td>
+</tr>
+<tr>
+<td>P12</td>
+<td>引入 SDD，覆盖更长的链路</td>
+<td>企业解法：四个进阶动作</td>
+</tr>
+<tr>
+<td>P13</td>
+<td>真实项目，真实数据</td>
+<td>企业客户案例 · 数据背书</td>
+</tr>
+<tr>
+<td>P14</td>
+<td>第 N 个产品的复利</td>
+<td>经验沉淀 → 越做越快</td>
+</tr>
+<tr>
+<td>P15</td>
+<td>现在，轮到你了</td>
+<td>行动号召 · 金句收尾</td>
+</tr>
+</tbody></table>
+<h2>必须出现的点</h2>
+<ol>
+<li>三个产品案例（clip-shot 极简工具 / landr 全链路 Agent / 企业真实项目）</li>
+<li>四种编程范式（Vibe → SPEC → Agentic → 未来 ID Coding）</li>
+<li>SPEC.md 的核心价值（「不做清单」是最值钱的那行）</li>
+<li>开发者角色转变：写代码 → Reviewer / Architect / Commander</li>
+<li>结尾行动指引：本周就动手做第一个，给它写一份 SPEC</li>
+</ol>
+<h2>绝对不要出现</h2>
+<ul>
+<li>工具名词轰炸（挑重点讲，不做功能参数对比）</li>
+<li>「赋能」「抓手」「闭环」等黑话</li>
+<li>「今天非常荣幸」「首先其次最后」</li>
+</ul>
+<h2>风格</h2>
+<ul>
+<li>同行分享腔：有锋芒、有观点、留勾子</li>
+<li>说话像视频文字稿里的阿亮：口语感强、夹带真实案例数字、偶尔插「我当时是这么想的」</li>
+<li>语速 200 字/分钟；页均 500 字（40 分钟 ÷ 15 页）</li>
+<li>数据呈现口语化：不说「75%」，说「四个里有三个」</li>
+</ul>
+<h2>说明</h2>
+<ul>
+<li>P01 封面无需口播稿（开场自我介绍自由发挥）——如需要可简短做一段引子</li>
+<li>P11-P13 是企业版新增内容，参考 AI落地实践-背景资料.md 中 SDD 部分补充</li>
+</ul>
+</div>
+    </section>
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const name = tab.dataset.tab;
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.dataset.panel === name));
+    });
+  });
+</script>
+
+</body>
+</html>

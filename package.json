@@ -10,11 +10,13 @@
     "tts": "node scripts/tts.mjs",
     "parse": "node scripts/parse-html.mjs",
     "inject": "node scripts/inject-html.mjs",
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "build-site": "node scripts/build-site.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
+    "marked": "^18.0.3",
     "msgpackr": "^1.11.0"
   },
   "engines": {
