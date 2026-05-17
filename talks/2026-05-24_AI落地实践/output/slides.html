@@ -415,7 +415,7 @@ body {
 #p09 .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:14%;right:8%;opacity:0.34;animation-delay:-14s}
 #p09 .blob-4{width:340px;height:340px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:16%;left:38%;opacity:0.4;animation-delay:-3s}
 #p09::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
-#p09 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:24px}
+#p09 .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:40px 80px;display:grid;grid-template-rows:auto auto 1fr auto;gap:16px}
 #p09 .topnav{display:flex;justify-content:space-between;align-items:center}
 #p09 .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
 #p09 .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
@@ -424,14 +424,39 @@ body {
 #p09 .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
 #p09 .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
 #p09 .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
-#p09 .page-header{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:end}
+#p09 .page-header{display:block}
 #p09 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;margin-bottom:10px}
 #p09 .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
-#p09 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-0.03em}
+#p09 h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:46px;line-height:1;letter-spacing:-0.03em}
 #p09 h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
-#p09 .two-cols{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start}
-#p09 .mockup-wrap{display:flex;align-items:center;justify-content:center;height:100%}
-#p09 .menubar-popup{width:300px;background:rgba(255,255,255,0.07);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+#p09 .two-cols{display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:stretch;overflow:hidden;height:100%}
+#p09 .mockup-wrap{display:grid;grid-template-rows:1fr 1fr;gap:12px;height:100%;align-items:stretch;overflow:hidden}
+#p09 .popup-container{display:flex;align-items:stretch;height:100%}
+#p09 .menubar-popup{width:100%;background:rgba(255,255,255,0.07);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.15);border-radius:18px;padding:14px 20px;display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.4);justify-content:space-evenly}
+#p09 .settings-win{background:rgba(255,255,255,0.06);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.14);border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5);display:flex;flex-direction:column;flex:1;min-height:0;position:relative}
+#p09 .settings-win::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);z-index:1}
+#p09 .win-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0}
+#p09 .win-title{font-size:11px;font-weight:500;color:rgba(245,240,255,.5);letter-spacing:.02em;flex:1;text-align:center}
+#p09 .win-body{display:flex;flex:1;min-height:0}
+#p09 .win-sidebar{width:80px;background:rgba(0,0,0,0.18);border-right:1px solid rgba(255,255,255,0.06);padding:8px 5px;display:flex;flex-direction:column;gap:3px;flex-shrink:0}
+#p09 .nav-item{padding:5px 7px;border-radius:7px;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:4px}
+#p09 .nav-item.active{background:linear-gradient(135deg,rgba(255,94,126,0.25),rgba(183,148,255,0.15));color:var(--text)}
+#p09 .win-content{flex:1;padding:10px 11px;display:flex;flex-direction:column;gap:5px;overflow:hidden;min-width:0}
+#p09 .host-row{display:flex;gap:4px}
+#p09 .host-btn{padding:3px 7px;border-radius:5px;font-size:9px;font-weight:600;background:rgba(255,255,255,0.07);color:var(--muted)}
+#p09 .host-btn.active{background:linear-gradient(135deg,var(--coral),var(--peach));color:var(--bg-deep)}
+#p09 .cfg-section{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+#p09 .cfg-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+#p09 .cfg-label{font-size:9.5px;color:var(--muted);white-space:nowrap}
+#p09 .cfg-value{font-size:9.5px;color:var(--text);max-width:95px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#p09 .cfg-value.token{color:var(--muted);letter-spacing:.08em}
+#p09 .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0}
+#p09 .tog{width:26px;height:14px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--lavender));position:relative;flex-shrink:0}
+#p09 .tog::after{content:'';position:absolute;right:2px;top:2px;width:10px;height:10px;border-radius:50%;background:#fff}
+#p09 .win-btns{display:flex;gap:5px;margin-top:auto;padding-top:4px}
+#p09 .win-btn{flex:1;padding:5px 0;border-radius:7px;font-size:9px;font-weight:600;text-align:center}
+#p09 .win-btn.primary{background:linear-gradient(135deg,var(--cyan),var(--lavender));color:var(--bg-deep)}
+#p09 .win-btn.secondary{background:rgba(255,255,255,0.07);color:var(--muted)}
 #p09 .menubar-popup::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent)}
 #p09 .popup-title{display:flex;align-items:center;gap:8px}
 #p09 .traffic-lights{display:flex;gap:5px}
@@ -458,17 +483,17 @@ body {
 #p09 .result-label{color:var(--text)}
 #p09 .link-box{font-family:monospace;font-size:11px;color:var(--lavender);background:rgba(183,148,255,0.1);border:1px solid rgba(183,148,255,0.25);border-radius:8px;padding:8px 10px;word-break:break-all;line-height:1.4}
 #p09 .copy-btn{background:linear-gradient(135deg,var(--coral),var(--peach));color:var(--bg-deep);border-radius:10px;padding:9px;text-align:center;font-size:12px;font-weight:700;cursor:pointer}
-#p09 .narr-col{display:flex;flex-direction:column;gap:14px}
-#p09 .narr-cards{display:flex;flex-direction:column;gap:10px}
-#p09 .narr-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;position:relative;overflow:hidden}
+#p09 .narr-col{display:flex;flex-direction:column;gap:10px;height:100%;justify-content:space-between}
+#p09 .narr-cards{display:flex;flex-direction:column;gap:8px}
+#p09 .narr-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start;position:relative;overflow:hidden}
 #p09 .narr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
-#p09 .narr-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:42px;line-height:0.85;text-align:center}
+#p09 .narr-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:36px;line-height:0.85;text-align:center}
 #p09 .narr-card:nth-child(1) .narr-num{background:linear-gradient(135deg,var(--coral),var(--peach));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 #p09 .narr-card:nth-child(2) .narr-num{background:linear-gradient(135deg,var(--lavender),var(--coral));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 #p09 .narr-card:nth-child(3) .narr-num{background:linear-gradient(135deg,var(--cyan),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-#p09 .narr-card h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:15px;margin-bottom:4px}
-#p09 .narr-card p{font-size:12.5px;line-height:1.55;color:var(--muted)}
-#p09 .takeaway{padding:12px 18px;border-radius:14px;border:1px solid rgba(255,94,126,0.3);background:linear-gradient(135deg,rgba(255,94,126,0.1),rgba(183,148,255,0.08));font-family:'Instrument Serif',serif;font-style:italic;font-size:13.5px;color:var(--text);line-height:1.45}
+#p09 .narr-card h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:14px;margin-bottom:2px}
+#p09 .narr-card p{font-size:11.5px;line-height:1.5;color:var(--muted)}
+#p09 .takeaway{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,94,126,0.3);background:linear-gradient(135deg,rgba(255,94,126,0.1),rgba(183,148,255,0.08));font-family:'Instrument Serif',serif;font-style:italic;font-size:12.5px;color:var(--text);line-height:1.4}
 #p09 .takeaway .dash{color:var(--coral);margin-right:6px}
 #p09 .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
 #p09 .progress-line{display:flex;gap:4px;align-items:center}
@@ -826,8 +851,8 @@ body {
   <div class="hero">
     <div class="left">
       <div class="eyebrow reveal r2">AI 落地实践 · Episode 07</div>
-      <h1 class="reveal r3">从<span class="italic">个人工具</span><br>到<span class="grad">企业交付</span></h1>
-      <div class="subtitle reveal r4">用 <span class="underline">Vibe Coding</span> 打造你的第一个，也是第 N 个产品</div>
+      <h1 class="reveal r3">用 <span class="italic">Vibe Coding</span> 打造你的第一个，<br>也是第 <span class="grad">N</span> 个产品</h1>
+      <div class="subtitle reveal r4">从<span class="underline">个人工具</span>到企业交付</div>
     </div>
     <div class="glass-card reveal r4">
       <h3>Speaker Card <span class="badge">Featured</span></h3>
@@ -1207,38 +1232,91 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
     <div></div>
   </div>
   <div class="two-cols">
-    <!-- LEFT: macOS menubar popup mockup -->
+    <!-- LEFT: mockup + 真实截图 -->
     <div class="mockup-wrap reveal r3">
-      <div class="menubar-popup">
-        <div class="popup-title">
-          <div class="traffic-lights">
-            <i class="tl red"></i><i class="tl yellow"></i><i class="tl green"></i>
+      <!-- 上：菜单栏弹窗 mockup -->
+      <div class="popup-container">
+        <div class="menubar-popup">
+          <div class="popup-title">
+            <div class="traffic-lights">
+              <i class="tl red"></i><i class="tl yellow"></i><i class="tl green"></i>
+            </div>
+            <span class="app-name">clip-shot</span>
+            <span class="app-icon">📎</span>
           </div>
-          <span class="app-name">clip-shot</span>
-          <span class="app-icon">📎</span>
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span>剪贴板图片已就绪</span>
+          </div>
+          <div class="preview-box">
+            <div class="preview-img"></div>
+            <div class="preview-meta">
+              <span>screenshot_2026.png</span>
+              <span>320 × 240 px</span>
+            </div>
+          </div>
+          <div class="upload-row">
+            <span class="upload-label">上传至图床</span>
+            <div class="prog-bar"><div class="prog-fill"></div></div>
+            <span class="prog-pct">92%</span>
+          </div>
+          <div class="result-row">
+            <span class="result-check">✓</span>
+            <span class="result-label">已生成 Markdown 链接</span>
+          </div>
+          <div class="link-box">![img](https://oss.gh/2026/05/screenshot.png)</div>
+          <div class="copy-btn">复制链接</div>
         </div>
-        <div class="status-row">
-          <span class="status-dot"></span>
-          <span>剪贴板图片已就绪</span>
+      </div>
+      <!-- 下：设置界面 mockup -->
+      <div class="settings-win">
+        <div class="win-bar">
+          <div class="traffic-lights"><i class="tl red"></i><i class="tl yellow"></i><i class="tl green"></i></div>
+          <span class="win-title">ClipShot · 设置</span>
         </div>
-        <div class="preview-box">
-          <div class="preview-img"></div>
-          <div class="preview-meta">
-            <span>screenshot_2026.png</span>
-            <span>320 × 240 px</span>
+        <div class="win-body">
+          <div class="win-sidebar">
+            <div class="nav-item">⚙ 通用</div>
+            <div class="nav-item active">🖼 图床</div>
+            <div class="nav-item">ℹ 关于</div>
+          </div>
+          <div class="win-content">
+            <div class="host-row">
+              <div class="host-btn">SM.MS</div>
+              <div class="host-btn">Qiniu</div>
+              <div class="host-btn active">GitHub</div>
+            </div>
+            <div class="cfg-section">GitHub</div>
+            <div class="cfg-row">
+              <span class="cfg-label">Access Token</span>
+              <span class="cfg-value token">ghp_••••••••</span>
+            </div>
+            <div class="cfg-row">
+              <span class="cfg-label">Owner</span>
+              <span class="cfg-value">leonbuilds</span>
+            </div>
+            <div class="cfg-row">
+              <span class="cfg-label">Repo</span>
+              <span class="cfg-value">img-oss</span>
+            </div>
+            <div class="cfg-row">
+              <span class="cfg-label">Branch</span>
+              <span class="cfg-value">main</span>
+            </div>
+            <div class="cfg-row">
+              <span class="cfg-label">Sub-dir</span>
+              <span class="cfg-value">images</span>
+            </div>
+            <div class="toggle-row">
+              <span class="cfg-label">jsDelivr CDN</span>
+              <div class="tog"></div>
+            </div>
+            <div class="win-btns">
+              <div class="win-btn secondary">配置教程</div>
+              <div class="win-btn primary">✓ 测试并保存</div>
+            </div>
           </div>
         </div>
-        <div class="upload-row">
-          <span class="upload-label">上传至图床</span>
-          <div class="prog-bar"><div class="prog-fill"></div></div>
-          <span class="prog-pct">92%</span>
-        </div>
-        <div class="result-row">
-          <span class="result-check">✓</span>
-          <span class="result-label">已生成 Markdown 链接</span>
-        </div>
-        <div class="link-box">![img](https://oss.gh/2026/05/screenshot.png)</div>
-        <div class="copy-btn">复制链接</div>
       </div>
     </div>
     <!-- RIGHT: narrative cards -->
