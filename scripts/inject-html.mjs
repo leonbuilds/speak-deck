@@ -34,43 +34,31 @@ for (const p of pages) {
 
 // 响应式修复 CSS：解决不同屏幕尺寸下内容溢出/裁剪问题
 const responsiveCSS = `
-/* SpeakDeck 响应式修复 */
-/* 允许内容超出视口高度时自然撑开，不裁剪 */
-.deck-slide {
-  height: auto !important;
-  min-height: 100vh !important;
-  overflow: visible !important;
+/* SpeakDeck PPT 等比缩放模式 */
+/* 每页固定占满一屏，内容由 JS 等比缩放（见 injector） */
+html, body {
+  overflow: hidden !important;
+  height: 100% !important;
 }
-/* 滚动吸附改为宽松模式，配合可变高度 */
 body {
-  scroll-snap-type: y proximity !important;
+  overflow-y: scroll !important;
+  scroll-snap-type: y mandatory !important;
 }
-/* 大字号：小屏缩放 */
-@media (max-width: 1200px) {
-  [id^="p"] h1 { font-size: clamp(32px, 5vw, 72px) !important; }
-  [id^="p"] h2 { font-size: clamp(24px, 3.5vw, 48px) !important; }
-  [id^="p"] .subtitle, [id^="p"] .lede { font-size: clamp(16px, 2vw, 26px) !important; }
-  [id^="p"] .stat .num, [id^="p"] .bignum { font-size: clamp(40px, 6vw, 120px) !important; }
-  [id^="p"] .quote-mark { font-size: clamp(80px, 12vw, 200px) !important; }
-  [id^="p"] .step .snum { font-size: clamp(40px, 6vw, 78px) !important; }
+.deck-slide {
+  height: 100vh !important;
+  min-height: unset !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
-/* 窄屏：多列降为单列 */
-@media (max-width: 900px) {
-  [id^="p"] .flow,
-  [id^="p"] .compare,
-  [id^="p"] .grid,
-  [id^="p"] .hero,
-  [id^="p"] .concepts,
-  [id^="p"] .chain { grid-template-columns: 1fr !important; }
-  [id^="p"] .arrow,
-  [id^="p"] .midarrow { display: none !important; }
-  [id^="p"] .slide { padding: 32px 24px !important; }
+/* 字幕浮层在小屏不超出边界 */
+#speaker {
+  max-width: min(360px, calc(100vw - 32px)) !important;
 }
-/* 超窄屏/手机：进一步压缩 */
-@media (max-width: 600px) {
-  [id^="p"] h1 { font-size: clamp(24px, 7vw, 48px) !important; }
-  [id^="p"] .slide { padding: 24px 16px !important; }
-  #speaker { max-width: calc(100vw - 32px) !important; right: 16px !important; }
+#speakdeck-toggle {
+  right: max(16px, env(safe-area-inset-right, 16px)) !important;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
 }`;
 
 const alreadyHasResponsive = /SpeakDeck 响应式修复/.test(html);
