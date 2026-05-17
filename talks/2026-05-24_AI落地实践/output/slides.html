@@ -769,6 +769,48 @@ body {
 #p15 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
 #p15 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
 </style>
+
+<style>
+
+/* SpeakDeck 响应式修复 */
+/* 允许内容超出视口高度时自然撑开，不裁剪 */
+.deck-slide {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+/* 滚动吸附改为宽松模式，配合可变高度 */
+body {
+  scroll-snap-type: y proximity !important;
+}
+/* 大字号：小屏缩放 */
+@media (max-width: 1200px) {
+  [id^="p"] h1 { font-size: clamp(32px, 5vw, 72px) !important; }
+  [id^="p"] h2 { font-size: clamp(24px, 3.5vw, 48px) !important; }
+  [id^="p"] .subtitle, [id^="p"] .lede { font-size: clamp(16px, 2vw, 26px) !important; }
+  [id^="p"] .stat .num, [id^="p"] .bignum { font-size: clamp(40px, 6vw, 120px) !important; }
+  [id^="p"] .quote-mark { font-size: clamp(80px, 12vw, 200px) !important; }
+  [id^="p"] .step .snum { font-size: clamp(40px, 6vw, 78px) !important; }
+}
+/* 窄屏：多列降为单列 */
+@media (max-width: 900px) {
+  [id^="p"] .flow,
+  [id^="p"] .compare,
+  [id^="p"] .grid,
+  [id^="p"] .hero,
+  [id^="p"] .concepts,
+  [id^="p"] .chain { grid-template-columns: 1fr !important; }
+  [id^="p"] .arrow,
+  [id^="p"] .midarrow { display: none !important; }
+  [id^="p"] .slide { padding: 32px 24px !important; }
+}
+/* 超窄屏/手机：进一步压缩 */
+@media (max-width: 600px) {
+  [id^="p"] h1 { font-size: clamp(24px, 7vw, 48px) !important; }
+  [id^="p"] .slide { padding: 24px 16px !important; }
+  #speaker { max-width: calc(100vw - 32px) !important; right: 16px !important; }
+}
+</style>
 </head>
 <body>
 <!-- ===== P01 COVER ===== -->
@@ -790,7 +832,7 @@ body {
 
 我们开始。" data-audio="audio/p01.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="hero">
@@ -815,7 +857,7 @@ body {
     </div>
   </div>
   <div class="bottom-bar reveal r5">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>01 / 15 — Cover</div>
   </div>
@@ -847,7 +889,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 你不需要更快的程序员，你需要更清晰的判断。" data-audio="audio/p02.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="hero">
@@ -858,7 +900,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
     <div class="quote-mark bottom reveal r1">"</div>
   </div>
   <div class="bottom-bar reveal r5">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>02 / 15 — Opening</div>
   </div>
@@ -890,7 +932,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 &quot;我不行。&quot;" data-audio="audio/p03.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="hero">
@@ -906,7 +948,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
     </div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>03 / 15 — The Gap</div>
   </div>
@@ -934,7 +976,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 三段里，AI 主导两段半。你只需要想清楚第一段。" data-audio="audio/p04.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -950,7 +992,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
   </div>
   <div class="foot-note reveal r6">一句话：Vibe Coding = <span class="hi">把"会不会写代码"换成"说不说得清楚"</span>。</div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>04 / 15 — Definition</div>
   </div>
@@ -972,7 +1014,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 从那之后我的工作方式就变了：先写清楚意图，然后放手让它跑，我只在关键节点做判断。" data-audio="audio/p05.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1007,7 +1049,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
     </div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>05 / 15 — The Shift</div>
   </div>
@@ -1029,7 +1071,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 工具会变。这个选法的逻辑，不会变。" data-audio="audio/p06.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1043,7 +1085,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
     <div class="card c-peach reveal r6"><div class="icon-row"><div class="icon">D</div><span class="badge">Desktop</span></div><h3>桌面 App<span class="en">小白的最佳入口</span></h3><p>Claude、Codex 都有桌面版：图形界面、不用碰命令行，而且不只写代码，还能帮你做任务。</p><div class="footer-row"><span>从这里上手</span><span class="num">04</span></div></div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>06 / 15 — Tools</div>
   </div>
@@ -1071,7 +1113,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
 
 这五步里，你主导一、四、五。AI 主导二、三。" data-audio="audio/p07.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1086,7 +1128,7 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
     <div class="step s5 reveal r7"><div class="snum">5</div><div class="body"><h3>上线发布 <span class="en">Ship</span></h3><p>部署上线、对外推广，让真实用户用起来 —— 用反馈决定下一步迭代。</p></div><div class="who you">你 · 交付</div></div>
   </div>
   <div class="bottom-bar reveal r8">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>07 / 15 — Workflow</div>
   </div>
@@ -1111,7 +1153,7 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
 
 经验不再锁在你脑子里，锁在系统里。今天这场分享用的工具，就是我把&quot;演讲准备全流程&quot;封装成的 Skills。" data-audio="audio/p08.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1142,7 +1184,7 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
     </div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>08 / 15 — Level Up</div>
   </div>
@@ -1169,7 +1211,7 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
 
 这就是第一个产品该有的样子：只做一件事，解决你自己的一个真实痛点。" data-audio="audio/p09.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1240,7 +1282,7 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
     </div>
   </div>
   <div class="bottom-bar reveal r5">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>09 / 15 — Case A</div>
   </div>
@@ -1260,7 +1302,7 @@ landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面�
 
 从 1 到 N 的方法就这一句：先想清楚全局，再拆成可以独立验证的小段，让 AI 一段一段跑。" data-audio="audio/p10.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1329,7 +1371,7 @@ landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面�
     </div>
   </div>
   <div class="bottom-bar reveal r5">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>10 / 15 — Case B</div>
   </div>
@@ -1353,7 +1395,7 @@ AI 拿不到这些，就跑不准。
 
 所以进企业，这套方法必须升级。不是方向错了，是需要覆盖更长的链路。" data-audio="audio/p11.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1383,7 +1425,7 @@ AI 拿不到这些，就跑不准。
   </div>
   <div class="conclusion reveal r5">个人项目靠「说清楚」驱动 AI 就够了；企业项目需要先把知识结构化，再让 AI 介入。</div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>11 / 15 — The Divide</div>
   </div>
@@ -1405,7 +1447,7 @@ AI 拿不到这些，就跑不准。
 
 第四：并行跑多方案，取最优。AI 是并发的，你要用并发的思维去用它。" data-audio="audio/p12.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1433,7 +1475,7 @@ AI 拿不到这些，就跑不准。
     <div class="action-card reveal r5"><h4>并行跑策略</h4><p>同时试多种生成方式，取最优，而不是串行等一个结果</p></div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
     <div>12 / 15 — SDD</div>
   </div>
@@ -1457,7 +1499,7 @@ AI 拿不到这些，就跑不准。
 
 AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1500,7 +1542,7 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
   </div>
   <div class="insight reveal r6">SDD 省的不是写代码的时间，是「说清楚需求」的时间。</div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
     <div>13 / 15 — Enterprise</div>
   </div>
@@ -1522,7 +1564,7 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
 
 第一个产品最难。从第二个开始，曲线开始弯。" data-audio="audio/p14.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1562,7 +1604,7 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
     </div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
     <div>14 / 15 — Compounding</div>
   </div>
@@ -1588,7 +1630,7 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
 
 谢谢大家。" data-audio="audio/p15.mp3">
   <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>阿亮聊<strong>AI</strong></span></div>
+    <div class="brand"><div class="orb"></div><span>与智行</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
@@ -1628,12 +1670,12 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
       <div class="quote-text">今晚选一个小痛点，让你的第一个产品上线。</div>
       <div class="qr-block">
         <div class="qr-placeholder">二维码<br>占位</div>
-        <div><div class="qr-brand">阿亮聊 AI</div><div style="font-size:13px;color:var(--muted);">WeChat · 小红书 · 持续更新</div></div>
+        <div><div class="qr-brand">与智行</div><div style="font-size:13px;color:var(--muted);">WeChat · 小红书 · 持续更新</div></div>
       </div>
     </div>
   </div>
   <div class="bottom-bar reveal r6">
-    <div>阿亮聊AI · WeChat · 小红书</div>
+    <div>与智行 · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
     <div>15 / 15 — The End</div>
   </div>
@@ -1664,80 +1706,92 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
 
 <script>
 // SpeakDeck injector — 演讲模式 + 翻页自动播音
-// 两种模式共用：Mode A 由模板嵌入，Mode B 由 inject-html.mjs 注入到 </body> 前
+// 默认：字幕隐藏、音频静音；点击右下角按钮开启
 (function () {
-  // 1. 收集所有"页"
+  // 1. 收集所有页
   let slides = document.querySelectorAll("[data-script],[data-audio]");
   if (slides.length === 0) slides = document.querySelectorAll(".slide,section");
   if (slides.length === 0) return;
 
-  // 2. 演讲模式浮层
+  // 2. 状态：默认关闭字幕和声音
+  let current = 0;
+  let enabled = false; // 总开关：控制字幕 + 声音
+
+  // 3. 字幕浮层（默认隐藏）
   let speaker = document.getElementById("speaker");
   if (!speaker) {
     speaker = document.createElement("aside");
     speaker.id = "speaker";
     Object.assign(speaker.style, {
-      position: "fixed", right: "24px", bottom: "24px",
-      maxWidth: "380px", maxHeight: "50vh", overflowY: "auto",
+      position: "fixed", right: "24px", bottom: "80px",
+      maxWidth: "380px", maxHeight: "45vh", overflowY: "auto",
       background: "rgba(22,27,34,.96)", color: "#E6EDF3",
       padding: "16px 20px", borderRadius: "12px",
-      fontSize: "14px", lineHeight: "1.6", zIndex: 9999,
-      boxShadow: "0 8px 32px rgba(0,0,0,.4)"
+      fontSize: "14px", lineHeight: "1.6", zIndex: 9998,
+      boxShadow: "0 8px 32px rgba(0,0,0,.4)",
+      display: "none"
     });
     document.body.appendChild(speaker);
+  } else {
+    speaker.style.display = "none";
   }
-
-  // 3. "点击解锁音频"提示（Chrome 需要用户手势才能播放）
-  const unlockHint = document.createElement("div");
-  Object.assign(unlockHint.style, {
-    position: "fixed", top: "50%", left: "50%",
-    transform: "translate(-50%,-50%)",
-    background: "rgba(0,0,0,.75)", color: "#fff",
-    padding: "20px 36px", borderRadius: "12px",
-    fontSize: "18px", zIndex: 99999, cursor: "pointer",
-    backdropFilter: "blur(8px)"
-  });
-  unlockHint.textContent = "▶ 点击任意位置开始播放";
-  document.body.appendChild(unlockHint);
 
   // 4. 音频播放器
   const audio = new Audio();
-  let current = 0;
-  let manualPaused = false;
-  let unlocked = false;
+
+  // 5. 开关按钮（右下角固定）
+  const btn = document.createElement("button");
+  btn.id = "speakdeck-toggle";
+  btn.title = "开启字幕与声音 (P)";
+  Object.assign(btn.style, {
+    position: "fixed", right: "24px", bottom: "24px",
+    width: "48px", height: "48px", borderRadius: "50%",
+    border: "none", cursor: "pointer", zIndex: 9999,
+    fontSize: "20px", lineHeight: "1",
+    background: "rgba(22,27,34,.85)",
+    color: "rgba(255,255,255,.45)",
+    boxShadow: "0 4px 16px rgba(0,0,0,.4)",
+    backdropFilter: "blur(12px)",
+    transition: "background .2s, color .2s",
+    display: "flex", alignItems: "center", justifyContent: "center"
+  });
+  btn.innerHTML = "🔇";
+  document.body.appendChild(btn);
+
+  function setEnabled(on) {
+    enabled = on;
+    btn.innerHTML = on ? "🔊" : "🔇";
+    btn.style.color = on ? "#fff" : "rgba(255,255,255,.45)";
+    btn.style.background = on ? "rgba(79,182,255,.25)" : "rgba(22,27,34,.85)";
+    btn.title = on ? "关闭字幕与声音 (P)" : "开启字幕与声音 (P)";
+    speaker.style.display = on ? "" : "none";
+    if (on) {
+      playCurrent();
+    } else {
+      audio.pause();
+    }
+  }
 
   function playCurrent() {
     const el = slides[current];
     if (!el) return;
     speaker.textContent = el.dataset.script || "";
+    if (!enabled) return;
     const src = el.dataset.audio;
-    if (src && !manualPaused) {
-      audio.src = src;
-      audio.play().catch(() => {});
-    } else if (!src) {
-      audio.pause();
-    }
+    if (src) { audio.src = src; audio.play().catch(() => {}); }
+    else audio.pause();
   }
 
   function goTo(idx) {
     if (idx < 0 || idx >= slides.length) return;
     current = idx;
     slides[idx].scrollIntoView({ behavior: "smooth" });
-    // 在用户手势上下文里直接播音（不依赖 IntersectionObserver）
-    if (unlocked) playCurrent();
-  }
-
-  // 5. 首次点击解锁
-  function unlock() {
-    if (unlocked) return;
-    unlocked = true;
-    unlockHint.remove();
     playCurrent();
   }
-  document.addEventListener("click", unlock, { once: true });
-  document.addEventListener("keydown", unlock, { once: true });
 
-  // 6. IntersectionObserver：鼠标滚动时同步 current（不直接 play，让键盘/点击 play）
+  btn.addEventListener("click", () => setEnabled(!enabled));
+
+  // 6. IntersectionObserver：同步 current + 自动播（若已开启）
   const io = new IntersectionObserver((entries) => {
     let best = null;
     for (const e of entries) {
@@ -1748,8 +1802,7 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
     if (idx === current) return;
     current = idx;
     speaker.textContent = slides[idx].dataset.script || "";
-    // 解锁后才播（解锁发生在用户手势里，所以这里再次 play 通常可以）
-    if (unlocked && !manualPaused) {
+    if (enabled) {
       const src = slides[idx].dataset.audio;
       if (src) { audio.src = src; audio.play().catch(() => {}); }
     }
@@ -1759,16 +1812,15 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
   // 7. 键盘控制
   document.addEventListener("keydown", (e) => {
     if (e.key === "p" || e.key === "P") {
-      speaker.style.display = speaker.style.display === "none" ? "" : "none";
+      setEnabled(!enabled);
     } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
       e.preventDefault(); goTo(current + 1);
     } else if (e.key === "ArrowUp" || e.key === "PageUp") {
       e.preventDefault(); goTo(current - 1);
     } else if (e.key === "m" || e.key === "M") {
-      manualPaused = !manualPaused;
-      if (manualPaused) audio.pause(); else audio.play().catch(() => {});
+      if (enabled) { audio.paused ? audio.play().catch(()=>{}) : audio.pause(); }
     } else if (e.key === "r" || e.key === "R") {
-      audio.currentTime = 0; audio.play().catch(() => {});
+      if (enabled) { audio.currentTime = 0; audio.play().catch(() => {}); }
     }
   });
 })();

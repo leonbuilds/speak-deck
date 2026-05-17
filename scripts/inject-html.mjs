@@ -32,6 +32,53 @@ for (const p of pages) {
   injected++;
 }
 
+// 响应式修复 CSS：解决不同屏幕尺寸下内容溢出/裁剪问题
+const responsiveCSS = `
+/* SpeakDeck 响应式修复 */
+/* 允许内容超出视口高度时自然撑开，不裁剪 */
+.deck-slide {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+/* 滚动吸附改为宽松模式，配合可变高度 */
+body {
+  scroll-snap-type: y proximity !important;
+}
+/* 大字号：小屏缩放 */
+@media (max-width: 1200px) {
+  [id^="p"] h1 { font-size: clamp(32px, 5vw, 72px) !important; }
+  [id^="p"] h2 { font-size: clamp(24px, 3.5vw, 48px) !important; }
+  [id^="p"] .subtitle, [id^="p"] .lede { font-size: clamp(16px, 2vw, 26px) !important; }
+  [id^="p"] .stat .num, [id^="p"] .bignum { font-size: clamp(40px, 6vw, 120px) !important; }
+  [id^="p"] .quote-mark { font-size: clamp(80px, 12vw, 200px) !important; }
+  [id^="p"] .step .snum { font-size: clamp(40px, 6vw, 78px) !important; }
+}
+/* 窄屏：多列降为单列 */
+@media (max-width: 900px) {
+  [id^="p"] .flow,
+  [id^="p"] .compare,
+  [id^="p"] .grid,
+  [id^="p"] .hero,
+  [id^="p"] .concepts,
+  [id^="p"] .chain { grid-template-columns: 1fr !important; }
+  [id^="p"] .arrow,
+  [id^="p"] .midarrow { display: none !important; }
+  [id^="p"] .slide { padding: 32px 24px !important; }
+}
+/* 超窄屏/手机：进一步压缩 */
+@media (max-width: 600px) {
+  [id^="p"] h1 { font-size: clamp(24px, 7vw, 48px) !important; }
+  [id^="p"] .slide { padding: 24px 16px !important; }
+  #speaker { max-width: calc(100vw - 32px) !important; right: 16px !important; }
+}`;
+
+const alreadyHasResponsive = /SpeakDeck 响应式修复/.test(html);
+if (!alreadyHasResponsive || args.force) {
+  $("head").append(`\n<style>\n${responsiveCSS}\n</style>\n`);
+  console.log("✓ 已注入响应式修复 CSS");
+}
+
 // 检测是否已有播放逻辑，避免重复注入 JS
 const alreadyHasLogic = /IntersectionObserver\s*\(/.test(html) && /data-audio/.test(html);
 if (alreadyHasLogic && !args.force) {

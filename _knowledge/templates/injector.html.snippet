@@ -1,78 +1,90 @@
 // SpeakDeck injector — 演讲模式 + 翻页自动播音
-// 两种模式共用：Mode A 由模板嵌入，Mode B 由 inject-html.mjs 注入到 </body> 前
+// 默认：字幕隐藏、音频静音；点击右下角按钮开启
 (function () {
-  // 1. 收集所有"页"
+  // 1. 收集所有页
   let slides = document.querySelectorAll("[data-script],[data-audio]");
   if (slides.length === 0) slides = document.querySelectorAll(".slide,section");
   if (slides.length === 0) return;
 
-  // 2. 演讲模式浮层
+  // 2. 状态：默认关闭字幕和声音
+  let current = 0;
+  let enabled = false; // 总开关：控制字幕 + 声音
+
+  // 3. 字幕浮层（默认隐藏）
   let speaker = document.getElementById("speaker");
   if (!speaker) {
     speaker = document.createElement("aside");
     speaker.id = "speaker";
     Object.assign(speaker.style, {
-      position: "fixed", right: "24px", bottom: "24px",
-      maxWidth: "380px", maxHeight: "50vh", overflowY: "auto",
+      position: "fixed", right: "24px", bottom: "80px",
+      maxWidth: "380px", maxHeight: "45vh", overflowY: "auto",
       background: "rgba(22,27,34,.96)", color: "#E6EDF3",
       padding: "16px 20px", borderRadius: "12px",
-      fontSize: "14px", lineHeight: "1.6", zIndex: 9999,
-      boxShadow: "0 8px 32px rgba(0,0,0,.4)"
+      fontSize: "14px", lineHeight: "1.6", zIndex: 9998,
+      boxShadow: "0 8px 32px rgba(0,0,0,.4)",
+      display: "none"
     });
     document.body.appendChild(speaker);
+  } else {
+    speaker.style.display = "none";
   }
-
-  // 3. "点击解锁音频"提示（Chrome 需要用户手势才能播放）
-  const unlockHint = document.createElement("div");
-  Object.assign(unlockHint.style, {
-    position: "fixed", top: "50%", left: "50%",
-    transform: "translate(-50%,-50%)",
-    background: "rgba(0,0,0,.75)", color: "#fff",
-    padding: "20px 36px", borderRadius: "12px",
-    fontSize: "18px", zIndex: 99999, cursor: "pointer",
-    backdropFilter: "blur(8px)"
-  });
-  unlockHint.textContent = "▶ 点击任意位置开始播放";
-  document.body.appendChild(unlockHint);
 
   // 4. 音频播放器
   const audio = new Audio();
-  let current = 0;
-  let manualPaused = false;
-  let unlocked = false;
+
+  // 5. 开关按钮（右下角固定）
+  const btn = document.createElement("button");
+  btn.id = "speakdeck-toggle";
+  btn.title = "开启字幕与声音 (P)";
+  Object.assign(btn.style, {
+    position: "fixed", right: "24px", bottom: "24px",
+    width: "48px", height: "48px", borderRadius: "50%",
+    border: "none", cursor: "pointer", zIndex: 9999,
+    fontSize: "20px", lineHeight: "1",
+    background: "rgba(22,27,34,.85)",
+    color: "rgba(255,255,255,.45)",
+    boxShadow: "0 4px 16px rgba(0,0,0,.4)",
+    backdropFilter: "blur(12px)",
+    transition: "background .2s, color .2s",
+    display: "flex", alignItems: "center", justifyContent: "center"
+  });
+  btn.innerHTML = "🔇";
+  document.body.appendChild(btn);
+
+  function setEnabled(on) {
+    enabled = on;
+    btn.innerHTML = on ? "🔊" : "🔇";
+    btn.style.color = on ? "#fff" : "rgba(255,255,255,.45)";
+    btn.style.background = on ? "rgba(79,182,255,.25)" : "rgba(22,27,34,.85)";
+    btn.title = on ? "关闭字幕与声音 (P)" : "开启字幕与声音 (P)";
+    speaker.style.display = on ? "" : "none";
+    if (on) {
+      playCurrent();
+    } else {
+      audio.pause();
+    }
+  }
 
   function playCurrent() {
     const el = slides[current];
     if (!el) return;
     speaker.textContent = el.dataset.script || "";
+    if (!enabled) return;
     const src = el.dataset.audio;
-    if (src && !manualPaused) {
-      audio.src = src;
-      audio.play().catch(() => {});
-    } else if (!src) {
-      audio.pause();
-    }
+    if (src) { audio.src = src; audio.play().catch(() => {}); }
+    else audio.pause();
   }
 
   function goTo(idx) {
     if (idx < 0 || idx >= slides.length) return;
     current = idx;
     slides[idx].scrollIntoView({ behavior: "smooth" });
-    // 在用户手势上下文里直接播音（不依赖 IntersectionObserver）
-    if (unlocked) playCurrent();
-  }
-
-  // 5. 首次点击解锁
-  function unlock() {
-    if (unlocked) return;
-    unlocked = true;
-    unlockHint.remove();
     playCurrent();
   }
-  document.addEventListener("click", unlock, { once: true });
-  document.addEventListener("keydown", unlock, { once: true });
 
-  // 6. IntersectionObserver：鼠标滚动时同步 current（不直接 play，让键盘/点击 play）
+  btn.addEventListener("click", () => setEnabled(!enabled));
+
+  // 6. IntersectionObserver：同步 current + 自动播（若已开启）
   const io = new IntersectionObserver((entries) => {
     let best = null;
     for (const e of entries) {
@@ -83,8 +95,7 @@
     if (idx === current) return;
     current = idx;
     speaker.textContent = slides[idx].dataset.script || "";
-    // 解锁后才播（解锁发生在用户手势里，所以这里再次 play 通常可以）
-    if (unlocked && !manualPaused) {
+    if (enabled) {
       const src = slides[idx].dataset.audio;
       if (src) { audio.src = src; audio.play().catch(() => {}); }
     }
@@ -94,16 +105,15 @@
   // 7. 键盘控制
   document.addEventListener("keydown", (e) => {
     if (e.key === "p" || e.key === "P") {
-      speaker.style.display = speaker.style.display === "none" ? "" : "none";
+      setEnabled(!enabled);
     } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
       e.preventDefault(); goTo(current + 1);
     } else if (e.key === "ArrowUp" || e.key === "PageUp") {
       e.preventDefault(); goTo(current - 1);
     } else if (e.key === "m" || e.key === "M") {
-      manualPaused = !manualPaused;
-      if (manualPaused) audio.pause(); else audio.play().catch(() => {});
+      if (enabled) { audio.paused ? audio.play().catch(()=>{}) : audio.pause(); }
     } else if (e.key === "r" || e.key === "R") {
-      audio.currentTime = 0; audio.play().catch(() => {});
+      if (enabled) { audio.currentTime = 0; audio.play().catch(() => {}); }
     }
   });
 })();
