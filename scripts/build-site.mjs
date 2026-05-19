@@ -114,7 +114,7 @@ function renderHome(talks) {
     <div class="brand">
       <div class="brand-orb"></div>
       <div>
-        <div class="brand-title">与智行 · 演讲库</div>
+        <div class="brand-title">YuzoAI · 演讲库</div>
         <div class="brand-sub">阿亮 · 十二年研发 · AI Agent 实战</div>
       </div>
     </div>
@@ -151,7 +151,7 @@ function renderHome(talks) {
   });
 </script>
 `;
-  return htmlShell("与智行 · 演讲库", body);
+  return htmlShell("YuzoAI · 演讲库", body);
 }
 
 function renderCard(t) {
@@ -269,7 +269,7 @@ function renderDetail(talk, talkDir) {
   });
 </script>
 `;
-  return htmlShell(talk.title + " · 与智行演讲库", body);
+  return htmlShell(talk.title + " · YuzoAI演讲库", body);
 }
 
 function readSafe(p) {
