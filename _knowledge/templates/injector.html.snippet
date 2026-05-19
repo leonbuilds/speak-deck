@@ -2,31 +2,14 @@
 // 默认：字幕隐藏、音频静音；点击右下角按钮开启
 (function () {
 
-  // ── 滚动条默认隐藏，滚动时短暂显示 ─────────────────────
+  // ── 滚动条全程隐藏 ─────────────────────────────────────
   var scrollStyle = document.createElement("style");
   scrollStyle.textContent = [
     "html, body { scrollbar-width: none; -ms-overflow-style: none; }",
     "html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; background: transparent; }",
-    "html.show-scroll, body.show-scroll { scrollbar-width: thin; -ms-overflow-style: auto; }",
-    "html.show-scroll::-webkit-scrollbar, body.show-scroll::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }",
-    "html.show-scroll::-webkit-scrollbar-thumb, body.show-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.25); border-radius: 4px; }",
-    "html.show-scroll::-webkit-scrollbar-thumb:hover, body.show-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.4); }"
+    "*::-webkit-scrollbar { width: 0; height: 0; background: transparent; }"
   ].join("\n");
   document.head.appendChild(scrollStyle);
-
-  var scrollTimer = null;
-  function flashScrollbar() {
-    document.documentElement.classList.add("show-scroll");
-    document.body.classList.add("show-scroll");
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(function () {
-      document.documentElement.classList.remove("show-scroll");
-      document.body.classList.remove("show-scroll");
-    }, 2000);
-  }
-  window.addEventListener("scroll", flashScrollbar, { passive: true });
-  window.addEventListener("wheel", flashScrollbar, { passive: true });
-  window.addEventListener("touchmove", flashScrollbar, { passive: true });
 
   // ── PPT 等比缩放 ────────────────────────────────────────
   // 设计基准尺寸（与原 HTML 的大屏设计一致）

@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 落地实践 · 从个人工具到企业交付 · 企业版</title>
+<title>AI 落地实践 · 用 Vibe Coding 打造你的第一个，也是第 N 个产品</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:wght@300;400;500;700&amp;family=Noto+Serif+SC:wght@300;700;900&amp;display=swap" rel="stylesheet">
 <style>
 :root {
@@ -793,64 +793,99 @@ body {
 #p15 .progress-line{display:flex;gap:4px;align-items:center}
 #p15 .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
 #p15 .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach))}
-</style>
 
-<style>
+/* ===== P-GIT · Git/GitHub 安全网 ===== */
+#p-git .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p-git .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.55;animation:float 20s ease-in-out infinite}
+#p-git .blob-1{width:560px;height:560px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:-180px;left:-100px}
+#p-git .blob-2{width:620px;height:620px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-240px;right:-100px;animation-delay:-7s}
+#p-git .blob-3{width:420px;height:420px;background:radial-gradient(circle,var(--peach),transparent 70%);top:30%;right:10%;opacity:0.35;animation-delay:-14s}
+#p-git .blob-4{width:380px;height:380px;background:radial-gradient(circle,var(--coral),transparent 70%);bottom:14%;left:30%;opacity:0.4;animation-delay:-3s}
+#p-git::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p-git .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:44px 80px;display:grid;grid-template-rows:auto auto 1fr auto auto;gap:24px}
+#p-git .topnav{display:flex;justify-content:space-between;align-items:center}
+#p-git .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500}
+#p-git .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--lavender));box-shadow:0 0 24px rgba(110,255,227,0.55);position:relative}
+#p-git .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p-git .nav-pills{display:flex;gap:8px}
+#p-git .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p-git .pill.live{background:linear-gradient(135deg,rgba(110,255,227,0.3),rgba(183,148,255,0.3));border-color:rgba(110,255,227,0.5)}
+#p-git .pill.live::before{content:'●';color:var(--cyan);margin-right:6px;animation:blink 1.5s infinite}
+#p-git .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);font-weight:500;margin-bottom:10px}
+#p-git .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+#p-git h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:54px;line-height:1.05;letter-spacing:-0.02em}
+#p-git h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--cyan)}
+#p-git h1 .grad{background:linear-gradient(135deg,var(--coral),var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p-git .dek{margin-top:14px;font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted);max-width:720px;line-height:1.5}
+#p-git .git-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-content:center}
+#p-git .git-card{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:22px;padding:24px 22px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;min-height:340px}
+#p-git .git-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p-git .g-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--muted);letter-spacing:0.06em}
+#p-git .g-icon{font-size:38px;line-height:1}
+#p-git .git-card h3{font-family:'Noto Serif SC',serif;font-weight:700;font-size:22px;line-height:1.2}
+#p-git .git-card p{font-size:14px;line-height:1.65;color:var(--text);flex-grow:1}
+#p-git .git-card .hl{color:var(--cyan);font-weight:600}
+#p-git .g-foot{padding-top:14px;border-top:1px solid var(--glass-border);font-size:12px;letter-spacing:0.04em;color:var(--muted);font-style:italic}
+#p-git .git-card.g1 .g-num{color:var(--cyan)}
+#p-git .git-card.g2 .g-num{color:var(--lavender)}
+#p-git .git-card.g3 .g-num{color:var(--peach)}
+#p-git .git-callout{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;text-align:center;color:var(--muted)}
+#p-git .git-callout .hi{position:relative;color:var(--text);font-weight:500;font-style:normal;font-family:'Noto Serif SC',serif;padding:0 4px}
+#p-git .git-callout .hi::after{content:'';position:absolute;left:-2px;right:-2px;bottom:1px;height:10px;z-index:-1;background:linear-gradient(120deg,transparent 30%,rgba(110,255,227,0.45) 30%)}
+#p-git .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p-git .progress-line{display:flex;gap:4px;align-items:center}
+#p-git .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p-git .progress-line .seg.on{background:linear-gradient(90deg,var(--cyan),var(--lavender))}
 
-/* SpeakDeck PPT 等比缩放模式 */
-/* 每页固定占满一屏，内容由 JS 等比缩放（见 injector） */
-html, body {
-  overflow: hidden !important;
-  height: 100% !important;
-}
-body {
-  overflow-y: scroll !important;
-  scroll-snap-type: y mandatory !important;
-}
-.deck-slide {
-  height: 100vh !important;
-  min-height: unset !important;
-  overflow: hidden !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-/* 字幕浮层在小屏不超出边界 */
-#speaker {
-  max-width: min(360px, calc(100vw - 32px)) !important;
-}
-#speakdeck-toggle {
-  right: max(16px, env(safe-area-inset-right, 16px)) !important;
-  bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
-}
+/* ===== P-END · 谢谢 + QR ===== */
+#p-end .bg-mesh{position:absolute;inset:0;z-index:0;overflow:hidden}
+#p-end .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;animation:float 20s ease-in-out infinite}
+#p-end .blob-1{width:700px;height:700px;background:radial-gradient(circle,var(--coral),transparent 70%);top:-220px;left:-120px}
+#p-end .blob-2{width:800px;height:800px;background:radial-gradient(circle,var(--lavender),transparent 70%);bottom:-260px;right:-160px;animation-delay:-7s}
+#p-end .blob-3{width:520px;height:520px;background:radial-gradient(circle,var(--cyan),transparent 70%);top:30%;right:25%;opacity:0.35;animation-delay:-14s}
+#p-end .blob-4{width:420px;height:420px;background:radial-gradient(circle,var(--peach),transparent 70%);bottom:20%;left:30%;opacity:0.45;animation-delay:-3s}
+#p-end::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");opacity:0.15;mix-blend-mode:overlay;pointer-events:none;z-index:2}
+#p-end .slide{position:relative;z-index:1;width:100vw;height:100vh;padding:56px 80px;display:grid;grid-template-rows:auto 1fr auto;gap:36px}
+#p-end .topnav{display:flex;justify-content:space-between;align-items:center}
+#p-end .brand{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;letter-spacing:0.02em}
+#p-end .brand .orb{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--peach));box-shadow:0 0 24px rgba(255,94,126,0.6);position:relative}
+#p-end .brand .orb::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--bg-deep)}
+#p-end .nav-pills{display:flex;gap:8px}
+#p-end .pill{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);color:var(--text)}
+#p-end .pill.live{background:linear-gradient(135deg,rgba(255,94,126,0.3),rgba(183,148,255,0.3));border-color:rgba(255,94,126,0.5)}
+#p-end .pill.live::before{content:'●';color:var(--coral);margin-right:6px;animation:blink 1.5s infinite}
+#p-end .end-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:center}
+#p-end .end-left{display:flex;flex-direction:column;gap:24px}
+#p-end .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.3em;text-transform:uppercase;color:var(--coral);font-weight:500;width:fit-content}
+#p-end .eyebrow::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--coral),transparent)}
+#p-end h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:64px;line-height:1.08;letter-spacing:-0.03em;color:var(--text)}
+#p-end h1 .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--coral)}
+#p-end h1 .grad{background:linear-gradient(135deg,var(--coral),var(--peach),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#p-end .end-tag{font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:var(--muted)}
+#p-end .end-right{display:flex;justify-content:center;align-items:center}
+#p-end .qr-box{background:var(--glass-bg);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:28px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.45)}
+#p-end .qr-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)}
+#p-end .qr-img{width:240px;height:240px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#p-end .qr-img img{width:100%;height:100%;object-fit:contain}
+#p-end .qr-placeholder{font-size:22px;color:#0E1116;text-align:center;line-height:1.4;font-weight:700;background:repeating-linear-gradient(45deg,#0E1116 0 8px,transparent 8px 16px);background-size:24px 24px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+#p-end .qr-label{font-family:'Noto Serif SC',serif;font-weight:700;font-size:20px;margin-top:6px}
+#p-end .qr-sub{font-size:13px;color:var(--muted);letter-spacing:0.05em}
+#p-end .bottom-bar{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+#p-end .progress-line{display:flex;gap:4px;align-items:center}
+#p-end .progress-line .seg{width:24px;height:2px;background:rgba(255,255,255,0.15);border-radius:2px}
+#p-end .progress-line .seg.on{background:linear-gradient(90deg,var(--coral),var(--peach),var(--lavender))}
 </style>
 </head>
-<body>
-<!-- ===== P01 COVER ===== -->
-<section id="p01" class="deck-slide">
+<body><section id="p01" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="大家好，我是阿亮。有十二年研发经验，这两年主要在做 AI Agent 相关的项目。
-
-我先说一件事——今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。
-
-我干的事，就是写了个需求，然后检查了一遍。
-
-今天这场分享，这份 PPT，这段音频，全部是 AI 帮我生成的。我干的事，就是写了个需求，然后检查了一遍。
-
-这不是演示。是我现在每天的工作状态。
-
-今天的主线——
-
-从个人工具，到企业交付。
-
-我们开始。" data-audio="audio/p01.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="hero">
     <div class="left">
-      <div class="eyebrow reveal r2">AI 落地实践 · Episode 07</div>
+      <div class="eyebrow reveal r2">AI 落地实践 · YuzoAI Keynote · 2026.05</div>
       <h1 class="reveal r3">用 <span class="italic">Vibe Coding</span> 打造你的第一个，<br>也是第 <span class="grad">N</span> 个产品</h1>
       <div class="subtitle reveal r4">从<span class="underline">个人工具</span>到企业交付</div>
     </div>
@@ -872,35 +907,12 @@ body {
   <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>01 / 15 — Cover</div>
-  </div>
+    <div>01 / 15 — Cover</div></div>
 </div>
 </section>
-
-<!-- ===== P02 OPENING ===== -->
 <section id="p02" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="你们有没有这种体验——
-
-让 AI 写了一段代码，它写得超级快，超级流畅。然后你看了半天……
-
-不知道它在解决什么问题。
-
-这不是 AI 的锅。
-
-这是我们自己的锅。
-
-我们错误地以为，AI 工具的价值在于速度。但速度不是瓶颈。
-
-你的判断力，才是。
-
-判断什么？判断做什么，不做什么。判断这个功能该不该加。判断这个 bug 是真的影响用户，还是只是自己看着不顺眼。
-
-AI 让你快十倍——方向对的时候。方向错的时候，它让你错得也快十倍。
-
-所以记住这句话——
-
-你不需要更快的程序员，你需要更清晰的判断。" data-audio="audio/p02.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
@@ -915,43 +927,20 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
   <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>02 / 15 — Opening</div>
-  </div>
+    <div>02 / 15 — Opening</div></div>
 </div>
 </section>
-
-<!-- ===== P03 THE GAP ===== -->
 <section id="p03" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="我有个朋友，他有一个产品想法——
-
-已经打磨了……两年了。
-
-两年。在脑子里迭代到 3.0 版本了。但还没开始做，他说——&quot;还不够好。&quot;
-
-我每次见到他都很想说：
-
-兄弟，你第一个产品不需要好，你只需要它……存在。
-
-卡住的原因，就三个，全是自己设的局。
-
-第一，等一个完美的想法。完美是行动的敌人。
-
-第二，把&quot;不会编程&quot;当天花板。Vibe Coding 的本质——是用意图创造，不是用语法创造。你不需要会写 for 循环，你需要能说清楚&quot;我要什么&quot;。
-
-第三，一上来就想做平台。第一个产品只做一件事，做到极致就好。
-
-卡住你的，从来不是技术。是你默认了一句——
-
-&quot;我不行。&quot;" data-audio="audio/p03.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="hero">
     <div class="left">
-      <div class="eyebrow reveal r2">03 · 问题定义 · The Gap</div>
-      <h1 class="reveal r3">为什么大多数人<br>卡在第 <span class="italic">0</span> 个 <span class="grad">产品</span>?</h1>
+      <div class="eyebrow reveal r2">03 · 共鸣 · I was stuck too</div>
+      <h1 class="reveal r3">我当年也卡在<span class="italic">第 0 个</span>产品</h1>
       <div class="lede reveal r4">卡住你的从来不是技术 ——<br>是你默认了一句 <b>"我不会写代码"</b>。</div>
     </div>
     <div class="qcards">
@@ -960,275 +949,21 @@ AI 让你快十倍——方向对的时候。方向错的时候，它让你错�
       <div class="qcard reveal r5"><div class="qnum">03</div><div><h3>想一步到位做成"平台"</h3><p>第一个产品就想又大又全。真正的杠杆，是先做小、做完、做到上线，再让第 N 个产品复利。</p></div></div>
     </div>
   </div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>03 / 15 — The Gap</div>
-  </div>
+    <div>03 / 15 — The Gap</div></div>
 </div>
 </section>
-
-<!-- ===== P04 DEFINITION ===== -->
-<section id="p04" class="deck-slide">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="正确的路径，就三段：意图、规格、执行。
-
-第一段——意图。说清楚你要什么。给谁用，解决什么问题，最核心的功能是什么。不求完美，模糊也可以，先把感觉说出来。这一段，是你的。
-
-第二段——规格。这里我要说一句最重要的话。
-
-规格里最值钱的部分，不是写了什么——
-
-是写下你不做什么。
-
-&quot;优化一下体验&quot;——这不是规格。就像你跟外卖小哥说&quot;你知道我饿了&quot;，他不知道你想吃什么。
-
-&quot;用户点击后 300 毫秒内出现反馈&quot;，这才是规格。
-
-第三段——执行。AI 按规格写、跑、修，你在关键节点确认。这一段，基本是 AI 的。
-
-三段里，AI 主导两段半。你只需要想清楚第一段。" data-audio="audio/p04.mp3">
-  <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
-    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
-  </div>
-  <div class="page-header reveal r2">
-    <div><div class="eyebrow">04 · Vibe Coding 是什么 · Definition</div><h1>把 <span class="italic">意图</span> 变成产品的最短路径</h1></div>
-    <div class="dek">不是"写代码"的技巧，<br>是"做出来"的三段式。</div>
-  </div>
-  <div class="flow">
-    <div class="col c1 reveal r3"><div class="tag">Step 01 · 感觉先行</div><div class="big">Vibe</div><h3>表达意图</h3><p>用大白话讲清楚你想要什么、给谁用、解决什么问题。模糊也没关系，先把"感觉"说出来。</p><div class="role">你负责 <b>What &amp; Why</b></div></div>
-    <div class="arrow reveal r4">→</div>
-    <div class="col c2 reveal r4"><div class="tag">Step 02 · 讲清楚</div><div class="big">Spec</div><h3>拆解规格</h3><p>把意图变成结构化、无歧义、带验收标准的规格。这一步决定了 AI 跑得稳不稳。</p><div class="role">AI 起草 · 你 <b>拍板</b></div></div>
-    <div class="arrow reveal r5">→</div>
-    <div class="col c3 reveal r5"><div class="tag">Step 03 · 跑起来</div><div class="big">Ship</div><h3>执行交付</h3><p>AI 按规格写代码、跑测试、改 Bug，你在关键节点 review，最后部署上线。</p><div class="role">AI 执行 · 你 <b>验收</b></div></div>
-  </div>
-  <div class="foot-note reveal r6">一句话：Vibe Coding = <span class="hi">把"会不会写代码"换成"说不说得清楚"</span>。</div>
-  <div class="bottom-bar reveal r6">
-    <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>04 / 15 — Definition</div>
-  </div>
-</div>
-</section>
-
-<!-- ===== P05 THE SHIFT ===== -->
-<section id="p05" class="deck-slide">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="旧范式：你是驾驶员，AI 是导航。你写每一行，AI 在旁边提示。你有多快，产品就有多快。
-
-新范式：你是指挥官，AI 是执行团队。你说清楚目的地，AI 去开车、导航、处理路上的障碍。你的精力，从&quot;怎么开车&quot;——移到&quot;去哪里&quot;。
-
-我自己的转折点很具体。
-
-有一次，我把一个功能需求写清楚，直接让 AI 从头跑到尾。我去泡了杯茶。回来，它跑通了，测试也过了。
-
-那一刻我意识到——我之前一直在低估它。不是 AI 不够好，是我一直把它当代码补全工具用。
-
-从那之后我的工作方式就变了：先写清楚意图，然后放手让它跑，我只在关键节点做判断。" data-audio="audio/p05.mp3">
-  <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
-    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
-  </div>
-  <div class="page-header reveal r2">
-    <div><div class="eyebrow">05 · 范式迁移 · The Shift</div><h1>从写代码，到 <span class="italic">表达意图</span></h1></div>
-    <div class="dek">同一件事，<br>换一种活法。</div>
-  </div>
-  <div class="compare">
-    <div class="panel old reveal r3">
-      <div class="ptag">Old Paradigm · 旧范式</div>
-      <div class="ptitle">写代码</div>
-      <div class="en">Writing Code</div>
-      <ul>
-        <li><span class="mk">01</span><span>先学语法、框架、环境，门槛挡在最前面</span></li>
-        <li><span class="mk">02</span><span>一行行手写实现，进度等于打字速度</span></li>
-        <li><span class="mk">03</span><span>调试黑洞，大量时间耗在环境与低级 Bug</span></li>
-        <li><span class="mk">04</span><span>一个人能力的上限，就是产品的上限</span></li>
-      </ul>
-      <div class="kpi">第一个产品周期：<b>以月计</b></div>
-    </div>
-    <div class="midarrow reveal r4"><div class="ring">→</div><div class="lbl">Shift</div></div>
-    <div class="panel new reveal r5">
-      <div class="ptag">New Paradigm · 新范式</div>
-      <div class="ptitle">表达意图</div>
-      <div class="en">Expressing Intent</div>
-      <ul>
-        <li><span class="mk">01</span><span>用大白话描述需求，意图清晰就能开始</span></li>
-        <li><span class="mk">02</span><span>AI 拆规格、写实现、跑测试，你做编排</span></li>
-        <li><span class="mk">03</span><span>你在关键节点做判断，把精力留给取舍</span></li>
-        <li><span class="mk">04</span><span>能力的上限，是你"说得清楚"的程度</span></li>
-      </ul>
-      <div class="kpi">第一个产品周期：<b>以天计</b></div>
-    </div>
-  </div>
-  <div class="bottom-bar reveal r6">
-    <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>05 / 15 — The Shift</div>
-  </div>
-</div>
-</section>
-
-<!-- ===== P06 TOOLKIT ===== -->
-<section id="p06" class="deck-slide">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="工具这件事，我只说一句：没有最好的，只有最适合你当下这一步的。
-
-两个阵营。
-
-终端派——Claude Code、Codex CLI。住在命令行里，全流程自主。项目复杂、需要跨文件操作，选这个。
-
-编辑器派——Cursor 这类。改动直观，所见即所得。习惯图形界面，或者做前端视觉类东西，选这个。
-
-模型怎么选？优先 Claude 系列。复杂任务用 Opus，快速迭代用 Sonnet。两者价格差接近五倍——用对了，这五倍完全值。用错了，贵的也白费。
-
-工具会变。这个选法的逻辑，不会变。" data-audio="audio/p06.mp3">
-  <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
-    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
-  </div>
-  <div class="page-header reveal r2">
-    <div><div class="eyebrow">06 · 工具与模型 · Tools &amp; Models</div><h1>挑对你的 <span class="italic">工具</span> 和 模型</h1></div>
-    <div class="dek">没有最好的工具，<br>只有最适合你这一步的。</div>
-  </div>
-  <div class="grid">
-    <div class="card c-coral reveal r3"><div class="icon-row"><div class="icon">C</div><span class="badge">CLI</span></div><h3>命令行派<span class="en">Claude Code · Codex CLI</span></h3><p>住在终端里的全栈搭档。读代码、写代码、跑测试、提交，全流程自主完成。</p><div class="footer-row"><span>工具形态 · 一</span><span class="num">01</span></div></div>
-    <div class="card c-lavender reveal r4"><div class="icon-row"><div class="icon">I</div><span class="badge">IDE</span></div><h3>编辑器派<span class="en">Cursor 等</span></h3><p>住在你的代码编辑器里，边写边看、改动直观。习惯图形界面的人更顺手。</p><div class="footer-row"><span>工具形态 · 二</span><span class="num">02</span></div></div>
-    <div class="card c-cyan reveal r5"><div class="icon-row"><div class="icon">AI</div><span class="badge">Model</span></div><h3>模型是大脑<span class="en">优先 Claude / Codex</span></h3><p>工具是外壳，模型才决定聪不聪明。我自己已经收敛到这两家，不再用 OpenClaw、Hermes。</p><div class="footer-row"><span>选型核心</span><span class="num">03</span></div></div>
-    <div class="card c-peach reveal r6"><div class="icon-row"><div class="icon">D</div><span class="badge">Desktop</span></div><h3>桌面 App<span class="en">小白的最佳入口</span></h3><p>Claude、Codex 都有桌面版：图形界面、不用碰命令行，而且不只写代码，还能帮你做任务。</p><div class="footer-row"><span>从这里上手</span><span class="num">04</span></div></div>
-  </div>
-  <div class="bottom-bar reveal r6">
-    <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>06 / 15 — Tools</div>
-  </div>
-</div>
-</section>
-
-<!-- ===== P07 WORKFLOW ===== -->
-<section id="p07" class="deck-slide">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="五步，一条直线。每一步，分清楚谁做。
-
-第一步，你来：说清楚你要什么。
-
-第二步，AI 来：把你的意图拆成规格文档。你来确认。
-
-第三步，AI 来：按规格执行，写代码，遇到问题自己修。
-
-这里有个诱惑——你会忍不住想去盯着每一行代码。我懂这个感觉，就像把车交给代驾，然后坐在副驾一直在踩空气刹车。
-
-放手。
-
-第四步，你来：看关键决策——技术选型对不对，核心逻辑有没有跑偏。不是每行都看。
-
-第五步，你来：上线，收真实反馈，用反馈决定下一步。
-
-这五步里，你主导一、四、五。AI 主导二、三。" data-audio="audio/p07.mp3">
-  <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
-    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
-  </div>
-  <div class="page-header reveal r2">
-    <div><div class="eyebrow">07 · 5 步工作流 · The Workflow</div><h1>第一个产品，<span class="italic">怎么</span> 诞生</h1></div>
-    <div class="dek">五步，一条直线。<br>每一步都分清谁负责。</div>
-  </div>
-  <div class="steps">
-    <div class="step s1 reveal r3"><div class="snum">1</div><div class="body"><h3>表达意图 <span class="en">Express</span></h3><p>写一段大白话需求：做什么、给谁用、解决什么问题。不求完美，求说清楚。</p></div><div class="who you">你 · 出题</div></div>
-    <div class="step s2 reveal r4"><div class="snum">2</div><div class="body"><h3>AI 拆解规格 <span class="en">Spec</span></h3><p>用 cc-sdd 的 spec 阶段，把意图拆成结构化、带验收标准的规格文档。</p></div><div class="who ai">AI 起草 · 你拍板</div></div>
-    <div class="step s3 reveal r5"><div class="snum">3</div><div class="body"><h3>AI 执行实现 <span class="en">Build</span></h3><p>Claude Code 按规格跑代码：写实现、跑测试、改 Bug，自主完成长程任务。</p></div><div class="who ai">AI · 执行</div></div>
-    <div class="step s4 reveal r6"><div class="snum">4</div><div class="body"><h3>你做判断 <span class="en">Review</span></h3><p>在关键节点 review：方向对不对、取舍合不合理。你管判断，不管打字。</p></div><div class="who you">你 · 把关</div></div>
-    <div class="step s5 reveal r7"><div class="snum">5</div><div class="body"><h3>上线发布 <span class="en">Ship</span></h3><p>部署上线、对外推广，让真实用户用起来 —— 用反馈决定下一步迭代。</p></div><div class="who you">你 · 交付</div></div>
-  </div>
-  <div class="bottom-bar reveal r8">
-    <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>07 / 15 — Workflow</div>
-  </div>
-</div>
-</section>
-<!-- ===== P08 进阶能力 ===== -->
-<section id="p08" class="deck-slide">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="这一页名词最多——
-
-但你一个都不用记。我说两件事，你理解了就够。
-
-第一件：MCP，给 AI 装插座。
-
-AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——邮件、数据库、内部系统。从&quot;只会说&quot;，变成&quot;能动手&quot;。
-
-举个例子：客户的需求整理成文档、推进内部系统、通知相关同事。以前三步，步步手动。现在 AI 接上这几个系统，我说一句&quot;处理这个需求&quot;，它自己跑完。
-
-第二件：Skills，把流程打包成资产。
-
-每次做同类工作，步骤是固定的，就把它存成 Skills。下次一句话调用，AI 按你设好的流程跑。
-
-经验不再锁在你脑子里，锁在系统里。今天这场分享用的工具，就是我把&quot;演讲准备全流程&quot;封装成的 Skills。" data-audio="audio/p08.mp3">
-  <div class="topnav reveal r1">
-    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
-    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
-  </div>
-  <div class="page-header reveal r2">
-    <div><div class="eyebrow">08 · 进阶能力 · Level Up</div><h1>让 AI 更强的 <span class="italic">进阶</span> 能力</h1></div>
-    <div class="dek">名词最多的一页 ——<br>但你一个都不用记。</div>
-  </div>
-  <div class="content">
-    <div class="concepts">
-      <div class="concept k-cyan reveal r3">
-        <div class="ic">M</div>
-        <div><h3>MCP <span class="en">让 AI 连上你的工具</span></h3><p>给 AI 装上「插座」—— 连上邮箱、网盘、数据库，从「只能说」变「能动手」。</p></div>
-      </div>
-      <div class="concept k-coral reveal r4">
-        <div class="ic">Sk</div>
-        <div><h3>Skills <span class="en">把流程打包复用</span></h3><p>把一套固定做法存成「操作手册」，下次同类活一键调用，经验越攒越厚。</p></div>
-      </div>
-    </div>
-    <div class="chain-wrap reveal r5">
-      <div class="chain-label">全流程 SKILL 长这样 · <b>发散 → 规划 → 落地</b> 一条链路</div>
-      <div class="chain">
-        <div class="chain-step cs1"><span class="st-tag">想清楚</span><span class="st-name">brainstorming</span><span class="st-desc">动手前先把想法聊透、给几个方案、写成规格，拦住「没想清楚就写代码」。</span></div>
-        <div class="chain-arrow">→</div>
-        <div class="chain-step cs2"><span class="st-tag">写规格</span><span class="st-name">cc-sdd / Spec Kit</span><span class="st-desc">把想法变成 AI 认的、带验收标准的规格文档，你点头后 AI 自主往下跑。</span></div>
-        <div class="chain-arrow">→</div>
-        <div class="chain-step cs3"><span class="st-tag">跑完实现</span><span class="st-name">feature-dev</span><span class="st-desc">Anthropic 官方一条龙，发现需求 → 设计 → 实现 → review 全程自动编排。</span></div>
-      </div>
-      <div class="relax-note"><span class="dash">—</span> 这页小白朋友一个名词都不用记，知道「有这些现成的轮子能用」就够了。</div>
-    </div>
-  </div>
-  <div class="bottom-bar reveal r6">
-    <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>08 / 15 — Level Up</div>
-  </div>
-</div>
-</section>
-<!-- ===== P09 clip-shot ===== -->
 <section id="p09" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="我来说第一个真实案例——顺便说一个我自己觉得很蠢的事。
-
-我每天要做这个动作：截一张图，存成文件，传图床，复制链接，粘贴回文档。整个流程三十秒。
-
-我算了一下——
-
-一年下来大概是……八小时。
-
-八小时，就为了传图片。
-
-我当时就想，不行，我要把这八小时还给自己。
-
-于是我做了 clip-shot。macOS 菜单栏的一个小工具，监听剪贴板，检测到图片——自动上传，生成链接，写回剪贴板。我什么都不用做，截图完直接粘贴，链接已经在那里了。
-
-用 Swift 写的。Swift 不是我熟的语言。但需求够小够清晰，AI 几下跑通。
-
-这就是第一个产品该有的样子：只做一件事，解决你自己的一个真实痛点。" data-audio="audio/p09.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div><div class="eyebrow">09 · 案例 A · 最小可用</div><h1>clip-shot：<span class="italic">一件事</span>，做到极致</h1></div>
+    <div><div class="eyebrow">04 · 第一个产品 · Build It Small</div><h1>clip-shot：<span class="italic">把烦了一年的事</span>干掉</h1></div>
     <div></div>
   </div>
   <div class="two-cols">
@@ -1349,30 +1084,93 @@ AI 默认只能处理文字。装了 MCP，它能真正接入你的工具——�
   </div>
   <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>09 / 15 — Case A</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>09 / 15 — Case A</div></div>
 </div>
 </section>
-
-<!-- ===== P10 landr ===== -->
-<section id="p10" class="deck-slide">
+<section id="p04" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="第二个案例，量级完全不同。
-
-landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面试准备、智能投递。六个 Agent 模块，一个 Chrome 扩展，把在 Boss 直聘收集岗位的时间从三十分钟压到一分钟。
-
-里面有大量&quot;工程脏活&quot;——岗位列表只有十八个字的摘要怎么办？后台自动开标签页抓详情页。Boss 直聘风控怎么处理？这些不写进规格，AI 不会主动去想。
-
-这些代码我一行都没写。我写的是 SPEC，设了人工检查点，让 AI 按阶段跑。每个阶段一个独立的分支，跑完 review，没问题继续。
-
-从 1 到 N 的方法就这一句：先想清楚全局，再拆成可以独立验证的小段，让 AI 一段一段跑。" data-audio="audio/p10.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div><div class="eyebrow">10 · 案例 B · 1→N 商业化</div><h1>landr：<span class="italic">AI 求职 Agent</span></h1></div>
+    <div><div class="eyebrow">05 · 抽方法 · Intent → Spec → Build</div><h1>我从这个小工具里<br>抽出的<span class="italic">方法</span></h1></div>
+    <div class="dek">不是"写代码"的技巧，<br>是"做出来"的三段式。</div>
+  </div>
+  <div class="flow">
+    <div class="col c1 reveal r3"><div class="tag">Step 01 · 感觉先行</div><div class="big">Vibe</div><h3>表达意图</h3><p>用大白话讲清楚你想要什么、给谁用、解决什么问题。模糊也没关系，先把"感觉"说出来。</p><div class="role">你负责 <b>What &amp; Why</b></div></div>
+    <div class="arrow reveal r4">→</div>
+    <div class="col c2 reveal r4"><div class="tag">Step 02 · 讲清楚</div><div class="big">Spec</div><h3>拆解规格</h3><p>把意图变成结构化、无歧义、带验收标准的规格。这一步决定了 AI 跑得稳不稳。</p><div class="role">AI 起草 · 你 <b>拍板</b></div></div>
+    <div class="arrow reveal r5">→</div>
+    <div class="col c3 reveal r5"><div class="tag">Step 03 · 跑起来</div><div class="big">Ship</div><h3>执行交付</h3><p>AI 按规格写代码、跑测试、改 Bug，你在关键节点 review，最后部署上线。</p><div class="role">AI 执行 · 你 <b>验收</b></div></div>
+  </div>
+  <div class="foot-note reveal r6">一句话：Vibe Coding = <span class="hi">把"会不会写代码"换成"说不说得清楚"</span>。</div>
+  <div class="bottom-bar reveal r5">
+    <div>YuzoAI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>04 / 15 — Definition</div></div>
+</div>
+</section>
+
+<section id="p-git" class="deck-slide">
+<div class="bg-mesh">
+  <div class="blob blob-1"></div><div class="blob blob-2"></div>
+  <div class="blob blob-3"></div><div class="blob blob-4"></div>
+</div>
+<div class="slide">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">06 · 安全网 · Version Control</div>
+    <h1>AI 帮你<span class="italic">存档</span>，也帮你<span class="grad">回退</span></h1>
+    <div class="dek">Git 不用你学 ——AI 自己会用。你只需要知道它<span style="color:var(--cyan)">存在</span>。</div>
+  </div>
+  <div class="git-cards">
+    <div class="git-card g1 reveal r3">
+      <div class="g-num">01</div>
+      <div class="g-icon">📸</div>
+      <h3>AI 自动存档</h3>
+      <p>每改完一段功能，AI 自己 <span class="hl">commit</span> 一次。Git 就是给代码"拍照存档"，每一步都有记录。</p>
+      <div class="g-foot">你说："这段做完了" → AI 自己保存</div>
+    </div>
+    <div class="git-card g2 reveal r4">
+      <div class="g-num">02</div>
+      <div class="g-icon">⏪</div>
+      <h3>说一句就回退</h3>
+      <p>AI 改飞了？说"<span class="hl">回到刚才那版</span>"，AI 自己 reset，一秒回到上一次存档，不用熬夜重写。</p>
+      <div class="g-foot">坏了不可怕，回得去就行</div>
+    </div>
+    <div class="git-card g3 reveal r5">
+      <div class="g-num">03</div>
+      <div class="g-icon">🌿</div>
+      <h3>试新想法不怕坏</h3>
+      <p>想试个新方案？让 AI 开个<span class="hl">分支</span>，跑通了合并，跑不通直接丢。主代码全程不受影响。</p>
+      <div class="g-foot">一个想法 = 一个分支 = 一次安全的实验</div>
+    </div>
+  </div>
+  <div class="git-callout reveal r6">
+    <span class="hi">敢让 AI 乱来</span>的底气，来自 Git 给你兜底。
+  </div>
+  <div class="bottom-bar reveal r7">
+    <div>YuzoAI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>06 / 15 — Safety Net</div>
+  </div>
+</div>
+</section>
+<section id="p10" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">07 · 项目长大 · 1 → N</div><h1>landr：<span class="italic">AI 求职 Agent</span></h1></div>
     <div class="dek">全链路自动化——从简历到 offer</div>
   </div>
   <div class="main-cols">
@@ -1438,36 +1236,84 @@ landr 是一个 AI 求职 Agent，全链路：简历理解、岗位匹配、面�
   </div>
   <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>10 / 15 — Case B</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>10 / 15 — Case B</div></div>
 </div>
 </section>
-
-<!-- ===== P11 THE DIVIDE ===== -->
-<section id="p11" class="deck-slide">
+<section id="p06" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="这套方法做个人项目很爽——
-
-进企业，未必。
-
-个人项目，所有上下文都在你脑子里。你知道这个产品要解决什么、给谁用、历史上做过什么决策。你告诉 AI 的时候，这些背景是隐含的。
-
-企业里不一样。上下文散落在各处：在旧系统里、在某个老员工的脑子里、在三年前的 PRD 里、有的根本就没有文档——就是约定俗成，大家都知道，但没写下来。
-
-AI 拿不到这些，就跑不准。
-
-我见过一种极端情况——AI 把一个&quot;遗留的兼容逻辑&quot;当成&quot;核心功能&quot;改了，线上出了问题。
-
-所以进企业，这套方法必须升级。不是方向错了，是需要覆盖更长的链路。" data-audio="audio/p11.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div class="eyebrow">11 · 关键转折 · The Divide</div>
+    <div><div class="eyebrow">08 · 工具入口 · Pick Your Stack</div><h1>挑<span class="italic">趁手</span>的工具</h1></div>
+    <div class="dek">没有最好的工具，<br>只有最适合你这一步的。</div>
+  </div>
+  <div class="grid">
+    <div class="card c-coral reveal r3"><div class="icon-row"><div class="icon">C</div><span class="badge">CLI</span></div><h3>命令行派<span class="en">Claude Code · Codex CLI</span></h3><p>住在终端里的全栈搭档。读代码、写代码、跑测试、提交，全流程自主完成。</p><div class="footer-row"><span>工具形态 · 一</span><span class="num">01</span></div></div>
+    <div class="card c-lavender reveal r4"><div class="icon-row"><div class="icon">I</div><span class="badge">IDE</span></div><h3>编辑器派<span class="en">Cursor 等</span></h3><p>住在你的代码编辑器里，边写边看、改动直观。习惯图形界面的人更顺手。</p><div class="footer-row"><span>工具形态 · 二</span><span class="num">02</span></div></div>
+    <div class="card c-cyan reveal r5"><div class="icon-row"><div class="icon">AI</div><span class="badge">Model</span></div><h3>模型是大脑<span class="en">优先 Claude / Codex</span></h3><p>工具是外壳，模型才决定聪不聪明。我自己已经收敛到这两家，不再用 OpenClaw、Hermes。</p><div class="footer-row"><span>选型核心</span><span class="num">03</span></div></div>
+    <div class="card c-peach reveal r6"><div class="icon-row"><div class="icon">D</div><span class="badge">Desktop</span></div><h3>桌面 App<span class="en">小白的最佳入口</span></h3><p>Claude、Codex 都有桌面版：图形界面、不用碰命令行，而且不只写代码，还能帮你做任务。</p><div class="footer-row"><span>从这里上手</span><span class="num">04</span></div></div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>YuzoAI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>06 / 15 — Tools</div></div>
+</div>
+</section>
+<section id="p08" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div><div class="eyebrow">09 · 让 AI 动手 · Beyond Chat</div><h1>让 AI 从"<span class="italic">会回答</span>"<br>变成"<span class="italic">能办事</span>"</h1></div>
+    <div class="dek">名词最多的一页 ——<br>但你一个都不用记。</div>
+  </div>
+  <div class="content">
+    <div class="concepts">
+      <div class="concept k-cyan reveal r3">
+        <div class="ic">M</div>
+        <div><h3>MCP <span class="en">让 AI 连上你的工具</span></h3><p>给 AI 装上「插座」—— 连上邮箱、网盘、数据库，从「只能说」变「能动手」。</p></div>
+      </div>
+      <div class="concept k-coral reveal r4">
+        <div class="ic">Sk</div>
+        <div><h3>Skills <span class="en">把流程打包复用</span></h3><p>把一套固定做法存成「操作手册」，下次同类活一键调用，经验越攒越厚。</p></div>
+      </div>
+    </div>
+    <div class="chain-wrap reveal r5">
+      <div class="chain-label">全流程 SKILL 长这样 · <b>发散 → 规划 → 落地</b> 一条链路</div>
+      <div class="chain">
+        <div class="chain-step cs1"><span class="st-tag">想清楚</span><span class="st-name">brainstorming</span><span class="st-desc">动手前先把想法聊透、给几个方案、写成规格，拦住「没想清楚就写代码」。</span></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step cs2"><span class="st-tag">写规格</span><span class="st-name">cc-sdd / Spec Kit</span><span class="st-desc">把想法变成 AI 认的、带验收标准的规格文档，你点头后 AI 自主往下跑。</span></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step cs3"><span class="st-tag">跑完实现</span><span class="st-name">feature-dev</span><span class="st-desc">Anthropic 官方一条龙，发现需求 → 设计 → 实现 → review 全程自动编排。</span></div>
+      </div>
+      <div class="relax-note"><span class="dash">—</span> 这页小白朋友一个名词都不用记，知道「有这些现成的轮子能用」就够了。</div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r5">
+    <div>YuzoAI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>08 / 15 — Level Up</div></div>
+</div>
+</section>
+<section id="p11" class="deck-slide">
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
+<div class="slide">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="page-header reveal r2">
+    <div class="eyebrow">10 · 进企业 · The Divide</div>
     <h1>同一套方法，进企业<br>为什么<span class="italic">不灵了</span>？</h1>
-    <div style="display:inline-block;margin-top:14px;padding:7px 18px;border-radius:100px;border:1px solid rgba(110,255,227,0.35);background:rgba(110,255,227,0.08);font-size:12px;letter-spacing:0.05em;color:var(--cyan);">提示 · 本节主要讲给有开发经验的朋友，零基础听个轮廓即可</div>
+    <div style="display:inline-block;margin-top:14px;padding:7px 18px;border-radius:100px;border:1px solid rgba(110,255,227,0.35);background:rgba(110,255,227,0.08);font-size:12px;letter-spacing:0.05em;color:var(--cyan);">提示 · 项目越大，越要先整理背景</div>
   </div>
   <div class="compare-wrap">
     <div class="compare-col personal reveal r3">
@@ -1490,35 +1336,22 @@ AI 拿不到这些，就跑不准。
     </div>
   </div>
   <div class="conclusion reveal r5">个人项目靠「说清楚」驱动 AI 就够了；企业项目需要先把知识结构化，再让 AI 介入。</div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>11 / 15 — The Divide</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>11 / 15 — The Divide</div></div>
 </div>
 </section>
-
-<!-- ===== P12 SDD ===== -->
 <section id="p12" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="企业里怎么用？四个动作。
-
-第一：让 AI 来问你，不是你去告诉它。先给基本背景，让它提问。它问出来的问题，往往是你觉得理所当然、但从来没有明确说过的东西。
-
-我们做智能客服项目，AI 第一轮问了七个问题，其中三个是我们内部自己都没对齐过的。
-
-第二：对比两次结果，把结论写进约束。不是猜哪个好，是跑两遍，对比，固化。
-
-第三：历史文档全部喂进去。架构图、旧 PRD、接口文档——全给。上下文越充分，AI 越准。这一步很多人嫌麻烦，但它是企业场景里最值得投入的一步。
-
-第四：并行跑多方案，取最优。AI 是并发的，你要用并发的思维去用它。" data-audio="audio/p12.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div class="eyebrow">12 · 企业解法 · SDD</div>
-    <h1>引入 <span class="italic">SDD</span>，覆盖更长的链路</h1>
+    <div class="eyebrow">11 · 企业解法 · SDD</div>
+    <h1>SDD：给 AI 写一份<br><span class="italic">项目说明书</span></h1>
     <div style="display:inline-block;margin-top:12px;padding:7px 18px;border-radius:100px;border:1px solid rgba(183,148,255,0.35);background:rgba(183,148,255,0.08);font-size:12px;letter-spacing:0.04em;color:var(--lavender);">一句话：SDD 就是前面 Spec 的「企业加强版」—— 小白记住「先写清楚，再动手」就够了</div>
   </div>
   <div class="model-compare">
@@ -1540,36 +1373,21 @@ AI 拿不到这些，就跑不准。
     <div class="action-card reveal r5"><h4>喂更多背景</h4><p>历史需求文档、架构图、业务流程图一起给，背景越多 AI 越准</p></div>
     <div class="action-card reveal r5"><h4>并行跑策略</h4><p>同时试多种生成方式，取最优，而不是串行等一个结果</p></div>
   </div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>12 / 15 — SDD</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>12 / 15 — SDD</div></div>
 </div>
 </section>
-
-<!-- ===== P13 ENTERPRISE ===== -->
 <section id="p13" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="两个项目，我都参与了。
-
-第一个：智能客服 Agent。全新项目从零开始。最终交付的代码，十个有九个是 AI 写的。我们团队干的是定义需求、设计架构、处理边界问题。
-
-顺便说一句——那一个是我写的。我们的 AI 说它写的那九个更整洁。
-
-我……没有反驳。
-
-开发速度大概是纯人工的三到四倍，而且代码有测试覆盖，关键决策有记录，比以前&quot;拍脑袋&quot;写的还规范。
-
-第二个：智能营销系统，有几年历史的老系统。新增功能全部由 AI 实现。难点是上下文整理——花了一到两周，把散落的文档、逻辑、接口整理成结构化输入。整理完之后，后续每个功能的落地速度翻倍以上。
-
-AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div class="eyebrow">13 · 企业验证 · Enterprise</div>
+    <div class="eyebrow">12 · 真实项目 · Real World</div>
     <h1>真实项目，<span class="italic">真实数据</span></h1>
   </div>
   <div class="case-cards">
@@ -1607,34 +1425,21 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
     </div>
   </div>
   <div class="insight reveal r6">SDD 省的不是写代码的时间，是「说清楚需求」的时间。</div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
-    <div>13 / 15 — Enterprise</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>13 / 15 — Enterprise</div></div>
 </div>
 </section>
-
-<!-- ===== P14 COMPOUNDING ===== -->
 <section id="p14" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="做完第一个产品你会发现，第二个明显比第一个快。
-
-不是因为你熟了，是因为你有了资产。
-
-写过的规格模板，可以复用。踩过的坑，已经固化成约束，下一个 AI 不会再踩。调好的提示词，建好的 Skills，全部带进下一个项目。每个产品，都是在给下一个产品打地基。
-
-我自己现在同时在推进三个技术栈完全不同的项目——Rust、TypeScript、Swift。换成以前，我根本不可能同时维护。现在可以，因为我的工作不是写代码，是写规格、设检查点、做判断。语言不再是我的门槛。
-
-你的上限，从&quot;会多少语言、熟多少框架&quot;——变成了&quot;判断得有多清晰、系统化得有多深&quot;。
-
-第一个产品最难。从第二个开始，曲线开始弯。" data-audio="audio/p14.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div><div class="eyebrow">14 · 杠杆放大 · The Compounding</div><h1>第 <span class="italic">N</span> 个产品的复利</h1></div>
+    <div><div class="eyebrow">13 · 复利 · Compounding</div><h1>第 <span class="italic">N</span> 个产品的复利</h1></div>
     <div class="dek">第一个产品最难，<br>之后是一条复利曲线。</div>
   </div>
   <div class="viz">
@@ -1669,38 +1474,21 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
       <div class="xlabels"><span>第 1 个产品</span><span>第 2 个</span><span>第 3 个</span><span>···</span><span>第 N 个产品</span></div>
     </div>
   </div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
-    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
-    <div>14 / 15 — Compounding</div>
-  </div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span></div>
+    <div>14 / 15 — Compounding</div></div>
 </div>
 </section>
-
-<!-- ===== P15 ACTION + CLOSING ===== -->
 <section id="p15" class="deck-slide">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div></div>
-<div class="slide" data-script="收尾的地方，我给大家两件事。
-
-第一件：本周就动手。找一个你自己每天在用但很烦的重复动作，做一个小工具把它干掉。不用大，不用完美，只做一件事，做到极致。
-
-不要再&quot;打磨想法&quot;了。哪怕只有三天的时间，做出来比打磨两年更值钱。
-
-第二件：给它写一份规格。哪怕很粗，哪怕只有一页。把&quot;做什么、不做什么、验收标准是什么&quot;写下来。这份文档，是你从做一个走向做很多个的分水岭。
-
-2026 年是 Agentic Coding 真正落地的一年。谁先建立起&quot;意图→规格→执行&quot;这套工作方式，谁就拿到了接下来几年最重要的生产力杠杆。
-
-如果今天只记住一句话——
-
-你不需要成为更好的程序员，你需要成为更清晰的判断者。
-
-谢谢大家。" data-audio="audio/p15.mp3">
+<div class="slide">
   <div class="topnav reveal r1">
     <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
     <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
   </div>
   <div class="page-header reveal r2">
-    <div class="eyebrow">15 · 行动 · Action</div>
+    <div class="eyebrow">14 · 行动 · Your Turn</div>
     <h1>现在，<span class="italic">轮到你了</span></h1>
     <div class="sub">不必成为程序员，只要能说清楚你想要什么。</div>
   </div>
@@ -1740,13 +1528,93 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
       </div>
     </div>
   </div>
-  <div class="bottom-bar reveal r6">
+  <div class="bottom-bar reveal r5">
     <div>YuzoAI · WeChat · 小红书</div>
+    <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span></div>
+    <div>15 / 15 — The End</div></div>
+</div>
+</section>
+
+<section id="p-end" class="deck-slide">
+<div class="bg-mesh">
+  <div class="blob blob-1"></div><div class="blob blob-2"></div>
+  <div class="blob blob-3"></div><div class="blob blob-4"></div>
+</div>
+<div class="slide">
+  <div class="topnav reveal r1">
+    <div class="brand"><div class="orb"></div><span>YuzoAI</span></div>
+    <div class="nav-pills"><span class="pill">2026 · KEYNOTE</span><span class="pill live">LIVE</span></div>
+  </div>
+  <div class="end-hero">
+    <div class="end-left">
+      <div class="eyebrow reveal r2">15 · 谢谢大家 · Thank You</div>
+      <h1 class="reveal r3">你不需要成为<br>更<span class="italic">好</span>的程序员<br>你需要成为更<span class="grad">清晰</span>的<span class="grad">判断者</span></h1>
+      <div class="end-tag reveal r4">— 这场分享想留下的一句话</div>
+    </div>
+    <div class="end-right reveal r5">
+      <div class="qr-box">
+        <div class="qr-img">
+          <!-- QR 占位：换成你的实际二维码图片即可 -->
+          <div class="qr-placeholder">扫码<br>加微信</div>
+        </div>
+        <div class="qr-label">阿亮的微信</div>
+        <div class="qr-sub">聊 AI · 聊产品 · 聊创业</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar reveal r6">
+    <div>YuzoAI · 智启无界，行向未来</div>
     <div class="progress-line"><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span></div>
-    <div>15 / 15 — The End</div>
+    <div>15 / 15 — Fin</div>
   </div>
 </div>
 </section>
+<!-- ===== P01 COVER ===== -->
+
+
+<!-- ===== P02 OPENING ===== -->
+
+
+<!-- ===== P03 THE GAP ===== -->
+
+
+<!-- ===== P04 DEFINITION ===== -->
+
+
+<!-- ===== P05 THE SHIFT ===== -->
+
+
+<!-- ===== P06 TOOLKIT ===== -->
+
+
+<!-- ===== P07 WORKFLOW ===== -->
+
+<!-- ===== P08 进阶能力 ===== -->
+
+<!-- ===== P09 clip-shot ===== -->
+
+
+<!-- ===== P10 landr ===== -->
+
+
+<!-- ===== P11 THE DIVIDE ===== -->
+
+
+<!-- ===== P12 SDD ===== -->
+
+
+<!-- ===== P13 ENTERPRISE ===== -->
+
+
+<!-- ===== P14 COMPOUNDING ===== -->
+
+
+<!-- ===== P15 ACTION + CLOSING ===== -->
+
+
+
+
+
 
 <script>
 (function(){
@@ -1757,219 +1625,6 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
     });
   },{threshold:[0,0.25,0.4,0.5,0.75,1]});
   slides.forEach(function(s){io.observe(s);});
-  function current(){var best=0,bd=1e9;slides.forEach(function(s,i){var d=Math.abs(s.getBoundingClientRect().top);if(d<bd){bd=d;best=i;}});return best;}
-  function go(i){i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({behavior:'smooth'});}
-  document.addEventListener('keydown',function(e){
-    if(['ArrowDown','PageDown'].indexOf(e.key)>-1||(e.key===' '&&!e.shiftKey)){e.preventDefault();go(current()+1);}
-    else if(['ArrowUp','PageUp'].indexOf(e.key)>-1||(e.key===' '&&e.shiftKey)){e.preventDefault();go(current()-1);}
-    else if(e.key==='Home'){e.preventDefault();go(0);}
-    else if(e.key==='End'){e.preventDefault();go(slides.length-1);}
-  });
 })();
-</script>
-
-
-
-<script>
-// SpeakDeck injector — PPT 等比缩放 + 演讲模式 + 翻页自动播音
-// 默认：字幕隐藏、音频静音；点击右下角按钮开启
-(function () {
-
-  // ── 滚动条全程隐藏 ─────────────────────────────────────
-  var scrollStyle = document.createElement("style");
-  scrollStyle.textContent = [
-    "html, body { scrollbar-width: none; -ms-overflow-style: none; }",
-    "html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; background: transparent; }",
-    "*::-webkit-scrollbar { width: 0; height: 0; background: transparent; }"
-  ].join("\n");
-  document.head.appendChild(scrollStyle);
-
-  // ── PPT 等比缩放 ────────────────────────────────────────
-  // 设计基准尺寸（与原 HTML 的大屏设计一致）
-  var REF_W = 1440, REF_H = 900;
-
-  function applyScale() {
-    var scale = Math.min(window.innerWidth / REF_W, window.innerHeight / REF_H);
-    // 让 .deck-slide 成为居中容器
-    document.querySelectorAll(".deck-slide").forEach(function (ds) {
-      ds.style.display = "flex";
-      ds.style.alignItems = "center";
-      ds.style.justifyContent = "center";
-      ds.style.height = "100vh";
-      ds.style.overflow = "hidden";
-    });
-    // 把每页内容等比缩放，像 PPT 一样
-    document.querySelectorAll(".deck-slide .slide").forEach(function (el) {
-      el.style.width = REF_W + "px";
-      el.style.height = REF_H + "px";
-      el.style.minHeight = "unset";
-      el.style.flexShrink = "0";
-      el.style.transform = "scale(" + scale + ")";
-      el.style.transformOrigin = "center center";
-    });
-  }
-
-  applyScale();
-  window.addEventListener("resize", applyScale);
-
-  // ── 演讲模式 ────────────────────────────────────────────
-  // 收集所有页
-  var slides = document.querySelectorAll("[data-script],[data-audio]");
-  if (slides.length === 0) slides = document.querySelectorAll(".slide,section");
-  if (slides.length === 0) return;
-
-  var current = 0;
-  var enabled = false; // 总开关：字幕 + 声音
-
-  // 字幕浮层（默认隐藏）
-  var speaker = document.getElementById("speaker");
-  if (!speaker) {
-    speaker = document.createElement("aside");
-    speaker.id = "speaker";
-    Object.assign(speaker.style, {
-      position: "fixed", right: "24px", bottom: "80px",
-      maxWidth: "360px", maxHeight: "40vh", overflowY: "auto",
-      background: "rgba(22,27,34,.96)", color: "#E6EDF3",
-      padding: "16px 20px", borderRadius: "12px",
-      fontSize: "13px", lineHeight: "1.6", zIndex: "9998",
-      boxShadow: "0 8px 32px rgba(0,0,0,.4)", display: "none"
-    });
-    document.body.appendChild(speaker);
-  } else {
-    speaker.style.display = "none";
-  }
-
-  // 音频播放器
-  var audio = new Audio();
-
-  // 右下角按钮容器（横向排列：音频开关 + 全屏）
-  var btnGroup = document.createElement("div");
-  Object.assign(btnGroup.style, {
-    position: "fixed", right: "24px", bottom: "24px",
-    display: "flex", gap: "10px", zIndex: "9999"
-  });
-  document.body.appendChild(btnGroup);
-
-  var BTN_STYLE = {
-    width: "48px", height: "48px", borderRadius: "50%",
-    border: "none", cursor: "pointer",
-    fontSize: "20px", background: "rgba(22,27,34,.85)",
-    color: "rgba(255,255,255,.55)",
-    boxShadow: "0 4px 16px rgba(0,0,0,.4)",
-    backdropFilter: "blur(12px)", transition: "background .2s, color .2s, transform .15s",
-    display: "flex", alignItems: "center", justifyContent: "center"
-  };
-
-  // 音频/字幕开关按钮
-  var btn = document.createElement("button");
-  btn.id = "speakdeck-toggle";
-  btn.title = "字幕和声音 (P)";
-  Object.assign(btn.style, BTN_STYLE);
-  btn.innerHTML = "🔇";
-  btnGroup.appendChild(btn);
-
-  // 全屏播放按钮
-  var fsBtn = document.createElement("button");
-  fsBtn.id = "speakdeck-fullscreen";
-  fsBtn.title = "全屏播放 (F)";
-  Object.assign(fsBtn.style, BTN_STYLE);
-  fsBtn.innerHTML = "⛶";
-  fsBtn.style.fontSize = "22px";
-  btnGroup.appendChild(fsBtn);
-
-  // 键盘提示
-  var hint = document.createElement("div");
-  Object.assign(hint.style, {
-    position: "fixed", left: "24px", bottom: "24px",
-    fontSize: "11px", color: "rgba(255,255,255,.3)", zIndex: "9998",
-    letterSpacing: "0.05em"
-  });
-  hint.textContent = "↑↓ 翻页 · P 字幕/声音 · F 全屏";
-  document.body.appendChild(hint);
-
-  // 全屏切换
-  function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      (document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen).call(document.documentElement);
-    } else {
-      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
-    }
-  }
-  function updateFsBtn() {
-    var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
-    fsBtn.innerHTML = isFs ? "⛗" : "⛶";
-    fsBtn.title = isFs ? "退出全屏 (F / Esc)" : "全屏播放 (F)";
-    fsBtn.style.background = isFs ? "rgba(79,182,255,.25)" : "rgba(22,27,34,.85)";
-    fsBtn.style.color = isFs ? "#fff" : "rgba(255,255,255,.55)";
-  }
-  fsBtn.addEventListener("click", toggleFullscreen);
-  document.addEventListener("fullscreenchange", updateFsBtn);
-  document.addEventListener("webkitfullscreenchange", updateFsBtn);
-
-  function setEnabled(on) {
-    enabled = on;
-    btn.innerHTML = on ? "🔊" : "🔇";
-    btn.style.color = on ? "#fff" : "rgba(255,255,255,.45)";
-    btn.style.background = on ? "rgba(79,182,255,.25)" : "rgba(22,27,34,.85)";
-    speaker.style.display = on ? "" : "none";
-    if (on) playCurrent(); else audio.pause();
-  }
-
-  function playCurrent() {
-    var el = slides[current];
-    if (!el) return;
-    speaker.textContent = el.dataset.script || "";
-    if (!enabled) return;
-    var src = el.dataset.audio;
-    if (src) { audio.src = src; audio.play().catch(function(){}); }
-    else audio.pause();
-  }
-
-  function goTo(idx) {
-    if (idx < 0 || idx >= slides.length) return;
-    current = idx;
-    slides[idx].scrollIntoView({ behavior: "smooth" });
-    playCurrent();
-  }
-
-  btn.addEventListener("click", function () { setEnabled(!enabled); });
-
-  // IntersectionObserver：滚动时同步 current
-  var io = new IntersectionObserver(function (entries) {
-    var best = null;
-    entries.forEach(function (e) {
-      if (e.isIntersecting && (!best || e.intersectionRatio > best.intersectionRatio)) best = e;
-    });
-    if (!best) return;
-    var idx = Array.from(slides).indexOf(best.target);
-    if (idx === current) return;
-    current = idx;
-    speaker.textContent = (slides[idx].dataset.script) || "";
-    if (enabled) {
-      var src = slides[idx].dataset.audio;
-      if (src) { audio.src = src; audio.play().catch(function(){}); }
-    }
-  }, { threshold: [0.5, 0.8] });
-  slides.forEach(function (s) { io.observe(s); });
-
-  // 键盘控制
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "p" || e.key === "P") {
-      setEnabled(!enabled);
-    } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
-      e.preventDefault(); goTo(current + 1);
-    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-      e.preventDefault(); goTo(current - 1);
-    } else if (e.key === "m" || e.key === "M") {
-      if (enabled) { audio.paused ? audio.play().catch(function(){}) : audio.pause(); }
-    } else if (e.key === "r" || e.key === "R") {
-      if (enabled) { audio.currentTime = 0; audio.play().catch(function(){}); }
-    } else if (e.key === "f" || e.key === "F") {
-      e.preventDefault(); toggleFullscreen();
-    }
-  });
-
-})();
-
 </script>
 </body></html>

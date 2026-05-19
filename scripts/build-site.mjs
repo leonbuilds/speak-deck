@@ -26,16 +26,21 @@ function parseTalkMeta(talkDir, folderName) {
   if (!match) return null;
   const [, date, slug] = match;
 
-  const briefPath = path.join(talkDir, "brief.md");
-  const brief = fs.existsSync(briefPath) ? fs.readFileSync(briefPath, "utf8") : "";
+  // 如果存在 output-v2，优先用 v2 作为对外发布版本
+  const v2Dir = path.join(talkDir, "output-v2");
+  const outputDirName = fs.existsSync(v2Dir) ? "output-v2" : "output";
+  const briefName = fs.existsSync(path.join(talkDir, "brief-v2.md")) ? "brief-v2.md" : "brief.md";
+  const brief = fs.existsSync(path.join(talkDir, briefName))
+    ? fs.readFileSync(path.join(talkDir, briefName), "utf8") : "";
 
   const meta = {
     folderName, date, slug, title: slug, scenario: "", duration: "",
     audience: "", purpose: "", pageCount: 0,
-    hasSlides: fs.existsSync(path.join(talkDir, "output/slides.html")),
-    hasScript: fs.existsSync(path.join(talkDir, "output/script.md")),
-    hasAnnotated: fs.existsSync(path.join(talkDir, "output/script-annotated.md")),
-    hasAudio: fs.existsSync(path.join(talkDir, "output/audio")),
+    outputDir: outputDirName,
+    hasSlides: fs.existsSync(path.join(talkDir, outputDirName, "slides.html")),
+    hasScript: fs.existsSync(path.join(talkDir, outputDirName, "script.md")),
+    hasAnnotated: fs.existsSync(path.join(talkDir, outputDirName, "script-annotated.md")),
+    hasAudio: fs.existsSync(path.join(talkDir, outputDirName, "audio")),
   };
 
   const m = (re) => { const r = brief.match(re); return r ? r[1].trim() : ""; };
@@ -44,7 +49,7 @@ function parseTalkMeta(talkDir, folderName) {
   meta.audience = m(/\*\*对象\*\*:\s*([^\n]+)/);
   meta.purpose = m(/\*\*目的[^*]*\*\*:\s*([^\n]+)/);
 
-  const scriptJsonPath = path.join(talkDir, "output/script.json");
+  const scriptJsonPath = path.join(talkDir, outputDirName, "script.json");
   if (fs.existsSync(scriptJsonPath)) {
     try {
       const pages = JSON.parse(fs.readFileSync(scriptJsonPath, "utf8"));
@@ -180,9 +185,11 @@ function renderCard(t) {
 // ── 详情页 ────────────────────────────────────────────────
 function renderDetail(talk, talkDir) {
   __depth = 2;
-  const scriptMd = readSafe(path.join(talkDir, "output/script.md"));
-  const annotatedMd = readSafe(path.join(talkDir, "output/script-annotated.md"));
-  const briefMd = readSafe(path.join(talkDir, "brief.md"));
+  const outDir = talk.outputDir || "output";
+  const briefName = fs.existsSync(path.join(talkDir, "brief-v2.md")) ? "brief-v2.md" : "brief.md";
+  const scriptMd = readSafe(path.join(talkDir, outDir, "script.md"));
+  const annotatedMd = readSafe(path.join(talkDir, outDir, "script-annotated.md"));
+  const briefMd = readSafe(path.join(talkDir, briefName));
 
   // 渲染 markdown
   const scriptHtml = scriptMd ? marked.parse(scriptMd) : "<p>暂无逐字稿</p>";
@@ -192,7 +199,7 @@ function renderDetail(talk, talkDir) {
   const briefHtml = briefMd ? marked.parse(briefMd) : "";
 
   // 音频列表
-  const audioList = listAudio(talkDir);
+  const audioList = listAudio(talkDir, outDir);
 
   const body = `
 <div class="page detail">
@@ -276,8 +283,8 @@ function readSafe(p) {
   return fs.existsSync(p) ? fs.readFileSync(p, "utf8") : "";
 }
 
-function listAudio(talkDir) {
-  const dir = path.join(talkDir, "output/audio");
+function listAudio(talkDir, outDir = "output") {
+  const dir = path.join(talkDir, outDir, "audio");
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir)
     .filter(f => /\.(mp3|wav|m4a)$/i.test(f))
@@ -663,14 +670,15 @@ function build() {
     // 详情页
     fs.writeFileSync(path.join(dstDir, "index.html"), renderDetail(t, srcDir));
 
-    // 复制资源
-    copyIfExists(path.join(srcDir, "output/slides.html"), path.join(dstDir, "slides.html"));
+    // 复制资源（优先 output-v2）
+    const outDir = t.outputDir || "output";
+    copyIfExists(path.join(srcDir, outDir, "slides.html"), path.join(dstDir, "slides.html"));
     // 复制 input/ 里的图片资源（slides.html 可能引用）
     copyImages(path.join(srcDir, "input"), dstDir);
     // 也复制 output 同级的图片
-    copyImages(path.join(srcDir, "output"), dstDir);
+    copyImages(path.join(srcDir, outDir), dstDir);
     // 音频
-    const audioSrc = path.join(srcDir, "output/audio");
+    const audioSrc = path.join(srcDir, outDir, "audio");
     if (fs.existsSync(audioSrc)) {
       const audioDst = path.join(dstDir, "audio");
       fs.mkdirSync(audioDst, { recursive: true });
