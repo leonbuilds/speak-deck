@@ -2,6 +2,32 @@
 // 默认：字幕隐藏、音频静音；点击右下角按钮开启
 (function () {
 
+  // ── 滚动条默认隐藏，滚动时短暂显示 ─────────────────────
+  var scrollStyle = document.createElement("style");
+  scrollStyle.textContent = [
+    "html, body { scrollbar-width: none; -ms-overflow-style: none; }",
+    "html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; background: transparent; }",
+    "html.show-scroll, body.show-scroll { scrollbar-width: thin; -ms-overflow-style: auto; }",
+    "html.show-scroll::-webkit-scrollbar, body.show-scroll::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }",
+    "html.show-scroll::-webkit-scrollbar-thumb, body.show-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.25); border-radius: 4px; }",
+    "html.show-scroll::-webkit-scrollbar-thumb:hover, body.show-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.4); }"
+  ].join("\n");
+  document.head.appendChild(scrollStyle);
+
+  var scrollTimer = null;
+  function flashScrollbar() {
+    document.documentElement.classList.add("show-scroll");
+    document.body.classList.add("show-scroll");
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      document.documentElement.classList.remove("show-scroll");
+      document.body.classList.remove("show-scroll");
+    }, 2000);
+  }
+  window.addEventListener("scroll", flashScrollbar, { passive: true });
+  window.addEventListener("wheel", flashScrollbar, { passive: true });
+  window.addEventListener("touchmove", flashScrollbar, { passive: true });
+
   // ── PPT 等比缩放 ────────────────────────────────────────
   // 设计基准尺寸（与原 HTML 的大屏设计一致）
   var REF_W = 1440, REF_H = 900;
@@ -60,21 +86,40 @@
   // 音频播放器
   var audio = new Audio();
 
-  // 开关按钮（右下角）
+  // 右下角按钮容器（横向排列：音频开关 + 全屏）
+  var btnGroup = document.createElement("div");
+  Object.assign(btnGroup.style, {
+    position: "fixed", right: "24px", bottom: "24px",
+    display: "flex", gap: "10px", zIndex: "9999"
+  });
+  document.body.appendChild(btnGroup);
+
+  var BTN_STYLE = {
+    width: "48px", height: "48px", borderRadius: "50%",
+    border: "none", cursor: "pointer",
+    fontSize: "20px", background: "rgba(22,27,34,.85)",
+    color: "rgba(255,255,255,.55)",
+    boxShadow: "0 4px 16px rgba(0,0,0,.4)",
+    backdropFilter: "blur(12px)", transition: "background .2s, color .2s, transform .15s",
+    display: "flex", alignItems: "center", justifyContent: "center"
+  };
+
+  // 音频/字幕开关按钮
   var btn = document.createElement("button");
   btn.id = "speakdeck-toggle";
-  Object.assign(btn.style, {
-    position: "fixed", right: "24px", bottom: "24px",
-    width: "48px", height: "48px", borderRadius: "50%",
-    border: "none", cursor: "pointer", zIndex: "9999",
-    fontSize: "20px", background: "rgba(22,27,34,.85)",
-    color: "rgba(255,255,255,.45)",
-    boxShadow: "0 4px 16px rgba(0,0,0,.4)",
-    backdropFilter: "blur(12px)", transition: "background .2s, color .2s",
-    display: "flex", alignItems: "center", justifyContent: "center"
-  });
+  btn.title = "字幕和声音 (P)";
+  Object.assign(btn.style, BTN_STYLE);
   btn.innerHTML = "🔇";
-  document.body.appendChild(btn);
+  btnGroup.appendChild(btn);
+
+  // 全屏播放按钮
+  var fsBtn = document.createElement("button");
+  fsBtn.id = "speakdeck-fullscreen";
+  fsBtn.title = "全屏播放 (F)";
+  Object.assign(fsBtn.style, BTN_STYLE);
+  fsBtn.innerHTML = "⛶";
+  fsBtn.style.fontSize = "22px";
+  btnGroup.appendChild(fsBtn);
 
   // 键盘提示
   var hint = document.createElement("div");
@@ -83,8 +128,27 @@
     fontSize: "11px", color: "rgba(255,255,255,.3)", zIndex: "9998",
     letterSpacing: "0.05em"
   });
-  hint.textContent = "↑↓ 翻页 · P 字幕/声音";
+  hint.textContent = "↑↓ 翻页 · P 字幕/声音 · F 全屏";
   document.body.appendChild(hint);
+
+  // 全屏切换
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      (document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen).call(document.documentElement);
+    } else {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    }
+  }
+  function updateFsBtn() {
+    var isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+    fsBtn.innerHTML = isFs ? "⛗" : "⛶";
+    fsBtn.title = isFs ? "退出全屏 (F / Esc)" : "全屏播放 (F)";
+    fsBtn.style.background = isFs ? "rgba(79,182,255,.25)" : "rgba(22,27,34,.85)";
+    fsBtn.style.color = isFs ? "#fff" : "rgba(255,255,255,.55)";
+  }
+  fsBtn.addEventListener("click", toggleFullscreen);
+  document.addEventListener("fullscreenchange", updateFsBtn);
+  document.addEventListener("webkitfullscreenchange", updateFsBtn);
 
   function setEnabled(on) {
     enabled = on;
@@ -144,6 +208,8 @@
       if (enabled) { audio.paused ? audio.play().catch(function(){}) : audio.pause(); }
     } else if (e.key === "r" || e.key === "R") {
       if (enabled) { audio.currentTime = 0; audio.play().catch(function(){}); }
+    } else if (e.key === "f" || e.key === "F") {
+      e.preventDefault(); toggleFullscreen();
     }
   });
 
