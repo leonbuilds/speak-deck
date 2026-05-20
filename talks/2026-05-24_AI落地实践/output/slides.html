@@ -1956,10 +1956,13 @@ AI 不是在替代工程师，是在放大判断力。" data-audio="audio/p13.mp
   document.addEventListener("keydown", function (e) {
     if (e.key === "p" || e.key === "P") {
       setEnabled(!enabled);
-    } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
+    } else if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
       e.preventDefault(); goTo(current + 1);
-    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+    } else if (e.key === "ArrowUp" || e.key === "PageUp" || e.key === "ArrowLeft" || e.key === "Backspace") {
       e.preventDefault(); goTo(current - 1);
+    } else if (e.key === "F5") {
+      e.preventDefault();
+      if (!document.fullscreenElement) toggleFullscreen();
     } else if (e.key === "m" || e.key === "M") {
       if (enabled) { audio.paused ? audio.play().catch(function(){}) : audio.pause(); }
     } else if (e.key === "r" || e.key === "R") {
