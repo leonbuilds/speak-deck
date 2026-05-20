@@ -15,7 +15,7 @@ const NEW_ORDER = [
   { src: "p01", pos: 1, eyebrow: "AI 落地实践 · YuzoAI Keynote · 2026.05" },
   { src: "p02", pos: 2, eyebrow: "Opening · 一句话定调" },
   { src: "p03", pos: 3, eyebrow: "03 · 共鸣 · I was stuck too",
-    h1Replace: { from: /<h1[^>]*>[\s\S]*?<\/h1>/, to: `<h1 class="reveal r3">我当年也卡在<span class="italic">第 0 个</span>产品</h1>` } },
+    h1Replace: { from: /<h1[^>]*>[\s\S]*?<\/h1>/, to: `<h1 class="reveal r3">我也曾卡在<span class="italic">第 1 个</span>产品</h1>` } },
   { src: "p09", pos: 4, eyebrow: "04 · 第一个产品 · Build It Small",
     h1Replace: { from: /<h1[^>]*>[\s\S]*?<\/h1>/, to: `<h1>clip-shot：<span class="italic">把烦了一年的事</span>干掉</h1>` } },
   { src: "p04", pos: 5, eyebrow: "05 · 抽方法 · Intent → Spec → Build",
